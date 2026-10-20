@@ -130,8 +130,11 @@ window.GQ_I18N = {
     'palette.titleEm': 'Colours',
     'palette.intro': 'Our celebration palette features these tones. Official dress code information will follow.',
     'palette.purple': 'Royal Purple',
+    'palette.purpleSub': 'Deep Plum & Aubergine',
     'palette.green': 'Sage Green',
+    'palette.greenSub': 'Emerald & Moss Sage',
     'palette.peach': 'Blush Peach',
+    'palette.peachSub': 'Soft Champagne Rose',
 
     'gifts.eyebrow': 'GIFTS & GRATITUDE',
     'gifts.titleLead': 'Your Presence is Our',
@@ -169,13 +172,13 @@ window.GQ_I18N = {
     'rsvp.party4': '4 Persons',
     'rsvp.messageLabel': 'Wishes for the Couple (Optional)',
     'rsvp.messagePlaceholder': 'Leave your prayers and kind words\u2026',
-    'rsvp.submit': 'CONFIRM YOUR ATTENDANCE ↗',
-    'rsvp.note': 'This will record your response and open WhatsApp with your confirmation message pre-filled.',
+    'rsvp.submit': 'CONFIRM YOUR ATTENDANCE',
+    'rsvp.note': 'This will confirm your attendance and record your response with Godwin & Queeneth.',
     'rsvp.validationToast': 'Please enter your name and select your response.',
-    'rsvp.successToast': 'RSVP details recorded. Sending confirmation via WhatsApp\u2026',
-    'rsvp.waYes': 'Hello Godwin and Queeneth. My name is {name}. I will attend your wedding ceremony on Sunday, 15 November 2026. Number attending (including me): {party}.{message}',
-    'rsvp.waNo': 'Hello Godwin and Queeneth. My name is {name}. I regret that I cannot attend your wedding ceremony on Sunday, 15 November 2026.{message}',
-    'rsvp.waMessage': ' Message: {message}',
+    'rsvp.successToast': 'Thank you! Your RSVP has been confirmed. You can now add the date to your calendar below.',
+    'rsvp.waYes': '💍 *RSVP Confirmation — #TheGQaffair*\n\nHello Godwin & Queeneth,\n\nI am delighted to confirm that I will be attending your wedding ceremony on Sunday, 15 November 2026.\n\n👤 *Guest:* {name}\n👥 *Number Attending:* {party}{message}',
+    'rsvp.waNo': '💌 *RSVP Response — #TheGQaffair*\n\nHello Godwin & Queeneth,\n\nThank you for inviting me. Regretfully, I will not be able to attend your wedding ceremony on Sunday, 15 November 2026.\n\n👤 *Guest:* {name}{message}',
+    'rsvp.waMessage': '\n💬 *Wishes:* "{message}"',
 
     'faq.eyebrow': 'Before You Come',
     'faq.titleLead': 'Frequently Asked',
@@ -225,6 +228,8 @@ window.GQ_I18N = {
     'cal.saved': 'Calendar saved. Reminders: {days} prior!',
     'cal.lastSeparator': ', ',
     'cal.icsLocation': '16 Community Road, opposite First Bank, Satellite Town, Lagos, Nigeria',
+    'cal.scheduleHeader': '🔔 Selected Reminders Schedule:',
+    'cal.scheduleLine': '• {n} Days Prior: {date}',
     'cal.google': 'Add to Google Calendar',
     'cal.apple': 'Apple / iPhone Calendar (.ics)',
     'cal.outlook': 'Outlook / Other Calendars (.ics)',
@@ -233,7 +238,7 @@ window.GQ_I18N = {
     'cal.icsAlarm': 'Reminder: Godwin & Queeneth Wedding (#TheGQaffair) is in {n} days!',
     'cal.googleDetails': 'With grateful hearts, Godwin & Queeneth invite you to celebrate their sacred wedding ceremony.\n\nDate: Sunday, 15 November 2026 at 10:00 AM WAT\nLocation: 16 Community Road, opposite First Bank, Satellite Town, Lagos.\nHashtag: #TheGQaffair',
 
-    'rsvp.waPhone': ' WhatsApp: {phone}.'
+    'rsvp.waPhone': '\n📱 *WhatsApp:* {phone}',
   },
 
   fr: {
@@ -363,8 +368,11 @@ window.GQ_I18N = {
     'palette.titleEm': 'mariage',
     'palette.intro': 'Notre palette de célébration met à l’honneur ces nuances. Les précisions sur le code vestimentaire suivront.',
     'palette.purple': 'Violet royal',
+    'palette.purpleSub': 'Prune profonde & aubergine',
     'palette.green': 'Vert sauge',
+    'palette.greenSub': 'Émeraude & sauge mousse',
     'palette.peach': 'Pêche rosée',
+    'palette.peachSub': 'Rose champagne poudré',
 
     'gifts.eyebrow': 'CADEAUX & GRATITUDE',
     'gifts.titleLead': 'Votre présence est notre plus',
@@ -402,13 +410,13 @@ window.GQ_I18N = {
     'rsvp.party4': '4 personnes',
     'rsvp.messageLabel': 'Vœux pour les mariés (facultatif)',
     'rsvp.messagePlaceholder': 'Laissez vos prières et vos vœux affectueux…',
-    'rsvp.submit': 'CONFIRMER VOTRE PRÉSENCE ↗',
-    'rsvp.note': 'Ceci enregistrera votre réponse et ouvrira WhatsApp avec votre message de confirmation prérempli.',
+    'rsvp.submit': 'CONFIRMER VOTRE PRÉSENCE',
+    'rsvp.note': 'Ceci confirmera votre présence et enregistrera votre réponse auprès de Godwin & Queeneth.',
     'rsvp.validationToast': 'Veuillez saisir votre nom et choisir votre réponse.',
-    'rsvp.successToast': 'Détails enregistrés. Envoi de la confirmation sur WhatsApp…',
-    'rsvp.waYes': 'Bonjour Godwin et Queeneth. Je m’appelle {name}. Je serai présent(e) à votre cérémonie de mariage le dimanche 15 novembre 2026. Nombre de personnes (moi inclus) : {party}.{message}',
-    'rsvp.waNo': 'Bonjour Godwin et Queeneth. Je m’appelle {name}. J’ai le regret de ne pas pouvoir assister à votre cérémonie de mariage le dimanche 15 novembre 2026.{message}',
-    'rsvp.waMessage': ' Message : {message}',
+    'rsvp.successToast': 'Merci ! Votre réponse a été enregistrée. Vous pouvez maintenant ajouter la date à votre calendrier ci-dessous.',
+    'rsvp.waYes': '💍 *Confirmation de présence — #TheGQaffair*\n\nBonjour Godwin et Queeneth,\n\nJ’ai le plaisir de vous confirmer ma présence à votre cérémonie de mariage le dimanche 15 novembre 2026.\n\n👤 *Invité(e) :* {name}\n👥 *Nombre de personnes :* {party}{message}',
+    'rsvp.waNo': '💌 *Réponse à l’invitation — #TheGQaffair*\n\nBonjour Godwin et Queeneth,\n\nJe vous remercie pour cette invitation. À regret, je ne pourrai malheureusement pas être présent(e) le dimanche 15 novembre 2026.{message}',
+    'rsvp.waMessage': '\n💬 *Vœux :* « {message} »',
 
     'faq.eyebrow': 'Avant de venir',
     'faq.titleLead': 'Foire aux',
@@ -458,6 +466,8 @@ window.GQ_I18N = {
     'cal.saved': 'Calendrier enregistré. Rappels : {days} avant le mariage.',
     'cal.lastSeparator': ' et ',
     'cal.icsLocation': '16 Community Road, en face de First Bank, Satellite Town, Lagos, Nigeria',
+    'cal.scheduleHeader': '🔔 Calendrier de vos rappels :',
+    'cal.scheduleLine': '• {n} jours avant : {date}',
     'cal.google': 'Ajouter à Google Agenda',
     'cal.apple': 'Calendrier Apple / iPhone (.ics)',
     'cal.outlook': 'Outlook / Autres calendriers (.ics)',
@@ -466,6 +476,6 @@ window.GQ_I18N = {
     'cal.icsAlarm': 'Rappel : le mariage de Godwin et Queeneth (#TheGQaffair) a lieu dans {n} jours !',
     'cal.googleDetails': 'C’est avec des cœurs reconnaissants que Godwin et Queeneth vous invitent à célébrer leur cérémonie de mariage.\n\nDate : dimanche 15 novembre 2026 à 10 h 00 (WAT)\nLieu : 16 Community Road, en face de First Bank, Satellite Town, Lagos.\nHashtag : #TheGQaffair',
 
-    'rsvp.waPhone': ' WhatsApp : {phone}.'
+    'rsvp.waPhone': '\n📱 *WhatsApp :* {phone}',
   }
 };

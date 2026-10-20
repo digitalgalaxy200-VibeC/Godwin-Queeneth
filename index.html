@@ -399,8 +399,12 @@
   --plum: #3d005c;
   --plum2: #5b0877;
   --plum-deep: #250038;
-  --peach: #f0b7ad;
-  --peach-light: #fff2ef;
+  --sage: #5a7d65;
+  --sage-light: #e8efe9;
+  --sage-dark: #3b5743;
+  --peach: #e8a598;
+  --peach-light: #fff3f0;
+  --peach-warm: #f7d2ca;
   --cream: #fffaf5;
   --ink: #2c162f;
   --ink-deep: #2c162f;
@@ -410,7 +414,7 @@
   --gold-accent: #dcb878;
   --gold-light: #f5e4c3;
   --gold-hairline: rgba(199, 167, 106, 0.45);
-  --green: #b5ddc4;
+  --green: #5a7d65;
   --parchment: #fffaf5;
   --parchment-card: #fffdfb;
   --font-serif: 'Cormorant Garamond', Georgia, serif;
@@ -1162,28 +1166,37 @@ section {
 .event-card {
   background: #fffdf9;
   border: 1px solid #dcc8a4;
-  padding: 30px 22px;
+  border-radius: 4px;
+  padding: 32px 24px;
   text-align: center;
   position: relative;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  box-shadow: 0 10px 28px rgba(61, 0, 92, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.event-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(90, 125, 101, 0.12);
 }
 .event-card::before {
   content: '';
   position: absolute;
   inset: 5px;
-  border: 1px solid rgba(184, 145, 80, 0.3);
+  border: 1px solid rgba(184, 145, 80, 0.32);
+  border-radius: 2px;
   pointer-events: none;
 }
 .event-icon {
-  width: 48px;
-  height: 48px;
-  border: 1px solid var(--gold-primary);
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--sage);
+  background: var(--sage-light);
   border-radius: 50%;
   display: grid;
   place-items: center;
-  margin: 0 auto 14px;
-  color: var(--gold-primary);
-  font-size: 1.1rem;
+  margin: 0 auto 16px;
+  color: var(--sage-dark);
+  font-size: 1.25rem;
+  box-shadow: 0 4px 12px rgba(90, 125, 101, 0.15);
 }
 .event-card h3 {
   font-family: var(--font-serif);
@@ -1222,39 +1235,89 @@ section {
   pointer-events: none;
 }
 
-/* ── Wedding Colours ── */
+/* ── Wedding Colours (Luxury Swatch Cards) ── */
 .palette {
-  background: rgba(44, 26, 22, 0.95);
+  background: linear-gradient(180deg, rgba(37, 0, 56, 0.96) 0%, rgba(22, 5, 29, 0.98) 100%);
   color: #fff;
   border-top: 1px solid var(--gold-hairline);
   border-bottom: 1px solid var(--gold-hairline);
+  position: relative;
+  overflow: hidden;
+}
+.palette::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 50% 0%, rgba(199, 167, 106, 0.12) 0%, transparent 60%);
+  pointer-events: none;
 }
 .palette .section-head h2 { color: #fffcf5; }
 .palette .section-head p { color: #e5cd9e; }
 .swatches {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 20px;
+  max-width: 820px;
+  margin: 0 auto;
 }
-.swatch {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.swatch-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(199, 167, 106, 0.35);
+  border-radius: 4px;
+  padding: 20px 16px;
+  text-align: center;
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(6px);
 }
-.swatch-dot {
-  width: 38px;
-  height: 38px;
+.swatch-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-accent);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+.swatch-card::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  pointer-events: none;
+}
+.swatch-disc {
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
+  margin: 0 auto 14px;
   border: 2px solid var(--gold-light);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.35);
+  position: relative;
 }
-.swatch-dot.purple { background: #3d005c; }
-.swatch-dot.green  { background: #5a7d65; }
-.swatch-dot.peach  { background: #e8a598; }
-.swatch span {
-  font-size: 1.1rem;
+.swatch-disc.purple {
+  background: radial-gradient(circle at 35% 35%, #5b0877 0%, #3d005c 70%, #250038 100%);
+}
+.swatch-disc.green {
+  background: radial-gradient(circle at 35% 35%, #769f83 0%, #5a7d65 70%, #3b5743 100%);
+}
+.swatch-disc.peach {
+  background: radial-gradient(circle at 35% 35%, #f9c7be 0%, #e8a598 70%, #c47c6e 100%);
+}
+.swatch-disc.gold {
+  background: radial-gradient(circle at 35% 35%, #f5e4c3 0%, #c7a76a 70%, #8c6a2e 100%);
+}
+.swatch-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
   color: #fffaf0;
+  margin: 0 0 4px;
+  letter-spacing: 0.04em;
+}
+.swatch-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-accent);
+  margin: 0;
 }
 
 /* ── Gallery Section ── */
@@ -2041,9 +2104,21 @@ footer {
       <p data-i18n="palette.intro">Our celebration palette features these tones. Official dress code notes will follow.</p>
     </div>
     <div class="swatches reveal">
-      <div class="swatch"><i class="swatch-dot purple"></i><span data-i18n="palette.purple">Royal Purple</span></div>
-      <div class="swatch"><i class="swatch-dot green"></i><span data-i18n="palette.green">Sage Green</span></div>
-      <div class="swatch"><i class="swatch-dot peach"></i><span data-i18n="palette.peach">Blush Peach</span></div>
+      <div class="swatch-card">
+        <div class="swatch-disc purple"></div>
+        <h3 class="swatch-title" data-i18n="palette.purple">Royal Purple</h3>
+        <p class="swatch-subtitle" data-i18n="palette.purpleSub">Deep Plum &amp; Aubergine</p>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-disc green"></div>
+        <h3 class="swatch-title" data-i18n="palette.green">Sage Green</h3>
+        <p class="swatch-subtitle" data-i18n="palette.greenSub">Emerald &amp; Moss Sage</p>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-disc peach"></div>
+        <h3 class="swatch-title" data-i18n="palette.peach">Blush Peach</h3>
+        <p class="swatch-subtitle" data-i18n="palette.peachSub">Soft Champagne Rose</p>
+      </div>
     </div>
   </div>
 </section>
@@ -2130,9 +2205,9 @@ footer {
           <label for="guestMessage" data-i18n="rsvp.messageLabel">Wishes for the Couple (Optional)</label>
           <textarea id="guestMessage" name="guestMessage" placeholder="Leave your prayers and kind words\u2026" data-i18n-placeholder="rsvp.messagePlaceholder"></textarea>
         </div>
-        <button class="btn" type="submit" data-i18n="rsvp.submit">CONFIRM YOUR ATTENDANCE ↗</button>
+        <button class="btn" type="submit" data-i18n="rsvp.submit">CONFIRM YOUR ATTENDANCE</button>
       </form>
-      <p class="form-note" data-i18n="rsvp.note">This will record your response and open WhatsApp with your confirmation message pre-filled.</p>
+      <p class="form-note" data-i18n="rsvp.note">This will confirm your attendance and record your response with Godwin &amp; Queeneth.</p>
 
       <!-- ── Post-RSVP: Add to Calendar (shown after submission) ── -->
       <div class="cal-widget-rsvp" id="calWidgetRsvp" style="display:none;margin-top:28px;padding-top:22px;border-top:1px dashed rgba(184,145,80,0.3);">
@@ -2145,9 +2220,9 @@ footer {
           <div class="cal-reminder-pills" id="calReminderPills" style="display:flex;gap:8px;flex-wrap:wrap;">
             <button type="button" class="cal-pill active" data-days="2" aria-pressed="true">✓ 2 Days Prior</button>
             <button type="button" class="cal-pill" data-days="5" aria-pressed="false">5 Days Prior</button>
-            <button type="button" class="cal-pill" data-days="7" aria-pressed="false">7 Days Prior</button>
+            <button type="button" class="cal-pill active" data-days="7" aria-pressed="true">✓ 7 Days Prior</button>
           </div>
-          <p class="cal-note" id="calActiveNotice" style="font-size:0.8rem;color:var(--gold-primary);margin:8px 0 0;font-style:italic;">Reminders set: 2 days before the wedding.</p>
+          <p class="cal-note" id="calActiveNotice" style="font-size:0.8rem;color:var(--gold-primary);margin:8px 0 0;font-style:italic;">Reminders set: 2 days and 7 days before the wedding.</p>
         </div>
 
         <!-- Calendar app buttons -->
@@ -2293,7 +2368,7 @@ document.addEventListener('gq:langchange',tick);
 
 // ── Calendar & Multi-day Reminders (multi-select: 2, 5, 7 Days Prior) ──
 // selectedReminderDays is now a Set so multiple can be chosen
-const selectedReminderDays = new Set([2]); // default: 2 days selected
+const selectedReminderDays = new Set([2, 7]); // default: 7 days & 2 days prior selected
 
 function getSelectedDaysLabel() {
   const sorted = [...selectedReminderDays].sort((a, b) => a - b);
@@ -2320,11 +2395,21 @@ function escapeIcs(value) {
 }
 
 function updateCalendarLinks() {
-  const title = 'Godwin & Queeneth Wedding Ceremony (#TheGQaffair)';
-  const details = t('cal.googleDetails');
-  const location = '16 Community Road, opposite First Bank, Satellite Town, Lagos, Nigeria';
-  // Google Calendar — uses first selected reminder for its single reminder field
-  const primaryDays = [...selectedReminderDays].sort((a,b)=>a-b)[0] || 2;
+  const title = t('cal.icsSummary');
+  const location = t('cal.icsLocation');
+  const weddingDate = new Date('2026-11-15T10:00:00+01:00');
+  const sortedDays = [...selectedReminderDays].sort((a,b) => b - a);
+  const dateLocale = window.GQ_i18n.lang === 'fr' ? 'fr-FR' : 'en-GB';
+  
+  // Dynamically calculate exact reminder dates for Google Calendar
+  const reminderScheduleLines = sortedDays.map(days => {
+    const rDate = new Date(weddingDate.getTime() - (days * 24 * 60 * 60 * 1000));
+    const formatted = rDate.toLocaleDateString(dateLocale, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    return t('cal.scheduleLine', { n: days, date: formatted });
+  }).join('\n');
+
+  const details = `${t('cal.googleDetails')}\n\n${t('cal.scheduleHeader')}\n${reminderScheduleLines}`;
+
   const googleUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
     '&text=' + encodeURIComponent(title) +
     '&dates=20261115T090000Z/20261115T140000Z' +
@@ -2510,20 +2595,12 @@ $('#rsvpForm').addEventListener('submit', async (e) => {
     } catch(err){}
   }
 
-  // 3. Open WhatsApp prefilled message
-  let body = attendance === 'will attend'
-    ? t('rsvp.waYes', { name: name, party: party, message: message ? t('rsvp.waMessage', { message: message }) : '' })
-    : t('rsvp.waNo', { name: name, message: message ? t('rsvp.waMessage', { message: message }) : '' });
-  if (phone) {
-    body += t('rsvp.waPhone', { phone: phone });
-  }
-  const url = 'https://wa.me/2349069183037?text=' + encodeURIComponent(body);
-  window.open(url, '_blank', 'noopener,noreferrer');
+  // 3. Keep guest directly on page and confirm submission
   toast(t('rsvp.successToast'));
 
   // 4. Reveal the Add to Calendar widget below the form
   const calWidget = $('#calWidgetRsvp');
-  if (calWidget && calWidget.style.display === 'none') {
+  if (calWidget) {
     calWidget.style.display = 'block';
     calWidget.style.opacity = '0';
     calWidget.style.transform = 'translateY(10px)';
@@ -2534,7 +2611,7 @@ $('#rsvpForm').addEventListener('submit', async (e) => {
       calWidget.style.opacity = '1';
       calWidget.style.transform = 'translateY(0)';
     });
-    // Scroll smoothly to it
+    // Scroll smoothly to the calendar widget so guests see it immediately
     setTimeout(() => calWidget.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 200);
   }
 });
