@@ -47,7 +47,48 @@
   pointer-events: none;
 }
 
+/* ── At-a-Glance Date Strip (visible before seal is opened) ── */
+.intro-date-strip {
+  margin-bottom: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.intro-date-strip .strip-couple {
+  font-family: var(--font-script, 'Great Vibes', cursive);
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  color: #fff9ed;
+  line-height: 1;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+  margin: 0;
+}
+.intro-date-strip .strip-date {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e5cd9e;
+  margin: 0;
+}
+.intro-date-strip .strip-tag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  color: rgba(240, 183, 173, 0.8);
+  text-transform: uppercase;
+  margin: 0;
+}
+.intro-date-strip .strip-divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(199,167,106,0.6), transparent);
+  margin: 2px 0;
+}
+
 /* Prompt hint below envelope */
+
 .env-hint {
   margin-top: 24px;
   color: #e5cd9e;
@@ -55,7 +96,7 @@
   font-size: 0.92rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  animation: pulseHint 2.4s ease-in-out infinite alternate;
+  animation: pulseHint 3.5s ease-in-out infinite alternate;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -78,12 +119,11 @@
   perspective: 1400px;
   filter: drop-shadow(0 26px 45px rgba(0, 0, 0, 0.75));
   cursor: pointer;
-  animation: envelopeFloat 5s ease-in-out infinite alternate;
+  animation: envelopeFloat 8s ease-in-out infinite alternate;
 }
 @keyframes envelopeFloat {
-  0% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-6px) scale(1.008); }
-  100% { transform: translateY(0) scale(1); }
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
 }
 
 /* Gold foil border & stationery embossing around envelope */
@@ -296,7 +336,7 @@
   z-index: 6;
   cursor: pointer;
   transition: transform 0.4s ease, opacity 0.4s ease;
-  animation: sealPulse 2.8s ease-in-out infinite alternate;
+  animation: sealPulse 3.5s ease-in-out infinite alternate;
 }
 @keyframes sealPulse {
   0% {
@@ -304,16 +344,15 @@
       0 4px 16px rgba(0, 0, 0, 0.65),
       inset 0 1px 2px rgba(240, 183, 173, 0.45),
       inset 0 -2px 4px rgba(0, 0, 0, 0.55),
-      0 0 0 1.5px rgba(199, 167, 106, 0.65),
-      0 0 0 0 rgba(199, 167, 106, 0.4);
+      0 0 0 1.5px rgba(199, 167, 106, 0.55);
   }
   100% {
     box-shadow: 
-      0 6px 20px rgba(0, 0, 0, 0.8),
+      0 5px 18px rgba(0, 0, 0, 0.7),
       inset 0 1px 2px rgba(240, 183, 173, 0.45),
       inset 0 -2px 4px rgba(0, 0, 0, 0.55),
-      0 0 0 2px rgba(199, 167, 106, 0.95),
-      0 0 18px 4px rgba(199, 167, 106, 0.45);
+      0 0 0 2px rgba(199, 167, 106, 0.85),
+      0 0 10px 2px rgba(199, 167, 106, 0.25);
   }
 }
 .env-seal-wax:hover {
@@ -1721,6 +1760,15 @@ footer {
 <body class="locked">
 <div class="ambient" aria-hidden="true"><span class="ambient-orb one"></span><span class="ambient-orb two"></span><span class="ambient-orb three"></span><div id="petalField"></div></div>
 <div id="intro" aria-label="Wedding invitation" data-i18n-aria="intro.aria">
+
+  <!-- At-a-glance: date & time visible before seal is opened -->
+  <div class="intro-date-strip" aria-hidden="true">
+    <p class="strip-couple">Godwin &amp; Queeneth</p>
+    <div class="strip-divider"></div>
+    <p class="strip-date" data-i18n="intro.stripDate">Sunday · 15 November 2026 · 10:00 AM</p>
+    <p class="strip-tag">#TheGQaffair</p>
+  </div>
+
   <div class="envelope" id="envelope">
     <!-- Envelope Interior / Back Plate -->
     <div class="env-back"></div>
@@ -1732,7 +1780,7 @@ footer {
       <h2 class="card-names">Godwin &amp; Queeneth</h2>
       <p class="card-invited" data-i18n="intro.cardInvited">You Are Cordially Invited</p>
       <p class="card-date" data-i18n="intro.cardDate">Sunday · 15 November 2026 · 10:00 AM</p>
-      <button class="card-open-btn" id="openInvitation" data-i18n="intro.viewInvitation">View Invitation</button>
+      <button class="card-open-btn" id="openInvitation" data-i18n="intro.viewInvitation">VIEW OUR INVITATION</button>
     </div>
 
     <!-- Triangular Top Flap with Wax Seal and Gold Calligraphy -->
@@ -1751,7 +1799,7 @@ footer {
     <div class="env-pocket-right"></div>
     <div class="env-pocket-bottom"></div>
   </div>
-  <p class="env-hint" data-i18n="intro.hint">Tap wax seal to open</p>
+  <p class="env-hint" data-i18n="intro.hint">Tap the seal to open your invitation</p>
 </div>
 <nav><a class="brand" href="#home" aria-label="The GQ Affair home" data-i18n-aria="nav.brandLabel">G <span>&amp;</span> Q</a><div class="nav-links" id="navLinks"><a href="#home" data-i18n="nav.home">Home</a><a href="#countdown-section" data-i18n="nav.countdown">Countdown</a><a href="#details" data-i18n="nav.day">The Day</a><a href="#story" data-i18n="nav.journey">Our Journey</a><a href="#gallery" data-i18n="nav.moments">Moments</a><a href="#gifts" data-i18n="nav.gifts">Gifts</a><a href="#rsvp" data-i18n="nav.rsvp">RSVP</a></div><div class="nav-actions"><div class="lang-switch" role="group" aria-label="Language / Langue"><button type="button" class="lang-btn" data-lang-btn="en" aria-pressed="false">EN</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" class="lang-btn" data-lang-btn="fr" aria-pressed="false">FR</button></div><button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" data-i18n-aria="nav.menuLabel" data-i18n="nav.menu">Menu</button></div></nav>
 <main>
@@ -1771,14 +1819,14 @@ footer {
   <a class="scroll-cue" href="#countdown-section" data-i18n="hero.scroll">Scroll to Explore<span></span></a>
 </header>
 
-<!-- ── Section: Countdown to "I Do" ── -->
+<!-- ── Section: Countdown to Forever ── -->
 <section class="countdown-section" id="countdown-section">
   <div class="section-wrap">
     <div class="section-head reveal">
-      <span class="eyebrow" data-i18n="countdown.eyebrow">The Day We Make Our Vows is Drawing Near</span>
-      <h2><span data-i18n="countdown.titleLead">The Countdown to</span> <em data-i18n="countdown.titleEm">“I Do”</em></h2>
+      <span class="eyebrow" data-i18n="countdown.eyebrow">The Day We Say “I Do” is Drawing Near</span>
+      <h2><span data-i18n="countdown.titleLead">Counting Down to</span> <em data-i18n="countdown.titleEm">Forever</em></h2>
       <div class="ornament"><span>✦</span></div>
-      <p data-i18n="countdown.intro">We cannot wait to share this beautiful moment with you.</p>
+      <p data-i18n="countdown.intro">The day we say “I do” is drawing near. We cannot wait to share this beautiful moment with you.</p>
     </div>
     <div class="countdown reveal" id="countdown" aria-live="polite">
       <div class="time-box"><strong id="days">--</strong><span data-i18n="countdown.days">Days</span></div>
@@ -1787,39 +1835,6 @@ footer {
       <div class="time-box"><strong id="seconds">--</strong><span data-i18n="countdown.seconds">Seconds</span></div>
     </div>
     <p class="countdown-message" id="countdownMessage"></p>
-
-    <!-- Add to Calendar & Reminders Button -->
-    <div class="cal-widget reveal">
-      <button type="button" class="cal-btn" id="calToggleBtn" aria-expanded="false" aria-haspopup="true">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 16H5V10h14zm0-12H5V6h14m-7 5h5v5h-5z"/></svg>
-        <span>Add to Calendar &amp; Remind Me</span>
-      </button>
-
-      <div class="cal-menu" id="calMenu" role="region" aria-label="Calendar options">
-        <span class="cal-menu-title">Select Reminder Notification</span>
-        <div class="cal-reminder-pills" id="calReminderPills">
-          <button type="button" class="cal-pill active" data-days="2">2 Days Prior</button>
-          <button type="button" class="cal-pill" data-days="5">5 Days Prior</button>
-          <button type="button" class="cal-pill" data-days="7">7 Days Prior</button>
-        </div>
-
-        <div class="cal-targets">
-          <a href="#" class="cal-target-btn" id="googleCalBtn" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="#4285F4"><path d="M19.5 4H18V2.5a1 1 0 0 0-2 0V4H8V2.5a1 1 0 0 0-2 0V4H4.5A2.5 2.5 0 0 0 2 6.5v13A2.5 2.5 0 0 0 4.5 22h15a2.5 2.5 0 0 0 2.5-2.5v-13A2.5 2.5 0 0 0 19.5 4zm.5 15.5a.5.5 0 0 1-.5.5h-15a.5.5 0 0 1-.5-.5V10h16v9.5zm0-11.5H4V6.5a.5.5 0 0 1 .5-.5H6v1a1 1 0 0 0 2 0V6h8v1a1 1 0 0 0 2 0V6h1.5a.5.5 0 0 1 .5.5V8z"/></svg>
-            <span>Google Calendar</span>
-          </a>
-          <button type="button" class="cal-target-btn" id="appleCalBtn">
-            <svg viewBox="0 0 24 24" fill="#333"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.67-.82 1.13-1.96 1-3.1-.97.04-2.15.65-2.85 1.47-.61.71-1.15 1.87-1.01 2.98 1.09.08 2.19-.53 2.86-1.35z"/></svg>
-            <span>Apple / iPhone Calendar (.ics)</span>
-          </button>
-          <button type="button" class="cal-target-btn" id="outlookCalBtn">
-            <svg viewBox="0 0 24 24" fill="#0078D4"><path d="M21.5 4h-19A2.5 2.5 0 0 0 0 6.5v11A2.5 2.5 0 0 0 2.5 20h19a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 21.5 4zm-1.1 2-7.9 5.27L4.6 6h15.8zm1.6 11.5a.5.5 0 0 1-.5.5h-19a.5.5 0 0 1-.5-.5V8.13l8.69 5.8a1.5 1.5 0 0 0 1.62 0L22 8.13v9.37z"/></svg>
-            <span>Outlook / Other Calendars (.ics)</span>
-          </button>
-        </div>
-        <p class="cal-note" id="calActiveNotice">Reminder set for 2 days prior to the wedding.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1827,8 +1842,8 @@ footer {
 <section class="events" id="details">
   <div class="section-wrap">
     <div class="section-head reveal">
-      <span class="eyebrow" data-i18n="details.eyebrow">Sacred Vows &amp; Gathering</span>
-      <h2><span data-i18n="details.titleLead">Wedding</span> <em data-i18n="details.titleEm">Details</em></h2>
+      <span class="eyebrow" data-i18n="details.eyebrow">The Details of Our Day</span>
+      <h2><span data-i18n="details.titleLead">The Details of</span> <em data-i18n="details.titleEm">Our Day</em></h2>
       <div class="ornament"><span>❦</span></div>
       <p data-i18n="details.intro">We look forward to exchanging our vows and celebrating in the presence of God and our beloved guests.</p>
     </div>
@@ -1836,39 +1851,44 @@ footer {
       <article class="event-card reveal">
         <div class="event-icon" aria-hidden="true">⛪</div>
         <span class="eyebrow" data-i18n="details.ceremonyEyebrow">Sacred Vows</span>
-        <h3 data-i18n="details.ceremonyTitle">Church Ceremony</h3>
-        <p class="event-time" data-i18n="details.ceremonyTime">Sunday, 15 November 2026 · 10:00 AM WAT</p>
-        <p data-i18n-html="details.address">16 Community Road,<br>opposite First Bank,<br>Satellite Town.</p>
-        <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=16%20Community%20Road%2C%20opposite%20First%20Bank%2C%20Satellite%20Town" data-i18n="details.directions">Get Directions ↗</a>
+        <h3 data-i18n="details.ceremonyTitle">Ceremony</h3>
+        <p class="event-time" data-i18n="details.ceremonyTime">Sunday, 15 November 2026 · 10:00 AM</p>
+        <p data-i18n-html="details.address">16 Community Road,<br>opposite First Bank,<br>Satellite Town, Lagos, Nigeria.</p>
+        <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=16%20Community%20Road%2C%20opposite%20First%20Bank%2C%20Satellite%20Town%2C%20Lagos%2C%20Nigeria" data-i18n="details.directions">Get Directions on Google Maps ↗</a>
       </article>
       <article class="event-card pending reveal">
         <div class="event-icon" aria-hidden="true">🥂</div>
         <span class="eyebrow" data-i18n="details.receptionEyebrow">Celebration &amp; Dinner</span>
         <h3 data-i18n="details.receptionTitle">Reception</h3>
-        <p class="event-time" data-i18n="details.receptionTime">Venue to be Announced</p>
-        <p data-i18n="details.receptionText">The reception venue and dinner programme will be communicated once confirmed.</p>
-        <span class="btn" data-i18n="details.receptionBtn">Details Coming Soon</span>
+        <p class="event-time" data-i18n="details.receptionTime">Sunday, 15 November 2026 · 2:00 PM WAT</p>
+        <p data-i18n="details.receptionText">The reception venue and dinner programme will be communicated to our guests before the wedding day.</p>
+        <span class="btn" data-i18n="details.receptionBtn">Venue Communicated Soon</span>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ── Section: A Promise Before God (Condensed Love Journey) ── -->
+<!-- ── Section: Our Journey Together (Four Chapters) ── -->
 <section class="love-story" id="story">
   <div class="section-wrap">
     <div class="section-head reveal">
-      <span class="eyebrow" data-i18n="story.eyebrow">Love &amp; Commitment</span>
-      <h2><span data-i18n="story.titleLead">A Promise</span> <em data-i18n="story.titleEm">Before God</em></h2>
+      <span class="eyebrow" data-i18n="story.eyebrow">Love, Friendship &amp; Faith</span>
+      <h2><span data-i18n="story.titleLead">Our Journey</span> <em data-i18n="story.titleEm">Together</em></h2>
       <div class="ornament"><span>❦</span></div>
-      <p data-i18n="story.intro1">Our journey has brought us to a moment we hold close to our hearts. As we prepare to exchange our vows, we are grateful for the love, support and prayers of our families and friends.</p>
-      <p style="margin-top:8px;font-style:italic;color:var(--gold-primary);" data-i18n="story.intro2">We look forward to beginning this new chapter together and celebrating with the people who matter most to us.</p>
+      <!-- Invitation copy — moved here from hero for breathing room -->
+      <div style="max-width:540px;margin:14px auto 0;padding:20px 24px;background:rgba(255,253,249,0.7);border:1px solid rgba(184,145,80,0.3);border-radius:2px;position:relative;">
+        <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:#fff8f0;padding:0 10px;font-family:var(--font-sans);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-primary);" data-i18n="invitation.kicker">Our Invitation</div>
+        <p style="font-family:var(--font-serif);font-size:1.05rem;line-height:1.75;color:var(--ink-deep);margin:0 0 10px;" data-i18n="hero.invitationLead">With grateful hearts and love, we joyfully invite you to celebrate our wedding.</p>
+        <p style="font-family:var(--font-serif);font-size:0.97rem;line-height:1.75;color:var(--ink-muted);margin:0;" data-i18n="hero.invitationBody">As we prepare to exchange our vows before God and the people who mean so much to us, we would be honoured to share this special moment with you.</p>
+      </div>
     </div>
 
     <div class="timeline-journey reveal">
       <div class="timeline-item left">
         <div class="timeline-content">
           <span class="chap-num" data-i18n="story.chapter1Label">Chapter I</span>
-          <h4 data-i18n="story.chapter1Title">Two paths, one purpose</h4>
+          <h4 data-i18n="story.chapter1Title">A Love, Chosen with Intention</h4>
+          <p style="font-size:0.85rem;color:var(--ink-muted);margin:4px 0 0;" data-i18n="story.chapter1Sub">Eleven years of growing towards forever.</p>
         </div>
         <div class="timeline-node">♡</div>
       </div>
@@ -1876,13 +1896,15 @@ footer {
         <div class="timeline-node">♡</div>
         <div class="timeline-content">
           <span class="chap-num" data-i18n="story.chapter2Label">Chapter II</span>
-          <h4 data-i18n="story.chapter2Title">Friendship that became love</h4>
+          <h4 data-i18n="story.chapter2Title">Friendship That Became Love</h4>
+          <p style="font-size:0.85rem;color:var(--ink-muted);margin:4px 0 0;" data-i18n="story.chapter2Sub">Growing, learning and choosing each other along the way.</p>
         </div>
       </div>
       <div class="timeline-item left">
         <div class="timeline-content">
           <span class="chap-num" data-i18n="story.chapter3Label">Chapter III</span>
-          <h4 data-i18n="story.chapter3Title">A promise of forever</h4>
+          <h4 data-i18n="story.chapter3Title">Growing Together, Rooted in Faith</h4>
+          <p style="font-size:0.85rem;color:var(--ink-muted);margin:4px 0 0;" data-i18n="story.chapter3Sub">Building our dreams and strengthening our faith together.</p>
         </div>
         <div class="timeline-node">♡</div>
       </div>
@@ -1890,32 +1912,62 @@ footer {
         <div class="timeline-node">♡</div>
         <div class="timeline-content">
           <span class="chap-num" data-i18n="story.chapter4Label">Chapter IV</span>
-          <h4 data-i18n="story.chapter4Title">Families joined in blessing</h4>
+          <h4 data-i18n="story.chapter4Title">Two Families, One Beautiful Beginning</h4>
+          <p style="font-size:0.85rem;color:var(--ink-muted);margin:4px 0 0;" data-i18n="story.chapter4Sub">With grateful hearts, we prepare for our forever.</p>
         </div>
       </div>
       <div class="timeline-big-day">
         <div class="big-day-card">
-          <span class="date-badge">15 · 11 · 2026</span>
+          <span class="date-badge" data-i18n="story.bigDayDate">15 · 11 · 2026</span>
           <h3 data-i18n="story.bigDay">The Big Day</h3>
+          <p style="font-size:0.85rem;color:var(--ink-muted);margin:6px 0 0;" data-i18n="story.bigDaySub">Eleven years of love. Forever begins here.</p>
         </div>
       </div>
     </div>
 
     <div class="ornament" style="margin: 40px auto 30px;"><span>✦</span></div>
 
-    <!-- Chapter Visual Feature Cards -->
+    <!-- Chapter Visual Feature Cards (All 4 Photographs) -->
     <div class="story-chapter reveal">
       <div class="chapter-image">
         <picture>
           <source srcset="assets/gq-couple-elegant.webp" type="image/webp">
-          <img src="assets/gq-couple-elegant.jpg" alt="Godwin and Queeneth in elegant attire" loading="lazy" decoding="async" data-i18n-alt="story.alt1">
+          <img src="assets/gq-couple-elegant.jpg" alt="A Love, Chosen with Intention" loading="lazy" decoding="async" data-i18n-alt="story.alt1">
         </picture>
-        <span class="image-caption" data-i18n="story.feature1Caption">In your eyes, I found home</span>
+
       </div>
       <div class="chapter-copy">
-        <span class="eyebrow" data-i18n="story.feature1Eyebrow">A look that says everything</span>
-        <h3 data-i18n="story.feature1Title">The Promise</h3>
-        <p data-i18n="story.feature1Text">Some stories are told in grand gestures. Ours lives in the quiet certainty of choosing one another, walking into tomorrow side by side.</p>
+        <span class="eyebrow" data-i18n="story.feature1Eyebrow">Intentional Commitment</span>
+        <h3 data-i18n="story.feature1Title">A Love, Chosen with Intention</h3>
+        <p data-i18n="story.feature1Text">What began as a choice became a lifelong commitment — deepened by friendship, shaped by faith, and strengthened with every passing year.</p>
+      </div>
+    </div>
+
+    <div class="story-chapter reveal">
+      <div class="chapter-image">
+        <picture>
+          <source srcset="assets/gq-couple-romantic.webp" type="image/webp">
+          <img src="assets/gq-couple-romantic.jpg" alt="A Promise That Has Grown With Us" loading="lazy" decoding="async" data-i18n-alt="story.alt2">
+        </picture>
+      </div>
+      <div class="chapter-copy">
+        <span class="eyebrow" data-i18n="story.feature2Eyebrow">Friendship &amp; Faith</span>
+        <h3 data-i18n="story.feature2Title">A Promise That Has Grown With Us</h3>
+        <p data-i18n="story.feature2Text">Through friendship, faith and life’s many seasons, we have continued to grow together and build the future we dreamed of.</p>
+      </div>
+    </div>
+
+    <div class="story-chapter reveal">
+      <div class="chapter-image">
+        <picture>
+          <source srcset="assets/gq-couple-traditional-close.webp" type="image/webp">
+          <img src="assets/gq-couple-traditional-close.jpg" alt="Wrapped in Heritage, Rooted in Love" loading="lazy" decoding="async" data-i18n-alt="story.alt3">
+        </picture>
+      </div>
+      <div class="chapter-copy">
+        <span class="eyebrow" data-i18n="story.feature3Eyebrow">Culture &amp; Heritage</span>
+        <h3 data-i18n="story.feature3Title">Wrapped in Heritage, Rooted in Love</h3>
+        <p data-i18n="story.feature3Text">Celebrating the love, culture and families that are part of our story.</p>
       </div>
     </div>
 
@@ -1923,14 +1975,14 @@ footer {
       <div class="chapter-image">
         <picture>
           <source srcset="assets/gq-couple-traditional.webp" type="image/webp">
-          <img src="assets/gq-couple-traditional.jpg" alt="Godwin and Queeneth celebrating in traditional attire" loading="lazy" decoding="async" data-i18n-alt="story.alt2">
+          <img src="assets/gq-couple-traditional.jpg" alt="Two Families, One Beautiful Beginning" loading="lazy" decoding="async" data-i18n-alt="story.alt4">
         </picture>
-        <span class="image-caption" data-i18n="story.feature2Caption">Wrapped in heritage, rooted in love</span>
       </div>
       <div class="chapter-copy">
-        <span class="eyebrow" data-i18n="story.feature2Eyebrow">Our roots, our joy</span>
-        <h3 data-i18n="story.feature2Title">Our Forever Begins</h3>
-        <p data-i18n="story.feature2Text">Rooted in faith and culture, surrounded by the people who matter most, we prepare to say “I do”.</p>
+        <span class="eyebrow" data-i18n="story.feature4Eyebrow">Our New Beginning</span>
+        <h3 data-i18n="story.feature4Title">Two Families, One Beautiful Beginning</h3>
+        <p data-i18n="story.feature4Text">With grateful hearts, we prepare to exchange our vows and begin married life surrounded by the people we love.</p>
+        <a class="btn gold" href="#rsvp" style="margin-top:14px;" data-i18n="story.feature4Btn">CELEBRATE WITH US</a>
       </div>
     </div>
   </div>
@@ -1941,38 +1993,38 @@ footer {
   <div class="section-wrap">
     <div class="section-head reveal">
       <span class="eyebrow" data-i18n="gallery.eyebrow">Curated Portraits</span>
-      <h2><span data-i18n="gallery.titleLead">Special</span> <em data-i18n="gallery.titleEm">Moments</em></h2>
+      <h2><span data-i18n="gallery.titleLead">Curated</span> <em data-i18n="gallery.titleEm">Portraits</em></h2>
       <div class="ornament"><span>❦</span></div>
-      <p data-i18n="gallery.intro">A glimpse into our connection and joy as we await our wedding day. Tap any photo to view in full.</p>
+      <p data-i18n="gallery.intro">Moments reflecting eleven years of friendship, love, and our journey to forever. Tap any photo to view in full.</p>
     </div>
     <div class="gallery-grid reveal">
       <div class="gallery-tile" data-image="assets/gq-couple-elegant.jpg">
         <picture>
           <source srcset="assets/gq-couple-elegant.webp" type="image/webp">
-          <img src="assets/gq-couple-elegant.jpg" alt="Godwin and Queeneth studio portrait" loading="lazy" decoding="async" data-i18n-alt="gallery.alt1">
+          <img src="assets/gq-couple-elegant.jpg" alt="A Love, Chosen with Intention — Godwin and Queeneth" loading="lazy" decoding="async" data-i18n-alt="gallery.alt1">
         </picture>
-        <span data-i18n="gallery.tile1">01 · The Promise</span>
+        <span data-i18n="gallery.tile1">A Love, Chosen with Intention</span>
       </div>
       <div class="gallery-tile" data-image="assets/gq-couple-romantic.jpg">
         <picture>
           <source srcset="assets/gq-couple-romantic.webp" type="image/webp">
-          <img src="assets/gq-couple-romantic.jpg" alt="Romantic couple portrait" loading="lazy" decoding="async" data-i18n-alt="gallery.alt2">
+          <img src="assets/gq-couple-romantic.jpg" alt="A Promise That Has Grown With Us — Godwin and Queeneth" loading="lazy" decoding="async" data-i18n-alt="gallery.alt2">
         </picture>
-        <span data-i18n="gallery.tile2">02 · Tenderness</span>
+        <span data-i18n="gallery.tile2">A Promise That Has Grown With Us</span>
       </div>
       <div class="gallery-tile" data-image="assets/gq-couple-traditional-close.jpg">
         <picture>
           <source srcset="assets/gq-couple-traditional-close.webp" type="image/webp">
-          <img src="assets/gq-couple-traditional-close.jpg" alt="Traditional couple close portrait" loading="lazy" decoding="async" data-i18n-alt="gallery.alt3">
+          <img src="assets/gq-couple-traditional-close.jpg" alt="Wrapped in Heritage, Rooted in Love — Godwin and Queeneth" loading="lazy" decoding="async" data-i18n-alt="gallery.alt3">
         </picture>
-        <span data-i18n="gallery.tile3">03 · Heritage</span>
+        <span data-i18n="gallery.tile3">Wrapped in Heritage, Rooted in Love</span>
       </div>
       <div class="gallery-tile" data-image="assets/gq-couple-traditional.jpg">
         <picture>
           <source srcset="assets/gq-couple-traditional.webp" type="image/webp">
-          <img src="assets/gq-couple-traditional.jpg" alt="Full traditional portrait" loading="lazy" decoding="async" data-i18n-alt="gallery.alt4">
+          <img src="assets/gq-couple-traditional.jpg" alt="Two Families, One Beautiful Beginning — Godwin and Queeneth" loading="lazy" decoding="async" data-i18n-alt="gallery.alt4">
         </picture>
-        <span data-i18n="gallery.tile4">04 · Forever</span>
+        <span data-i18n="gallery.tile4">Two Families, One Beautiful Beginning</span>
       </div>
     </div>
     <p class="gallery-footnote" data-i18n="gallery.footnote">Tap any portrait to enlarge</p>
@@ -2000,15 +2052,15 @@ footer {
 <section class="gift-section" id="gifts">
   <div class="section-wrap">
     <div class="section-head reveal">
-      <span class="eyebrow" data-i18n="gifts.eyebrow">Gifts &amp; Gratitude</span>
-      <h2><span data-i18n="gifts.titleLead">Your Presence is our</span> <em data-i18n="gifts.titleEm">Present</em></h2>
+      <span class="eyebrow" data-i18n="gifts.eyebrow">GIFTS &amp; GRATITUDE</span>
+      <h2><span data-i18n="gifts.titleLead">Your Presence is Our</span> <em data-i18n="gifts.titleEm">Present</em></h2>
       <div class="ornament"><span>✦</span></div>
-      <p data-i18n="gifts.intro">Your presence, prayers, and love are the greatest gifts we could ever ask for as we begin our life together.</p>
+      <p data-i18n="gifts.intro">Your presence, prayers and love mean so much to us.</p>
     </div>
     <div class="gift-card reveal">
       <div class="gift-emblem" aria-hidden="true">🎁</div>
-      <h3 class="gift-script" data-i18n="gifts.script">Blessing our new beginning…</h3>
-      <p data-i18n="gifts.text">Having you celebrate with us means the world to us. However, for beloved family and friends who have kindly asked to bless our union with a wedding gift or financial token, we have provided our account details below:</p>
+      <h3 class="gift-script" data-i18n="gifts.script">Blessing Our New Beginning</h3>
+      <p data-i18n="gifts.text">For those who wish to celebrate us with a wedding gift, we are sincerely grateful for your thoughtfulness and generosity. Our account details are provided below:</p>
       
       <!-- Bank Account Details Card -->
       <div class="bank-details-box">
@@ -2043,9 +2095,9 @@ footer {
   <div class="section-wrap">
     <div class="section-head reveal">
       <span class="eyebrow" data-i18n="rsvp.eyebrow">Kindly Respond</span>
-      <h2><span data-i18n="rsvp.titleLead">Confirm Your</span> <em data-i18n="rsvp.titleEm">Attendance</em></h2>
+      <h2><span data-i18n="rsvp.titleLead">Will You Celebrate</span> <em data-i18n="rsvp.titleEm">With Us?</em></h2>
       <div class="ornament"><span>❦</span></div>
-      <p data-i18n="rsvp.intro">Please let us know if you will be celebrating with us on Sunday, 15 November 2026.</p>
+      <p data-i18n="rsvp.intro">We would love to share this special day with you. Kindly confirm your attendance as we prepare to say “I do.”</p>
     </div>
     <div class="rsvp-card reveal">
       <form class="rsvp-form" id="rsvpForm">
@@ -2076,11 +2128,44 @@ footer {
         </div>
         <div class="field full">
           <label for="guestMessage" data-i18n="rsvp.messageLabel">Wishes for the Couple (Optional)</label>
-          <textarea id="guestMessage" name="guestMessage" placeholder="Leave your prayers and kind words..." data-i18n-placeholder="rsvp.messagePlaceholder"></textarea>
+          <textarea id="guestMessage" name="guestMessage" placeholder="Leave your prayers and kind words\u2026" data-i18n-placeholder="rsvp.messagePlaceholder"></textarea>
         </div>
-        <button class="btn" type="submit" data-i18n="rsvp.submit">Submit RSVP on WhatsApp ↗</button>
+        <button class="btn" type="submit" data-i18n="rsvp.submit">CONFIRM YOUR ATTENDANCE ↗</button>
       </form>
-      <p class="form-note" data-i18n="rsvp.note">This will open WhatsApp with your response pre-filled to confirm directly with the couple.</p>
+      <p class="form-note" data-i18n="rsvp.note">This will record your response and open WhatsApp with your confirmation message pre-filled.</p>
+
+      <!-- ── Post-RSVP: Add to Calendar (shown after submission) ── -->
+      <div class="cal-widget-rsvp" id="calWidgetRsvp" style="display:none;margin-top:28px;padding-top:22px;border-top:1px dashed rgba(184,145,80,0.3);">
+        <p style="font-family:var(--font-sans);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-primary);margin:0 0 10px;" data-i18n="cal.heading">📅 Save the Date to Your Calendar</p>
+        <p style="font-size:0.9rem;color:var(--ink-muted);margin:0 0 14px;" data-i18n="cal.intro">Choose one or more reminder times, then select your calendar app below.</p>
+
+        <!-- Multi-select reminder pills -->
+        <div style="margin-bottom:14px;">
+          <p style="font-family:var(--font-sans);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#796c7b;margin:0 0 8px;" data-i18n="cal.selectLabel">Select Reminders (tap to toggle):</p>
+          <div class="cal-reminder-pills" id="calReminderPills" style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button type="button" class="cal-pill active" data-days="2" aria-pressed="true">✓ 2 Days Prior</button>
+            <button type="button" class="cal-pill" data-days="5" aria-pressed="false">5 Days Prior</button>
+            <button type="button" class="cal-pill" data-days="7" aria-pressed="false">7 Days Prior</button>
+          </div>
+          <p class="cal-note" id="calActiveNotice" style="font-size:0.8rem;color:var(--gold-primary);margin:8px 0 0;font-style:italic;">Reminders set: 2 days before the wedding.</p>
+        </div>
+
+        <!-- Calendar app buttons -->
+        <div class="cal-targets" style="display:flex;flex-direction:column;gap:8px;">
+          <a href="#" class="cal-target-btn" id="googleCalBtn" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="#4285F4"><path d="M19.5 4H18V2.5a1 1 0 0 0-2 0V4H8V2.5a1 1 0 0 0-2 0V4H4.5A2.5 2.5 0 0 0 2 6.5v13A2.5 2.5 0 0 0 4.5 22h15a2.5 2.5 0 0 0 2.5-2.5v-13A2.5 2.5 0 0 0 19.5 4zm.5 15.5a.5.5 0 0 1-.5.5h-15a.5.5 0 0 1-.5-.5V10h16v9.5zm0-11.5H4V6.5a.5.5 0 0 1 .5-.5H6v1a1 1 0 0 0 2 0V6h8v1a1 1 0 0 0 2 0V6h1.5a.5.5 0 0 1 .5.5V8z"/></svg>
+            <span data-i18n="cal.google">Add to Google Calendar</span>
+          </a>
+          <button type="button" class="cal-target-btn" id="appleCalBtn">
+            <svg viewBox="0 0 24 24" fill="#333"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.67-.82 1.13-1.96 1-3.1-.97.04-2.15.65-2.85 1.47-.61.71-1.15 1.87-1.01 2.98 1.09.08 2.19-.53 2.86-1.35z"/></svg>
+            <span data-i18n="cal.apple">Apple / iPhone Calendar (.ics)</span>
+          </button>
+          <button type="button" class="cal-target-btn" id="outlookCalBtn">
+            <svg viewBox="0 0 24 24" fill="#0078D4"><path d="M21.5 4h-19A2.5 2.5 0 0 0 0 6.5v11A2.5 2.5 0 0 0 2.5 20h19a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 21.5 4zm-1.1 2-7.9 5.27L4.6 6h15.8zm1.6 11.5a.5.5 0 0 1-.5.5h-19a.5.5 0 0 1-.5-.5V8.13l8.69 5.8a1.5 1.5 0 0 0 1.62 0L22 8.13v9.37z"/></svg>
+            <span data-i18n="cal.outlook">Outlook / Other Calendars (.ics)</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -2090,25 +2175,25 @@ footer {
   <div class="section-wrap">
     <div class="section-head reveal">
       <span class="eyebrow" data-i18n="faq.eyebrow">Before You Come</span>
-      <h2><span data-i18n="faq.titleLead">Good to</span> <em data-i18n="faq.titleEm">Know</em></h2>
+      <h2><span data-i18n="faq.titleLead">Frequently Asked</span> <em data-i18n="faq.titleEm">Questions</em></h2>
       <div class="ornament"><span>✦</span></div>
     </div>
     <div class="faq-list reveal">
       <div class="faq-item">
         <button class="faq-question" aria-expanded="false"><span data-i18n="faq.q1">When is the wedding ceremony?</span> <span class="plus">+</span></button>
-        <div class="faq-answer" data-i18n="faq.a1">Sunday, 15 November 2026, at 10:00 AM West Africa Time promptly.</div>
+        <div class="faq-answer" data-i18n="faq.a1">Our wedding ceremony will take place on Sunday, 15 November 2026, at 10:00 AM. We encourage guests to arrive early so they can be seated before the ceremony begins.</div>
       </div>
       <div class="faq-item">
         <button class="faq-question" aria-expanded="false"><span data-i18n="faq.q2">Where is the ceremony venue?</span> <span class="plus">+</span></button>
-        <div class="faq-answer" data-i18n="faq.a2">16 Community Road, opposite First Bank, Satellite Town. You can use the Directions link in the Wedding Details section to navigate easily via Google Maps.</div>
+        <div class="faq-answer" data-i18n="faq.a2">The ceremony will take place at 16 Community Road, opposite First Bank, Satellite Town, Lagos, Nigeria. Please use the Directions on Google Maps link in the Wedding Details section to navigate to the venue using Google Maps.</div>
       </div>
       <div class="faq-item">
         <button class="faq-question" aria-expanded="false"><span data-i18n="faq.q3">Where is the reception?</span> <span class="plus">+</span></button>
-        <div class="faq-answer" data-i18n="faq.a3">The reception venue and dinner programme will be communicated once confirmed.</div>
+        <div class="faq-answer" data-i18n="faq.a3">The reception venue and dinner programme will be communicated to our guests before the wedding day.</div>
       </div>
       <div class="faq-item">
         <button class="faq-question" aria-expanded="false"><span data-i18n="faq.q4">Can I present a wedding gift?</span> <span class="plus">+</span></button>
-        <div class="faq-answer" data-i18n="faq.a4">Your presence, prayers, and love are already our greatest gift. For friends and family inquiring about additional gifts or tokens of blessing, please contact the couple directly.</div>
+        <div class="faq-answer" data-i18n="faq.a4">Yes. If you would like to present a wedding gift, we would be grateful for your thoughtfulness and generosity. Your presence, prayers and good wishes are already a meaningful gift to us.</div>
       </div>
     </div>
   </div>
@@ -2122,7 +2207,9 @@ footer {
       <img class="footer-portrait" src="assets/gq-couple-elegant.jpg" alt="Godwin &amp; Queeneth" loading="lazy" decoding="async">
     </picture>
   </div>
-  <span class="eyebrow" style="color:var(--gold-light)" data-i18n="footer.eyebrow">With Love and Gratitude</span>
+  <h3 style="font-family:var(--font-sans);font-size:clamp(0.85rem, 2.5vw, 1rem);letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px;" data-i18n="footer.header">WE LOOK FORWARD TO CELEBRATING WITH YOU</h3>
+  <p style="font-family:var(--font-serif);font-size:1.05rem;max-width:520px;margin:0 auto 16px;color:rgba(255,255,255,0.85);" data-i18n="footer.thankYou">Thank you for being part of our lives and sharing in the joy of this special occasion.</p>
+  <span class="eyebrow" style="color:var(--gold-light)" data-i18n="footer.withLove">With love,</span>
   <p class="footer-names">Godwin &amp; Queeneth</p>
   <p class="footer-tag">#TheGQaffair</p>
   <a href="#home" class="btn outline" data-i18n="footer.backTop">Back to Top ↑</a>
@@ -2130,12 +2217,12 @@ footer {
 
   <!-- Designer Publication & WhatsApp Contact Badge -->
   <div class="designer-credit">
-    <p>Need an elegant digital invite like this?</p>
-    <a href="https://wa.me/2349069183037?text=Hello%20Godwin%2C%20I%20saw%20your%20digital%20invite%20and%20I%20love%20the%20design.%20I%20would%20like%20to%20request%20a%20beautiful%20digital%20invite%20like%20this%20for%20my%20event." class="designer-link" target="_blank" rel="noopener noreferrer" id="designerContactLink" title="Chat with Godwin on WhatsApp">
+    <p data-i18n="designer.prompt">Need an elegant digital invite like this?</p>
+    <a href="https://wa.me/2349069183037?text=Hello%20Godwin%2C%20I%20saw%20your%20digital%20invite%20and%20I%20love%20the%20design.%20I%20would%20like%20to%20request%20a%20beautiful%20digital%20invite%20like%20this%20for%20my%20event." class="designer-link" target="_blank" rel="noopener noreferrer" id="designerContactLink" title="Chat with Godwin on WhatsApp" data-i18n-title="designer.title">
       <svg class="designer-wa-icon" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.01-1.24-.74-.66-1.25-1.48-1.39-1.73-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.45s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28z"/>
       </svg>
-      <span>Designed by <strong>Godwin</strong></span>
+      <span><span data-i18n="designer.by">Designed by</span> <strong>Godwin</strong></span>
     </a>
   </div>
 </footer>
@@ -2204,98 +2291,140 @@ document.addEventListener('click', (e) => {
 const target=new Date('2026-11-15T10:00:00+01:00').getTime();function tick(){let d=target-Date.now();if(d<=0){['days','hours','minutes','seconds'].forEach(id=>$('#'+id).textContent='0');$('#countdownMessage').textContent=d> -86400000?t('countdown.today'):t('countdown.done');return}const vals={days:Math.floor(d/86400000),hours:Math.floor(d%86400000/3600000),minutes:Math.floor(d%3600000/60000),seconds:Math.floor(d%60000/1000)};Object.entries(vals).forEach(([id,v])=>$('#'+id).textContent=String(v).padStart(2,'0'));$('#countdownMessage').textContent=t('countdown.msg')}tick();setInterval(tick,1000);
 document.addEventListener('gq:langchange',tick);
 
-// ── Calendar & Multi-day Reminders (2, 5, 7 Days Prior) ──
-let selectedReminderDays = 2;
-const calToggleBtn = $('#calToggleBtn');
-const calMenu = $('#calMenu');
-const calNotice = $('#calActiveNotice');
+// ── Calendar & Multi-day Reminders (multi-select: 2, 5, 7 Days Prior) ──
+// selectedReminderDays is now a Set so multiple can be chosen
+const selectedReminderDays = new Set([2]); // default: 2 days selected
 
-if (calToggleBtn && calMenu) {
-  calToggleBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = calMenu.classList.toggle('show');
-    calToggleBtn.setAttribute('aria-expanded', String(isOpen));
+function getSelectedDaysLabel() {
+  const sorted = [...selectedReminderDays].sort((a, b) => a - b);
+  if (sorted.length === 0) return t('cal.none');
+  const labels = sorted.map(d => d === 1 ? t('cal.dayOne') : t('cal.dayMany', { n: d }));
+  return t('cal.selected', { labels: formatDayList(labels) });
+}
+
+function formatDayList(labels) {
+  if (labels.length <= 1) return labels.join('');
+  return labels.slice(0, -1).join(', ') + t('cal.lastSeparator') + labels[labels.length - 1];
+}
+
+function refreshCalendarPills() {
+  document.querySelectorAll('#calReminderPills .cal-pill').forEach(pill => {
+    const days = parseInt(pill.dataset.days, 10);
+    const label = t('cal.pillDays', { n: days });
+    pill.textContent = (pill.classList.contains('active') ? '✓ ' : '') + label;
   });
+}
 
-  document.addEventListener('click', (e) => {
-    if (calMenu.classList.contains('show') && !calMenu.contains(e.target) && e.target !== calToggleBtn) {
-      calMenu.classList.remove('show');
-      calToggleBtn.setAttribute('aria-expanded', 'false');
-    }
+function escapeIcs(value) {
+  return value.replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;');
+}
+
+function updateCalendarLinks() {
+  const title = 'Godwin & Queeneth Wedding Ceremony (#TheGQaffair)';
+  const details = t('cal.googleDetails');
+  const location = '16 Community Road, opposite First Bank, Satellite Town, Lagos, Nigeria';
+  // Google Calendar — uses first selected reminder for its single reminder field
+  const primaryDays = [...selectedReminderDays].sort((a,b)=>a-b)[0] || 2;
+  const googleUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+    '&text=' + encodeURIComponent(title) +
+    '&dates=20261115T090000Z/20261115T140000Z' +
+    '&details=' + encodeURIComponent(details) +
+    '&location=' + encodeURIComponent(location);
+  const googleBtn = $('#googleCalBtn');
+  if (googleBtn) googleBtn.href = googleUrl;
+}
+
+function downloadIcsFile() {
+  if (selectedReminderDays.size === 0) {
+    toast(t('cal.pickOne'));
+    return;
+  }
+  const sortedDays = [...selectedReminderDays].sort((a, b) => a - b);
+  // Build one VALARM block per selected day
+  const alarmBlocks = sortedDays.flatMap(days => {
+    const mins = days * 24 * 60;
+    return [
+      'BEGIN:VALARM',
+      `TRIGGER:-PT${mins}M`,
+      'ACTION:DISPLAY',
+      `DESCRIPTION:${escapeIcs(t('cal.icsAlarm', { n: days }))}`,
+      'END:VALARM'
+    ];
   });
+  const icsContent = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//The GQ Affair//Godwin & Queeneth Wedding//' + (window.GQ_i18n.lang || 'en').toUpperCase(),
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    'BEGIN:VEVENT',
+    'UID:gq-wedding-20261115@thegqaffair.com',
+    'DTSTAMP:20261020T000000Z',
+    'DTSTART:20261115T090000Z',
+    'DTEND:20261115T140000Z',
+    `SUMMARY:${escapeIcs(t('cal.icsSummary'))}`,
+    `DESCRIPTION:${escapeIcs(t('cal.icsDescription'))}`,
+    `LOCATION:${escapeIcs(t('cal.icsLocation'))}`,
+    'STATUS:CONFIRMED',
+    ...alarmBlocks,
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].join('\r\n');
 
-  // Reminder Pill Selection
+  const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  const label = sortedDays.join('-');
+  link.download = `Godwin-Queeneth-Wedding-reminders-${label}days.ics`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  toast(t('cal.saved', { days: formatDayList(sortedDays.map(d => t('cal.dayMany', { n: d }))) }));
+}
+
+function initCalendarWidget() {
+  const calNotice = $('#calActiveNotice');
+  // Multi-select pills — toggle on/off
   document.querySelectorAll('#calReminderPills .cal-pill').forEach(pill => {
     pill.addEventListener('click', () => {
-      document.querySelectorAll('#calReminderPills .cal-pill').forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      selectedReminderDays = parseInt(pill.dataset.days, 10) || 2;
-      calNotice.textContent = `Reminder set for ${selectedReminderDays} days prior to the wedding.`;
+      const days = parseInt(pill.dataset.days, 10);
+      if (selectedReminderDays.has(days)) {
+        // Deselect only if there will still be at least one selected
+        if (selectedReminderDays.size > 1) {
+          selectedReminderDays.delete(days);
+          pill.classList.remove('active');
+          pill.setAttribute('aria-pressed', 'false');
+        }
+      } else {
+        selectedReminderDays.add(days);
+        pill.classList.add('active');
+        pill.setAttribute('aria-pressed', 'true');
+      }
+      refreshCalendarPills();
+      if (calNotice) calNotice.textContent = getSelectedDaysLabel();
       updateCalendarLinks();
     });
   });
 
-  function updateCalendarLinks() {
-    // Wedding Date: Nov 15, 2026, 10:00 - 15:00 WAT (09:00 - 14:00 UTC)
-    const title = 'Godwin & Queeneth Wedding Ceremony (#TheGQaffair)';
-    const details = `With grateful hearts, Godwin & Queeneth invite you to celebrate their sacred wedding ceremony.\n\nDate: Sunday, 15 November 2026 at 10:00 AM WAT\nLocation: 16 Community Road, opposite First Bank, Satellite Town, Lagos.\nHashtag: #TheGQaffair\nWebsite: https://godwin-and-queeneth-wedding.vercel.app/`;
-    const location = '16 Community Road, opposite First Bank, Satellite Town, Lagos, Nigeria';
-    
-    // Google Calendar URL (Dates in UTC: 20261115T090000Z / 20261115T140000Z)
-    const googleUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
-      '&text=' + encodeURIComponent(title) +
-      '&dates=20261115T090000Z/20261115T140000Z' +
-      '&details=' + encodeURIComponent(details) +
-      '&location=' + encodeURIComponent(location);
-    
-    const googleBtn = $('#googleCalBtn');
-    if (googleBtn) googleBtn.href = googleUrl;
-  }
-
-  function downloadIcsFile() {
-    const reminderMinutes = selectedReminderDays * 24 * 60; // 2 days = 2880 mins, 5 days = 7200 mins, 7 days = 10080 mins
-    const icsContent = [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      'PRODID:-//The GQ Affair//Godwin & Queeneth Wedding//EN',
-      'CALSCALE:GREGORIAN',
-      'METHOD:PUBLISH',
-      'BEGIN:VEVENT',
-      'UID:gq-wedding-20261115@thegqaffair.com',
-      'DTSTAMP:20261020T000000Z',
-      'DTSTART:20261115T090000Z',
-      'DTEND:20261115T140000Z',
-      'SUMMARY:Godwin & Queeneth Wedding Ceremony (#TheGQaffair)',
-      'DESCRIPTION:With grateful hearts\\, Godwin & Queeneth invite you to celebrate their sacred wedding ceremony.\\n\\nDate: Sunday\\, 15 November 2026 at 10:00 AM WAT\\nVenue: 16 Community Road\\, opposite First Bank\\, Satellite Town\\, Lagos.\\nHashtag: #TheGQaffair',
-      'LOCATION:16 Community Road\\, opposite First Bank\\, Satellite Town\\, Lagos\\, Nigeria',
-      'STATUS:CONFIRMED',
-      'BEGIN:VALARM',
-      `TRIGGER:-PT${reminderMinutes}M`,
-      'ACTION:DISPLAY',
-      `DESCRIPTION:Reminder: Godwin & Queeneth Wedding (#TheGQaffair) is in ${selectedReminderDays} days!`,
-      'END:VALARM',
-      'END:VEVENT',
-      'END:VCALENDAR'
-    ].join('\r\n');
-
-    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `Godwin-Queeneth-Wedding-${selectedReminderDays}days-reminder.ics`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    toast(`Wedding added with a ${selectedReminderDays}-day reminder!`);
-  }
-
   const appleBtn = $('#appleCalBtn');
   if (appleBtn) appleBtn.addEventListener('click', downloadIcsFile);
-
   const outlookBtn = $('#outlookCalBtn');
   if (outlookBtn) outlookBtn.addEventListener('click', downloadIcsFile);
 
   updateCalendarLinks();
+  refreshCalendarPills();
+  if (calNotice) calNotice.textContent = getSelectedDaysLabel();
 }
+
+function refreshCalendarLabels() {
+  refreshCalendarPills();
+  const notice = document.getElementById('calActiveNotice');
+  if (notice) notice.textContent = getSelectedDaysLabel();
+  updateCalendarLinks();
+}
+
+refreshCalendarLabels();
+document.addEventListener('gq:langchange', refreshCalendarLabels);
 // Two-way Scroll Reveal: Elements cleanly fade & slide in when on screen, and fade out when scrolled away
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -2334,7 +2463,7 @@ if(copyAccountBtn){
 }
 const shareButton=$('#shareButton');if(shareButton)shareButton.addEventListener('click',async()=>{const data={title:t('share.title'),text:t('share.text'),url:location.href};try{if(navigator.share){await navigator.share(data)}else if(navigator.clipboard){await navigator.clipboard.writeText(location.href);toast(t('share.copiedToast'))}else{prompt(t('share.prompt'),location.href)}}catch(e){if(e.name!=='AbortError')toast(t('share.failToast'))}});
 // RSVP Google Sheets Webhook Configuration
-const GOOGLE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxa0i-SLAWDiVzlmNciasP_aiG61VvVo-fi5GDMIOnkIphPu96Zh9FKz3NgZyttz7Ux/exec';
+const GOOGLE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycby7B1fZ69lcCq5HKXCFjaONH7I117sLyPbSg8_9_kayLNm5mNNLddNCSwW0qvs0wtm6/exec';
 
 function saveRsvpLocalBackup(record){
   try {
@@ -2360,7 +2489,7 @@ $('#rsvpForm').addEventListener('submit', async (e) => {
   const record = {
     timestamp: new Date().toISOString(),
     fullName: name,
-    phone: phone || '',
+    whatsappPhone: phone || '',   // ← column: WhatsApp Phone
     attending: attendance,
     partySize: attendance === 'will attend' ? party : '0',
     wishes: message || ''
@@ -2386,10 +2515,27 @@ $('#rsvpForm').addEventListener('submit', async (e) => {
     ? t('rsvp.waYes', { name: name, party: party, message: message ? t('rsvp.waMessage', { message: message }) : '' })
     : t('rsvp.waNo', { name: name, message: message ? t('rsvp.waMessage', { message: message }) : '' });
   if (phone) {
-    body += ` Phone: ${phone}.`;
+    body += t('rsvp.waPhone', { phone: phone });
   }
   const url = 'https://wa.me/2349069183037?text=' + encodeURIComponent(body);
   window.open(url, '_blank', 'noopener,noreferrer');
   toast(t('rsvp.successToast'));
+
+  // 4. Reveal the Add to Calendar widget below the form
+  const calWidget = $('#calWidgetRsvp');
+  if (calWidget && calWidget.style.display === 'none') {
+    calWidget.style.display = 'block';
+    calWidget.style.opacity = '0';
+    calWidget.style.transform = 'translateY(10px)';
+    calWidget.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    // Initialize calendar interactivity on first reveal
+    initCalendarWidget();
+    requestAnimationFrame(() => {
+      calWidget.style.opacity = '1';
+      calWidget.style.transform = 'translateY(0)';
+    });
+    // Scroll smoothly to it
+    setTimeout(() => calWidget.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 200);
+  }
 });
 </script></body></html>
