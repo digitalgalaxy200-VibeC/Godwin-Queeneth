@@ -28,13 +28,61 @@
   pointer-events: none;
 }
 
+/* ── Introduction Header above Envelope ── */
+.env-header {
+  text-align: center;
+  margin-bottom: 20px;
+  animation: envHeaderFade 1.2s ease-out both;
+  pointer-events: none;
+}
+@keyframes envHeaderFade {
+  from { opacity: 0; transform: translateY(-16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.env-header .env-eyebrow {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: clamp(0.65rem, 2vw, 0.78rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--peach);
+  margin-bottom: 6px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+}
+.env-header .env-couple-title {
+  font-family: var(--font-script);
+  font-size: clamp(2.4rem, 8vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: #fffdfa;
+  margin: 0;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.8), 0 0 35px rgba(240, 183, 173, 0.35);
+}
+.env-header .env-invited-badge {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+  font-style: italic;
+  letter-spacing: 0.12em;
+  color: #f5dfb8;
+  margin-top: 6px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+}
+.env-header .env-invited-badge::before,
+.env-header .env-invited-badge::after {
+  content: '❧';
+  color: var(--gold-primary);
+  margin: 0 8px;
+  font-style: normal;
+}
+
 /* Prompt hint below envelope */
 .env-hint {
-  margin-top: 28px;
+  margin-top: 24px;
   color: #e5cd9e;
   font-family: var(--font-serif);
-  font-size: 0.95rem;
-  letter-spacing: 0.22em;
+  font-size: 0.92rem;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   animation: pulseHint 2.4s ease-in-out infinite alternate;
   display: flex;
@@ -57,8 +105,26 @@
   width: min(390px, 92vw);
   height: clamp(245px, 58vw, 275px);
   perspective: 1400px;
-  filter: drop-shadow(0 26px 45px rgba(0, 0, 0, 0.65));
+  filter: drop-shadow(0 26px 45px rgba(0, 0, 0, 0.75));
   cursor: pointer;
+  animation: envelopeFloat 5s ease-in-out infinite alternate;
+}
+@keyframes envelopeFloat {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-6px) scale(1.008); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* Gold foil border & stationery embossing around envelope */
+.envelope::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 1.5px solid rgba(199, 167, 106, 0.75);
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 0 15px rgba(199, 167, 106, 0.25);
 }
 
 /* Back Plate of Envelope (Interior lining) */
@@ -502,6 +568,18 @@ h1 span {
   text-transform: uppercase;
   color: var(--gold-light);
   margin: 4px 0 12px;
+}
+.hero-invitation-text {
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+  line-height: 1.7;
+  color: #f7f1e7;
+  max-width: 540px;
+  margin: 0 auto 18px;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+}
+.hero-invitation-text p {
+  margin: 0 0 10px;
 }
 .hashtag {
   color: rgba(255, 255, 255, 0.8);
@@ -1324,78 +1402,310 @@ footer {
   </div>
   <p class="env-hint">Tap wax seal to open</p>
 </div>
-<nav><a class="brand" href="#home" aria-label="The GQ Affair home">G <span>&amp;</span> Q</a><div class="nav-links" id="navLinks"><a href="#home">Home</a><a href="#story">Our Journey</a><a href="#details">The Day</a><a href="#gallery">Moments</a><a href="#gifts">Gifts</a><a href="#rsvp">RSVP</a></div><button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">Menu</button></nav>
+<nav><a class="brand" href="#home" aria-label="The GQ Affair home">G <span>&amp;</span> Q</a><div class="nav-links" id="navLinks"><a href="#home">Home</a><a href="#countdown-section">Countdown</a><a href="#details">The Day</a><a href="#story">Our Journey</a><a href="#gallery">Moments</a><a href="#gifts">Gifts</a><a href="#rsvp">RSVP</a></div><button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">Menu</button></nav>
 <main>
-<header class="hero" id="home"><div class="hero-inner"><div class="monogram">G&amp;Q</div><span class="eyebrow">Together with our families</span><h1>Godwin <span>&amp; Queeneth</span></h1><div class="ornament"><span>❧</span></div><p class="hero-date">Sunday · 15 November 2026 · 10:00 AM</p><p class="hashtag">#TheGQaffair</p><div class="button-row"><a class="btn gold" href="#details">Wedding Details</a><a class="btn outline" href="#rsvp">RSVP Now</a></div></div><a class="scroll-cue" href="#story">Scroll to Explore<span></span></a></header>
-
-<!-- ── Section: Our Love Journey (Timeline matching Inspiration) ── -->
-<section class="love-story" id="story"><div class="section-wrap"><div class="section-head reveal"><span class="eyebrow">Our Story</span><h2>Our Love <em>Journey</em></h2><div class="ornament"><span>❦</span></div><p>With grateful hearts and together with our families, we invite you to celebrate the road that led to our forever.</p></div>
-
-<div class="timeline-journey reveal">
-  <div class="timeline-item left">
-    <div class="timeline-content">
-      <span class="chap-num">Chapter I</span>
-      <h4>Two paths, one purpose</h4>
+<header class="hero" id="home">
+  <div class="hero-inner">
+    <div class="monogram">G&amp;Q</div>
+    <span class="eyebrow">TOGETHER WITH OUR FAMILIES</span>
+    <h1>Godwin <span>&amp; Queeneth</span></h1>
+    <div class="ornament"><span>❧</span></div>
+    <div class="hero-invitation-text">
+      <p>With grateful hearts and love in our hearts, we joyfully invite you to celebrate our wedding.</p>
+      <p>As we prepare to exchange our vows before God and the people who mean so much to us, we would be honoured to share this special moment with you.</p>
     </div>
-    <div class="timeline-node">♡</div>
-  </div>
-  <div class="timeline-item right">
-    <div class="timeline-node">♡</div>
-    <div class="timeline-content">
-      <span class="chap-num">Chapter II</span>
-      <h4>Friendship that became love</h4>
+    <p class="hero-date">Sunday, 15 November 2026 · 10:00 AM</p>
+    <p class="hashtag">#TheGQaffair</p>
+    <div class="button-row">
+      <a class="btn gold" href="#details">VIEW WEDDING DETAILS</a>
+      <a class="btn outline" href="#rsvp">CONFIRM YOUR ATTENDANCE</a>
     </div>
   </div>
-  <div class="timeline-item left">
-    <div class="timeline-content">
-      <span class="chap-num">Chapter III</span>
-      <h4>A promise of forever</h4>
+  <a class="scroll-cue" href="#countdown-section">Scroll to Explore<span></span></a>
+</header>
+
+<!-- ── Section: Countdown to "I Do" ── -->
+<section class="countdown-section" id="countdown-section">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">THE DAY WE MAKE OUR VOWS IS DRAWING NEAR</span>
+      <h2>THE COUNTDOWN TO <em>“I DO”</em></h2>
+      <div class="ornament"><span>✦</span></div>
+      <p>We cannot wait to share this beautiful moment with you.</p>
     </div>
-    <div class="timeline-node">♡</div>
+    <div class="countdown reveal" id="countdown" aria-live="polite">
+      <div class="time-box"><strong id="days">--</strong><span>Days</span></div>
+      <div class="time-box"><strong id="hours">--</strong><span>Hours</span></div>
+      <div class="time-box"><strong id="minutes">--</strong><span>Minutes</span></div>
+      <div class="time-box"><strong id="seconds">--</strong><span>Seconds</span></div>
+    </div>
+    <p class="countdown-message" id="countdownMessage"></p>
   </div>
-  <div class="timeline-item right">
-    <div class="timeline-node">♡</div>
-    <div class="timeline-content">
-      <span class="chap-num">Chapter IV</span>
-      <h4>Families joined in blessing</h4>
+</section>
+
+<!-- ── Section: Wedding Details (Ceremony & Reception) ── -->
+<section class="events" id="details">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Sacred Vows &amp; Gathering</span>
+      <h2>Wedding <em>Details</em></h2>
+      <div class="ornament"><span>❦</span></div>
+      <p>We look forward to exchanging our vows and celebrating in the presence of God and our beloved guests.</p>
+    </div>
+    <div class="event-grid">
+      <article class="event-card reveal">
+        <div class="event-icon" aria-hidden="true">⛪</div>
+        <span class="eyebrow">Sacred Vows</span>
+        <h3>Church Ceremony</h3>
+        <p class="event-time">Sunday, 15 November 2026 · 10:00 AM WAT</p>
+        <p>16 Community Road,<br>opposite First Bank,<br>Satellite Town.</p>
+        <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=16%20Community%20Road%2C%20opposite%20First%20Bank%2C%20Satellite%20Town">Get Directions ↗</a>
+      </article>
+      <article class="event-card pending reveal">
+        <div class="event-icon" aria-hidden="true">🥂</div>
+        <span class="eyebrow">Celebration &amp; Dinner</span>
+        <h3>Reception</h3>
+        <p class="event-time">Venue to be Announced</p>
+        <p>The reception venue and dinner programme will be communicated once confirmed.</p>
+        <span class="btn">Details Coming Soon</span>
+      </article>
     </div>
   </div>
-  <div class="timeline-big-day">
-    <div class="big-day-card">
-      <span class="date-badge">15 · 11 · 2026</span>
-      <h3>The Big Day</h3>
+</section>
+
+<!-- ── Section: A Promise Before God (Condensed Love Journey) ── -->
+<section class="love-story" id="story">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Love &amp; Commitment</span>
+      <h2>A PROMISE <em>BEFORE GOD</em></h2>
+      <div class="ornament"><span>❦</span></div>
+      <p>Our journey has brought us to a moment we hold close to our hearts. As we prepare to exchange our vows, we are grateful for the love, support and prayers of our families and friends.</p>
+      <p style="margin-top:8px;font-style:italic;color:var(--gold-primary);">We look forward to beginning this new chapter together and celebrating with the people who matter most to us.</p>
+    </div>
+
+    <div class="timeline-journey reveal">
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <span class="chap-num">Chapter I</span>
+          <h4>Two paths, one purpose</h4>
+        </div>
+        <div class="timeline-node">♡</div>
+      </div>
+      <div class="timeline-item right">
+        <div class="timeline-node">♡</div>
+        <div class="timeline-content">
+          <span class="chap-num">Chapter II</span>
+          <h4>Friendship that became love</h4>
+        </div>
+      </div>
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <span class="chap-num">Chapter III</span>
+          <h4>A promise of forever</h4>
+        </div>
+        <div class="timeline-node">♡</div>
+      </div>
+      <div class="timeline-item right">
+        <div class="timeline-node">♡</div>
+        <div class="timeline-content">
+          <span class="chap-num">Chapter IV</span>
+          <h4>Families joined in blessing</h4>
+        </div>
+      </div>
+      <div class="timeline-big-day">
+        <div class="big-day-card">
+          <span class="date-badge">15 · 11 · 2026</span>
+          <h3>The Big Day</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="ornament" style="margin: 40px auto 30px;"><span>✦</span></div>
+
+    <!-- Chapter Visual Feature Cards -->
+    <div class="story-chapter reveal">
+      <div class="chapter-image">
+        <picture>
+          <source srcset="assets/gq-couple-elegant.webp" type="image/webp">
+          <img src="assets/gq-couple-elegant.jpg" alt="Godwin and Queeneth in elegant attire" loading="lazy" decoding="async">
+        </picture>
+        <span class="image-caption">In your eyes, I found home</span>
+      </div>
+      <div class="chapter-copy">
+        <span class="eyebrow">A look that says everything</span>
+        <h3>The Promise</h3>
+        <p>Some stories are told in grand gestures. Ours lives in the quiet certainty of choosing one another, walking into tomorrow side by side.</p>
+      </div>
+    </div>
+
+    <div class="story-chapter reveal">
+      <div class="chapter-image">
+        <picture>
+          <source srcset="assets/gq-couple-traditional.webp" type="image/webp">
+          <img src="assets/gq-couple-traditional.jpg" alt="Godwin and Queeneth celebrating in traditional attire" loading="lazy" decoding="async">
+        </picture>
+        <span class="image-caption">Wrapped in heritage, rooted in love</span>
+      </div>
+      <div class="chapter-copy">
+        <span class="eyebrow">Our roots, our joy</span>
+        <h3>Our Forever Begins</h3>
+        <p>Rooted in faith and culture, surrounded by the people who matter most, we prepare to say “I do”.</p>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="ornament" style="margin: 40px auto 30px;"><span>✦</span></div>
-
-<!-- Chapter Visual Feature Cards -->
-<div class="story-chapter reveal"><div class="chapter-image"><picture><source srcset="assets/gq-couple-elegant.webp" type="image/webp"><img src="assets/gq-couple-elegant.jpg" alt="Godwin and Queeneth in elegant attire" loading="lazy" decoding="async"></picture><span class="image-caption">Chapter I · In your eyes, I found home</span></div><div class="chapter-copy"><span class="eyebrow">A look that says everything</span><h3>The Promise</h3><p>Some stories are told in grand gestures. Ours lives in the quiet certainty of choosing one another, again and again, walking into tomorrow side by side.</p></div></div>
-
-<div class="story-chapter reveal"><div class="chapter-image"><picture><source srcset="assets/gq-couple-traditional.webp" type="image/webp"><img src="assets/gq-couple-traditional.jpg" alt="Godwin and Queeneth celebrating in traditional attire" loading="lazy" decoding="async"></picture><span class="image-caption">Chapter II · Wrapped in heritage, rooted in love</span></div><div class="chapter-copy"><span class="eyebrow">Our roots, our joy</span><h3>Our Forever Begins</h3><p>Our story carries family, culture, and love. On Sunday, 15 November 2026, we make our vows before the people who matter most.</p><a class="btn gold" href="#details" style="margin-top:12px;">Celebrate with Us</a></div></div>
-</div></section>
-
-<!-- ── Countdown Section ── -->
-<section class="countdown-section"><div class="section-wrap"><div class="section-head reveal"><span class="eyebrow">The Day is Approaching</span><h2>Counting Down to <em>Forever</em></h2><div class="ornament"><span>✦</span></div><p>Sunday, 15 November 2026 · 10:00 AM · West Africa Time</p></div><div class="countdown reveal" id="countdown" aria-live="polite"><div class="time-box"><strong id="days">--</strong><span>Days</span></div><div class="time-box"><strong id="hours">--</strong><span>Hours</span></div><div class="time-box"><strong id="minutes">--</strong><span>Minutes</span></div><div class="time-box"><strong id="seconds">--</strong><span>Seconds</span></div></div><p class="countdown-message" id="countdownMessage"></p></div></section>
-
-<!-- ── Events: The Celebration (Church & Reception) ── -->
-<section class="events" id="details"><div class="section-wrap"><div class="section-head reveal"><span class="eyebrow">Save the Date</span><h2>The <em>Celebration</em></h2><div class="ornament"><span>❦</span></div><p>We look forward to sharing this sacred union with you.</p></div><div class="event-grid"><article class="event-card reveal"><div class="event-icon" aria-hidden="true">⛪</div><span class="eyebrow">Sacred Vows</span><h3>Church Joining</h3><p class="event-time">Sunday, 15 November 2026 · 10:00 AM</p><p>16 Community Road,<br>opposite First Bank,<br>Satellite Town.</p><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=16%20Community%20Road%2C%20opposite%20First%20Bank%2C%20Satellite%20Town">Directions / Map ↗</a></article><article class="event-card pending reveal"><div class="event-icon" aria-hidden="true">🥂</div><span class="eyebrow">After the Service</span><h3>Reception</h3><p class="event-time">Details Coming Soon</p><p>The reception venue and dinner program will be communicated once confirmed.</p><span class="btn">Venue to be Announced</span></article></div></div></section>
+<!-- ── Moments (Curated Gallery) ── -->
+<section class="gallery-section" id="gallery">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Curated Portraits</span>
+      <h2>Special <em>Moments</em></h2>
+      <div class="ornament"><span>❦</span></div>
+      <p>A glimpse into our connection and joy as we await our wedding day. Tap any photo to view in full.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-tile" data-image="assets/gq-couple-elegant.jpg">
+        <picture>
+          <source srcset="assets/gq-couple-elegant.webp" type="image/webp">
+          <img src="assets/gq-couple-elegant.jpg" alt="Godwin and Queeneth studio portrait" loading="lazy" decoding="async">
+        </picture>
+        <span>01 · The Promise</span>
+      </div>
+      <div class="gallery-tile" data-image="assets/gq-couple-romantic.jpg">
+        <picture>
+          <source srcset="assets/gq-couple-romantic.webp" type="image/webp">
+          <img src="assets/gq-couple-romantic.jpg" alt="Romantic couple portrait" loading="lazy" decoding="async">
+        </picture>
+        <span>02 · Tenderness</span>
+      </div>
+      <div class="gallery-tile" data-image="assets/gq-couple-traditional-close.jpg">
+        <picture>
+          <source srcset="assets/gq-couple-traditional-close.webp" type="image/webp">
+          <img src="assets/gq-couple-traditional-close.jpg" alt="Traditional couple close portrait" loading="lazy" decoding="async">
+        </picture>
+        <span>03 · Heritage</span>
+      </div>
+      <div class="gallery-tile" data-image="assets/gq-couple-traditional.jpg">
+        <picture>
+          <source srcset="assets/gq-couple-traditional.webp" type="image/webp">
+          <img src="assets/gq-couple-traditional.jpg" alt="Full traditional portrait" loading="lazy" decoding="async">
+        </picture>
+        <span>04 · Forever</span>
+      </div>
+    </div>
+    <p class="gallery-footnote">Tap any portrait to enlarge</p>
+  </div>
+</section>
 
 <!-- ── Wedding Colours ── -->
-<section class="palette"><div class="section-wrap"><div class="section-head reveal"><span class="eyebrow">A Note for Our Guests</span><h2>Wedding <em>Colours</em></h2><div class="ornament"><span>✦</span></div><p>Our celebration palette features these tones. Official dress code notes will follow.</p></div><div class="swatches reveal"><div class="swatch"><i class="swatch-dot purple"></i><span>Royal Purple</span></div><div class="swatch"><i class="swatch-dot green"></i><span>Sage Green</span></div><div class="swatch"><i class="swatch-dot peach"></i><span>Blush Peach</span></div></div></div></section>
-
-<!-- ── Moments (Gallery) ── -->
-<section class="gallery-section" id="gallery"><div class="section-wrap"><div class="section-head reveal"><span class="eyebrow">Gallery</span><h2>Special <em>Moments</em></h2><div class="ornament"><span>❦</span></div><p>A few moments before the big day. Tap any photo to view it in full.</p></div><div class="gallery-grid reveal"><div class="gallery-tile" data-image="assets/gq-couple-elegant.jpg"><picture><source srcset="assets/gq-couple-elegant.webp" type="image/webp"><img src="assets/gq-couple-elegant.jpg" alt="Godwin and Queeneth studio portrait" loading="lazy" decoding="async"></picture><span>01 · The Promise</span></div><div class="gallery-tile" data-image="assets/gq-couple-romantic.jpg"><picture><source srcset="assets/gq-couple-romantic.webp" type="image/webp"><img src="assets/gq-couple-romantic.jpg" alt="Romantic couple portrait" loading="lazy" decoding="async"></picture><span>02 · Tenderness</span></div><div class="gallery-tile" data-image="assets/gq-couple-traditional-close.jpg"><picture><source srcset="assets/gq-couple-traditional-close.webp" type="image/webp"><img src="assets/gq-couple-traditional-close.jpg" alt="Traditional couple close portrait" loading="lazy" decoding="async"></picture><span>03 · Heritage</span></div><div class="gallery-tile" data-image="assets/gq-couple-traditional.jpg"><picture><source srcset="assets/gq-couple-traditional.webp" type="image/webp"><img src="assets/gq-couple-traditional.jpg" alt="Full traditional portrait" loading="lazy" decoding="async"></picture><span>04 · Forever</span></div></div><p class="gallery-footnote">Tap any portrait to enlarge</p></div></section>
+<section class="palette">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">A Note for Our Guests</span>
+      <h2>Wedding <em>Colours</em></h2>
+      <div class="ornament"><span>✦</span></div>
+      <p>Our celebration palette features these tones. Official dress code notes will follow.</p>
+    </div>
+    <div class="swatches reveal">
+      <div class="swatch"><i class="swatch-dot purple"></i><span>Royal Purple</span></div>
+      <div class="swatch"><i class="swatch-dot green"></i><span>Sage Green</span></div>
+      <div class="swatch"><i class="swatch-dot peach"></i><span>Blush Peach</span></div>
+    </div>
+  </div>
+</section>
 
 <!-- ── Gifts Section (Stationery Note) ── -->
-<section class="gift-section" id="gifts"><div class="section-wrap"><div class="section-head reveal"><span class="eyebrow">Gifts &amp; Gratitude</span><h2>Your Presence is our <em>Present</em></h2><div class="ornament"><span>✦</span></div><p>Your prayers, love, and presence mean more than words can say.</p></div><div class="gift-card reveal"><div class="gift-emblem" aria-hidden="true">🎁</div><h3 class="gift-script">Blessing our new beginning…</h3><p>For friends and family who have kindly inquired about wedding gifts or tokens of blessing, please message the couple or family directly on WhatsApp for guidance.</p><a class="btn gold" href="#rsvp">Send Wishes / Inquire</a><p class="gift-small">Thank you for being part of our story</p></div></div></section>
+<section class="gift-section" id="gifts">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Gifts &amp; Gratitude</span>
+      <h2>Your Presence is our <em>Present</em></h2>
+      <div class="ornament"><span>✦</span></div>
+      <p>Your presence, prayers, and love are already meaningful gifts to us.</p>
+    </div>
+    <div class="gift-card reveal">
+      <div class="gift-emblem" aria-hidden="true">🎁</div>
+      <h3 class="gift-script">Blessing our new beginning…</h3>
+      <p>For friends and family who have kindly inquired about additional wedding gifts or tokens of blessing, please message the couple or family directly on WhatsApp for guidance.</p>
+      <a class="btn gold" href="#rsvp">Inquire or Send Wishes</a>
+      <p class="gift-small">Thank you for being part of our story</p>
+    </div>
+  </div>
+</section>
 
 <!-- ── RSVP Section ── -->
-<section class="rsvp-section" id="rsvp"><div class="section-wrap"><div class="section-head reveal"><span class="eyebrow">Kindly Respond</span><h2>Will You <em>Celebrate With Us?</em></h2><div class="ornament"><span>❦</span></div><p>Please let us know if you will be attending our wedding on Sunday, 15 November 2026.</p></div><div class="rsvp-card reveal"><form class="rsvp-form" id="rsvpForm"><div class="field full"><label for="guestName">Your Full Name</label><input id="guestName" name="guestName" autocomplete="name" required placeholder="e.g. Damola &amp; Guest"></div><div class="field"><label for="attendance">Will You Attend?</label><select id="attendance" name="attendance" required><option value="">Select your response</option><option value="will attend">Joyfully, I will attend</option><option value="cannot attend">Regretfully, I cannot attend</option></select></div><div class="field"><label for="partySize">Number Attending</label><select id="partySize" name="partySize"><option value="1">1 Person</option><option value="2">2 Persons</option><option value="3">3 Persons</option><option value="4">4 Persons</option></select></div><div class="field full"><label for="guestMessage">Wishes for the Couple (Optional)</label><textarea id="guestMessage" name="guestMessage" placeholder="Leave your prayers and kind words..."></textarea></div><button class="btn" type="submit">Submit RSVP on WhatsApp ↗</button></form><p class="form-note">This will open WhatsApp with your response pre-filled to confirm with the couple.</p></div></div></section>
+<section class="rsvp-section" id="rsvp">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Kindly Respond</span>
+      <h2>Confirm Your <em>Attendance</em></h2>
+      <div class="ornament"><span>❦</span></div>
+      <p>Please let us know if you will be celebrating with us on Sunday, 15 November 2026.</p>
+    </div>
+    <div class="rsvp-card reveal">
+      <form class="rsvp-form" id="rsvpForm">
+        <div class="field full">
+          <label for="guestName">Your Full Name</label>
+          <input id="guestName" name="guestName" autocomplete="name" required placeholder="e.g. Damola &amp; Guest">
+        </div>
+        <div class="field">
+          <label for="attendance">Will You Attend?</label>
+          <select id="attendance" name="attendance" required>
+            <option value="">Select your response</option>
+            <option value="will attend">Joyfully, I will attend</option>
+            <option value="cannot attend">Regretfully, I cannot attend</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="partySize">Number Attending</label>
+          <select id="partySize" name="partySize">
+            <option value="1">1 Person</option>
+            <option value="2">2 Persons</option>
+            <option value="3">3 Persons</option>
+            <option value="4">4 Persons</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="guestMessage">Wishes for the Couple (Optional)</label>
+          <textarea id="guestMessage" name="guestMessage" placeholder="Leave your prayers and kind words..."></textarea>
+        </div>
+        <button class="btn" type="submit">Submit RSVP on WhatsApp ↗</button>
+      </form>
+      <p class="form-note">This will open WhatsApp with your response pre-filled to confirm directly with the couple.</p>
+    </div>
+  </div>
+</section>
 
 <!-- ── Good to Know / FAQ ── -->
-<section class="faq"><div class="section-wrap"><div class="section-head reveal"><span class="eyebrow">Before You Come</span><h2>Good to <em>Know</em></h2><div class="ornament"><span>✦</span></div></div><div class="faq-list reveal"><div class="faq-item"><button class="faq-question" aria-expanded="false">When is the wedding ceremony? <span class="plus">+</span></button><div class="faq-answer">Sunday, 15 November 2026, at 10:00 AM promptly.</div></div><div class="faq-item"><button class="faq-question" aria-expanded="false">Where is the ceremony venue? <span class="plus">+</span></button><div class="faq-answer">16 Community Road, opposite First Bank, Satellite Town. Use the Directions link above to navigate with Google Maps.</div></div><div class="faq-item"><button class="faq-question" aria-expanded="false">Where is the reception? <span class="plus">+</span></button><div class="faq-answer">The reception venue details will be communicated once confirmed.</div></div><div class="faq-item"><button class="faq-question" aria-expanded="false">Can I present a wedding gift? <span class="plus">+</span></button><div class="faq-answer">Your presence and prayers are our greatest gift. For inquiries on presents or contributions, please contact the couple directly.</div></div></div></div></section>
+<section class="faq">
+  <div class="section-wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Before You Come</span>
+      <h2>Good to <em>Know</em></h2>
+      <div class="ornament"><span>✦</span></div>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">When is the wedding ceremony? <span class="plus">+</span></button>
+        <div class="faq-answer">Sunday, 15 November 2026, at 10:00 AM West Africa Time promptly.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">Where is the ceremony venue? <span class="plus">+</span></button>
+        <div class="faq-answer">16 Community Road, opposite First Bank, Satellite Town. You can use the Directions link in the Wedding Details section to navigate easily via Google Maps.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">Where is the reception? <span class="plus">+</span></button>
+        <div class="faq-answer">The reception venue and dinner programme will be communicated once confirmed.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">Can I present a wedding gift? <span class="plus">+</span></button>
+        <div class="faq-answer">Your presence, prayers, and love are already our greatest gift. For friends and family inquiring about additional gifts or tokens of blessing, please contact the couple directly.</div>
+      </div>
+    </div>
+  </div>
+</section>
 </main>
 
 <footer><span class="eyebrow" style="color:var(--gold-light)">With Love and Gratitude</span><p class="footer-names">Godwin &amp; Queeneth</p><p class="footer-tag">#TheGQaffair</p><a href="#home" class="btn outline">Back to Top ↑</a><p class="footer-small">Sunday, 15 November 2026 · Satellite Town, Lagos</p></footer>
