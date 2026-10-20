@@ -1,0 +1,7 @@
+# Local dev server output
+preview.log
+preview.err
+
+# Local browser/test profiles
+_p/
+_profile*/
