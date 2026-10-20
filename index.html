@@ -1326,6 +1326,40 @@ footer {
   text-align: center;
   padding: 55px 20px 85px;
   border-top: 2px solid var(--gold-primary);
+  position: relative;
+  overflow: hidden;
+}
+.footer-portrait-wrap {
+  width: clamp(100px, 24vw, 128px);
+  height: clamp(100px, 24vw, 128px);
+  margin: 0 auto 18px;
+  position: relative;
+  padding: 5px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold-primary);
+  box-shadow: 0 0 0 4px rgba(199, 167, 106, 0.2), 0 10px 28px rgba(0,0,0,0.55);
+  background: radial-gradient(circle, rgba(199, 167, 106, 0.25) 0%, transparent 70%);
+}
+.footer-portrait-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border: 1px dashed rgba(199, 167, 106, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: rotateSlow 24s linear infinite;
+}
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.footer-portrait {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
 }
 .footer-names {
   font-family: var(--font-script);
@@ -1732,7 +1766,19 @@ footer {
 </section>
 </main>
 
-<footer><span class="eyebrow" style="color:var(--gold-light)">With Love and Gratitude</span><p class="footer-names">Godwin &amp; Queeneth</p><p class="footer-tag">#TheGQaffair</p><a href="#home" class="btn outline">Back to Top ↑</a><p class="footer-small">Sunday, 15 November 2026 · Satellite Town, Lagos</p></footer>
+<footer>
+  <div class="footer-portrait-wrap reveal">
+    <picture>
+      <source srcset="assets/gq-couple-elegant.webp" type="image/webp">
+      <img class="footer-portrait" src="assets/gq-couple-elegant.jpg" alt="Godwin &amp; Queeneth" loading="lazy" decoding="async">
+    </picture>
+  </div>
+  <span class="eyebrow" style="color:var(--gold-light)">With Love and Gratitude</span>
+  <p class="footer-names">Godwin &amp; Queeneth</p>
+  <p class="footer-tag">#TheGQaffair</p>
+  <a href="#home" class="btn outline">Back to Top ↑</a>
+  <p class="footer-small">Sunday, 15 November 2026 · Satellite Town, Lagos</p>
+</footer>
 
 <!-- Floating RSVP Button for Mobile -->
 <a href="#rsvp" class="floating-rsvp" id="floatingRsvp">RSVP ✦</a>
