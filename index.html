@@ -28,54 +28,6 @@
   pointer-events: none;
 }
 
-/* ── Introduction Header above Envelope ── */
-.env-header {
-  text-align: center;
-  margin-bottom: 20px;
-  animation: envHeaderFade 1.2s ease-out both;
-  pointer-events: none;
-}
-@keyframes envHeaderFade {
-  from { opacity: 0; transform: translateY(-16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.env-header .env-eyebrow {
-  display: block;
-  font-family: var(--font-sans);
-  font-size: clamp(0.65rem, 2vw, 0.78rem);
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--peach);
-  margin-bottom: 6px;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
-}
-.env-header .env-couple-title {
-  font-family: var(--font-script);
-  font-size: clamp(2.4rem, 8vw, 3.8rem);
-  font-weight: 400;
-  line-height: 1.05;
-  color: #fffdfa;
-  margin: 0;
-  text-shadow: 0 4px 20px rgba(0,0,0,0.8), 0 0 35px rgba(240, 183, 173, 0.35);
-}
-.env-header .env-invited-badge {
-  display: inline-block;
-  font-family: var(--font-serif);
-  font-size: clamp(0.85rem, 2.5vw, 1.05rem);
-  font-style: italic;
-  letter-spacing: 0.12em;
-  color: #f5dfb8;
-  margin-top: 6px;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.8);
-}
-.env-header .env-invited-badge::before,
-.env-header .env-invited-badge::after {
-  content: '❧';
-  color: var(--gold-primary);
-  margin: 0 8px;
-  font-style: normal;
-}
-
 /* Prompt hint below envelope */
 .env-hint {
   margin-top: 24px;
@@ -140,7 +92,7 @@
 /* ── Letter Card (Tucked inside, slides out when opened) ── */
 .env-letter-card {
   position: absolute;
-  top: 8px; left: 16px; right: 16px;
+  top: 8px; left: 14px; right: 14px;
   height: calc(100% - 16px);
   background: 
     radial-gradient(ellipse at 50% 0%, #fffdfa 0%, #f7efe4 100%);
@@ -151,7 +103,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 16px 20px;
+  padding: 14px 18px;
   text-align: center;
   z-index: 2;
   transition: transform 0.9s cubic-bezier(0.34, 1.35, 0.64, 1);
@@ -159,30 +111,45 @@
 .env-letter-card::before {
   content: '';
   position: absolute;
-  inset: 5px;
+  inset: 4px;
   border: 1px solid rgba(184, 145, 80, 0.35);
   pointer-events: none;
 }
 .env-letter-card .card-ornament {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   color: var(--gold-primary);
   letter-spacing: 0.3em;
   margin-bottom: 2px;
 }
+.env-letter-card .card-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.52rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #796c7b;
+  margin: 0 0 2px;
+}
 .env-letter-card .card-names {
   font-family: var(--font-script);
-  font-size: clamp(2rem, 7vw, 2.5rem);
+  font-size: clamp(1.9rem, 6.5vw, 2.4rem);
   color: #3d005c;
   margin: 0;
-  line-height: 1.1;
+  line-height: 1.05;
+}
+.env-letter-card .card-invited {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(0.78rem, 2.2vw, 0.92rem);
+  color: #8c6a2e;
+  margin: 3px 0 2px;
 }
 .env-letter-card .card-date {
   font-family: var(--font-serif);
-  font-size: 0.8rem;
-  letter-spacing: 0.16em;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #6b5852;
-  margin: 4px 0 10px;
+  margin: 2px 0 10px;
 }
 .env-letter-card .card-open-btn {
   background: #3d005c;
@@ -193,7 +160,7 @@
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  padding: 9px 20px;
+  padding: 8px 18px;
   border-radius: 2px;
   cursor: pointer;
   transition: background 0.25s, transform 0.25s;
@@ -254,11 +221,40 @@
   transition: transform 0.9s cubic-bezier(0.68, -0.15, 0.27, 1.15), z-index 0.2s 0.3s;
   z-index: 5;
   filter: drop-shadow(0 7px 12px rgba(0,0,0,0.45));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
 }
 .env-top-flap::before {
   content: '';
   position: absolute; inset: 0;
   background: linear-gradient(155deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+}
+
+/* Calligraphy on Envelope Flap */
+.env-flap-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  pointer-events: none;
+}
+.env-flap-names {
+  font-family: var(--font-script);
+  font-size: clamp(1.4rem, 4.5vw, 1.85rem);
+  color: #fff9ed;
+  line-height: 1;
+  margin: 0;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8), 0 0 10px rgba(199, 167, 106, 0.4);
+}
+.env-flap-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.52rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--peach);
+  margin-top: 2px;
+  display: block;
 }
 
 /* ── Wax Seal on Top of Flap Apex ── */
@@ -281,6 +277,28 @@
   z-index: 6;
   cursor: pointer;
   transition: transform 0.4s ease, opacity 0.4s ease;
+  animation: sealPulse 2.8s ease-in-out infinite alternate;
+}
+@keyframes sealPulse {
+  0% {
+    box-shadow: 
+      0 4px 16px rgba(0, 0, 0, 0.65),
+      inset 0 1px 2px rgba(240, 183, 173, 0.45),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.55),
+      0 0 0 1.5px rgba(199, 167, 106, 0.65),
+      0 0 0 0 rgba(199, 167, 106, 0.4);
+  }
+  100% {
+    box-shadow: 
+      0 6px 20px rgba(0, 0, 0, 0.8),
+      inset 0 1px 2px rgba(240, 183, 173, 0.45),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.55),
+      0 0 0 2px rgba(199, 167, 106, 0.95),
+      0 0 18px 4px rgba(199, 167, 106, 0.45);
+  }
+}
+.env-seal-wax:hover {
+  transform: translateX(-50%) scale(1.08);
 }
 .env-seal-wax span {
   font-family: var(--font-serif);
@@ -662,17 +680,21 @@ section {
 .section-head h2 {
   font-family: var(--font-serif);
   font-weight: 500;
-  font-size: clamp(2.2rem, 7vw, 3.6rem);
-  line-height: 1.1;
+  font-size: clamp(2rem, 6.2vw, 3.2rem);
+  line-height: 1.15;
   color: var(--ink-deep);
   margin: 6px 0 10px;
+  letter-spacing: 0.04em;
 }
 .section-head h2 em {
-  font-family: var(--font-script);
+  font-family: var(--font-serif);
+  font-style: italic;
   font-weight: 400;
-  font-size: 1.15em;
+  font-size: 1.05em;
   color: var(--gold-primary);
   display: block;
+  letter-spacing: 0.03em;
+  margin-top: 2px;
 }
 .section-head p {
   color: var(--ink-muted);
@@ -1383,14 +1405,20 @@ footer {
     <!-- Letter Card tucked inside (slides upward on opening) -->
     <div class="env-letter-card" id="envCard">
       <span class="card-ornament">G &nbsp;✦&nbsp; Q</span>
+      <p class="card-eyebrow">The Wedding Celebration of</p>
       <h2 class="card-names">Godwin &amp; Queeneth</h2>
-      <p class="card-date">Sunday · 15 November 2026</p>
+      <p class="card-invited">You Are Cordially Invited</p>
+      <p class="card-date">Sunday · 15 November 2026 · 10:00 AM</p>
       <button class="card-open-btn" id="openInvitation">View Invitation</button>
     </div>
 
-    <!-- Triangular Top Flap with Wax Seal -->
+    <!-- Triangular Top Flap with Wax Seal and Gold Calligraphy -->
     <div class="env-top-flap" id="envFlap">
-      <div class="env-seal-wax" id="envSeal">
+      <div class="env-flap-text">
+        <p class="env-flap-names">Godwin &amp; Queeneth</p>
+        <span class="env-flap-subtitle">You Are Invited</span>
+      </div>
+      <div class="env-seal-wax" id="envSeal" title="Tap to Open Invitation">
         <span>GQ</span>
       </div>
     </div>
@@ -1410,10 +1438,6 @@ footer {
     <span class="eyebrow">TOGETHER WITH OUR FAMILIES</span>
     <h1>Godwin <span>&amp; Queeneth</span></h1>
     <div class="ornament"><span>❧</span></div>
-    <div class="hero-invitation-text">
-      <p>With grateful hearts and love in our hearts, we joyfully invite you to celebrate our wedding.</p>
-      <p>As we prepare to exchange our vows before God and the people who mean so much to us, we would be honoured to share this special moment with you.</p>
-    </div>
     <p class="hero-date">Sunday, 15 November 2026 · 10:00 AM</p>
     <p class="hashtag">#TheGQaffair</p>
     <div class="button-row">
@@ -1428,8 +1452,8 @@ footer {
 <section class="countdown-section" id="countdown-section">
   <div class="section-wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">THE DAY WE MAKE OUR VOWS IS DRAWING NEAR</span>
-      <h2>THE COUNTDOWN TO <em>“I DO”</em></h2>
+      <span class="eyebrow">The Day We Make Our Vows is Drawing Near</span>
+      <h2>The Countdown to <em>“I Do”</em></h2>
       <div class="ornament"><span>✦</span></div>
       <p>We cannot wait to share this beautiful moment with you.</p>
     </div>
@@ -1478,7 +1502,7 @@ footer {
   <div class="section-wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Love &amp; Commitment</span>
-      <h2>A PROMISE <em>BEFORE GOD</em></h2>
+      <h2>A Promise <em>Before God</em></h2>
       <div class="ornament"><span>❦</span></div>
       <p>Our journey has brought us to a moment we hold close to our hearts. As we prepare to exchange our vows, we are grateful for the love, support and prayers of our families and friends.</p>
       <p style="margin-top:8px;font-style:italic;color:var(--gold-primary);">We look forward to beginning this new chapter together and celebrating with the people who matter most to us.</p>
@@ -1775,5 +1799,57 @@ document.querySelectorAll('.faq-question').forEach(btn=>btn.addEventListener('cl
 const lightbox=$('#lightbox');document.querySelectorAll('.gallery-tile[data-image]').forEach(tile=>tile.addEventListener('click',()=>{ $('#lightboxImage').src=tile.dataset.image;lightbox.classList.add('open');$('#closeLightbox').focus()}));function closeLightbox(){lightbox.classList.remove('open')}$('#closeLightbox').addEventListener('click',closeLightbox);lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
 function toast(message){const t=$('#toast');t.textContent=message;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
 const shareButton=$('#shareButton');if(shareButton)shareButton.addEventListener('click',async()=>{const data={title:'Godwin & Queeneth | #TheGQaffair',text:'You are invited to celebrate the union of Godwin & Queeneth on Sunday, 15 November 2026. #TheGQaffair',url:location.href};try{if(navigator.share){await navigator.share(data)}else if(navigator.clipboard){await navigator.clipboard.writeText(location.href);toast('Invitation link copied. You can now share it on WhatsApp.')}else{prompt('Copy and share this invitation link:',location.href)}}catch(e){if(e.name!=='AbortError')toast('Sharing was not available. Copy the website link from your browser.')}});
-$('#rsvpForm').addEventListener('submit',e=>{e.preventDefault();const name=$('#guestName').value.trim(),attendance=$('#attendance').value,party=$('#partySize').value,message=$('#guestMessage').value.trim();if(!name||!attendance){toast('Please enter your name and select your response.');return}const body=`Hello Godwin and Queeneth. My name is ${name}. I ${attendance} your wedding ceremony on Sunday, 15 November 2026.${attendance==='will attend'?' Number attending (including me): '+party+'.':''}${message?' Message: '+message:''}`;const url='https://wa.me/?text='+encodeURIComponent(body);window.open(url,'_blank','noopener,noreferrer');toast('Review the prepared RSVP message and send it in WhatsApp.')});
+// RSVP Google Sheets Webhook Configuration
+// To connect your Google Sheet: paste your Google Apps Script Web App URL into GOOGLE_SHEET_WEBHOOK_URL below
+const GOOGLE_SHEET_WEBHOOK_URL = ''; // e.g. 'https://script.google.com/macros/s/.../exec'
+
+function saveRsvpLocalBackup(record){
+  try {
+    const list = JSON.parse(localStorage.getItem('gq_rsvp_entries') || '[]');
+    list.push(record);
+    localStorage.setItem('gq_rsvp_entries', JSON.stringify(list));
+  } catch(e){}
+}
+
+$('#rsvpForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const name = $('#guestName').value.trim();
+  const attendance = $('#attendance').value;
+  const party = $('#partySize').value;
+  const message = $('#guestMessage').value.trim();
+
+  if(!name || !attendance){
+    toast('Please enter your name and select your response.');
+    return;
+  }
+
+  const record = {
+    timestamp: new Date().toISOString(),
+    fullName: name,
+    attending: attendance,
+    partySize: attendance === 'will attend' ? party : '0',
+    wishes: message || ''
+  };
+
+  // 1. Always save a local copy as backup
+  saveRsvpLocalBackup(record);
+
+  // 2. If Google Sheet Webhook is configured, send the submission asynchronously
+  if(GOOGLE_SHEET_WEBHOOK_URL){
+    try {
+      fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(record)
+      }).catch(err => console.warn('Google Sheet log error:', err));
+    } catch(err){}
+  }
+
+  // 3. Open WhatsApp prefilled message
+  const body = `Hello Godwin and Queeneth. My name is ${name}. I ${attendance} your wedding ceremony on Sunday, 15 November 2026.${attendance==='will attend'?' Number attending (including me): '+party+'.':''}${message?' Message: '+message:''}`;
+  const url = 'https://wa.me/?text=' + encodeURIComponent(body);
+  window.open(url, '_blank', 'noopener,noreferrer');
+  toast('RSVP details recorded. Sending confirmation via WhatsApp…');
+});
 </script></body></html>
