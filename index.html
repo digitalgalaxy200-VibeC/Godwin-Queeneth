@@ -9,132 +9,1288 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
 :root{--plum:#3d005c;--plum2:#5b0877;--peach:#f0b7ad;--cream:#fffaf5;--ink:#302338;--gold:#c7a76a;--muted:#796c7b;--green:#b5ddc4}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif}body.locked{overflow:hidden}button,a{font:inherit}button{cursor:pointer}.serif{font-family:'Cormorant Garamond',serif}.script{font-family:'Great Vibes',cursive}.eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;color:var(--plum2)}
-/* ── Envelope intro ─────────────────────────────────────── */
-#intro{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:clamp(16px,4vw,28px);background:linear-gradient(180deg,rgba(18,0,26,.45) 0%,rgba(22,0,34,.78) 100%),url('assets/gq-couple-elegant.jpg') center 24%/cover no-repeat;transition:opacity 1s ease,visibility 1s ease}
+/* ══════════════════════════════════════════════════════════
+   REALISTIC LUXURY WEDDING ENVELOPE (Landscape Stationery)
+══════════════════════════════════════════════════════════ */
+#intro {
+  position: fixed; inset: 0; z-index: 999;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 16px;
+  background: 
+    radial-gradient(ellipse at 50% 30%, rgba(35, 12, 40, 0.72) 0%, rgba(14, 2, 18, 0.94) 100%),
+    url('assets/gq-couple-elegant.jpg') center 22%/cover no-repeat;
+  backdrop-filter: blur(8px);
+  transition: opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.1s ease;
+}
+#intro.opened {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
 
-/* subtle outer frame lines */
-#intro::before,#intro::after{content:"";position:absolute;pointer-events:none;border:1px solid rgba(199,167,106,.35)}
-#intro::before{inset:14px}
-#intro::after{inset:22px;border-color:rgba(240,183,173,.15)}
+/* Prompt hint below envelope */
+.env-hint {
+  margin-top: 28px;
+  color: #e5cd9e;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  animation: pulseHint 2.4s ease-in-out infinite alternate;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.env-hint::before, .env-hint::after {
+  content: '✦';
+  font-size: 0.7rem;
+  color: var(--gold-primary);
+}
+@keyframes pulseHint {
+  from { opacity: 0.55; transform: translateY(0); }
+  to { opacity: 1; transform: translateY(-3px); }
+}
 
-/* envelope wrapper */
-.envelope{position:relative;width:min(460px,92vw);perspective:900px}
+/* ── The Physical Envelope Body ── */
+.envelope {
+  position: relative;
+  width: min(390px, 92vw);
+  height: clamp(245px, 58vw, 275px);
+  perspective: 1400px;
+  filter: drop-shadow(0 26px 45px rgba(0, 0, 0, 0.65));
+  cursor: pointer;
+}
 
-/* back panel — the envelope body */
-.env-body{position:relative;background:linear-gradient(160deg,#1c0028 0%,#2b0040 55%,#1a0025 100%);border:1px solid #c7a76a55;box-shadow:0 32px 80px #0d001599,0 0 0 1px #c7a76a18;overflow:hidden;animation:envRise 1.1s cubic-bezier(.22,1,.36,1) both}
+/* Back Plate of Envelope (Interior lining) */
+.env-back {
+  position: absolute; inset: 0;
+  background: #2a003f;
+  border-radius: 4px;
+  border: 1px solid rgba(199, 167, 106, 0.35);
+  box-shadow: inset 0 0 50px rgba(0,0,0,0.6);
+  overflow: hidden;
+}
 
-/* envelope bottom-half decorative lines */
-.env-body::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 38px,#c7a76a07 38px,#c7a76a07 39px);pointer-events:none}
+/* ── Letter Card (Tucked inside, slides out when opened) ── */
+.env-letter-card {
+  position: absolute;
+  top: 8px; left: 16px; right: 16px;
+  height: calc(100% - 16px);
+  background: 
+    radial-gradient(ellipse at 50% 0%, #fffdfa 0%, #f7efe4 100%);
+  border: 1px solid #d4be98;
+  border-radius: 3px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 20px;
+  text-align: center;
+  z-index: 2;
+  transition: transform 0.9s cubic-bezier(0.34, 1.35, 0.64, 1);
+}
+.env-letter-card::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(184, 145, 80, 0.35);
+  pointer-events: none;
+}
+.env-letter-card .card-ornament {
+  font-size: 0.7rem;
+  color: var(--gold-primary);
+  letter-spacing: 0.3em;
+  margin-bottom: 2px;
+}
+.env-letter-card .card-names {
+  font-family: var(--font-script);
+  font-size: clamp(2rem, 7vw, 2.5rem);
+  color: #3d005c;
+  margin: 0;
+  line-height: 1.1;
+}
+.env-letter-card .card-date {
+  font-family: var(--font-serif);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #6b5852;
+  margin: 4px 0 10px;
+}
+.env-letter-card .card-open-btn {
+  background: #3d005c;
+  color: #f7edd8;
+  border: 1px solid var(--gold-primary);
+  font-family: var(--font-sans);
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 9px 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s;
+}
+.env-letter-card .card-open-btn:hover {
+  background: #5b0877;
+  transform: translateY(-1px);
+}
 
-/* flap — triangle on top */
-.env-flap{position:absolute;top:0;left:0;right:0;height:0;border-left:min(230px,46vw) solid transparent;border-right:min(230px,46vw) solid transparent;border-top:min(150px,32vw) solid #2b0040;filter:drop-shadow(0 8px 18px #0d001540);transform-origin:top center;transform-style:preserve-3d;transition:transform 1s cubic-bezier(.68,-.15,.27,1.2);z-index:2}
-.env-flap::before{content:"";position:absolute;top:0;left:50%;transform:translate(-50%,-100%);border-left:min(230px,46vw) solid transparent;border-right:min(230px,46vw) solid transparent;border-top:min(150px,32vw) solid #3a0056}
-.env-flap::after{content:"";position:absolute;top:-min(148px,31.5vw);left:50%;transform:translateX(-50%);width:min(460px,92vw);height:1px;background:linear-gradient(90deg,transparent,#c7a76a70,transparent)}
+/* ── Lower Envelope Pocket (Left, Right, Bottom folded flaps) ── */
+.env-pocket-left {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, #3d005c 0%, #29003e 100%);
+  clip-path: polygon(0 0, 50% 50%, 0 100%);
+  border-left: 1px solid rgba(199, 167, 106, 0.35);
+  border-radius: 4px 0 0 4px;
+  z-index: 3;
+  filter: drop-shadow(2px 0 5px rgba(0,0,0,0.25));
+}
+.env-pocket-right {
+  position: absolute; inset: 0;
+  background: linear-gradient(225deg, #380054 0%, #250038 100%);
+  clip-path: polygon(100% 0, 50% 50%, 100% 100%);
+  border-right: 1px solid rgba(199, 167, 106, 0.35);
+  border-radius: 0 4px 4px 0;
+  z-index: 3;
+  filter: drop-shadow(-2px 0 5px rgba(0,0,0,0.25));
+}
+.env-pocket-bottom {
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, #440066 0%, #32004d 100%);
+  clip-path: polygon(0 100%, 50% 48%, 100% 100%);
+  border-bottom: 1px solid rgba(199, 167, 106, 0.4);
+  border-radius: 0 0 4px 4px;
+  z-index: 4;
+  filter: drop-shadow(0 -4px 8px rgba(0,0,0,0.28));
+}
 
-/* wax seal */
-.env-seal{position:absolute;top:-min(38px,8.5vw);left:50%;transform:translateX(-50%);z-index:3;width:clamp(54px,12vw,72px);height:clamp(54px,12vw,72px);background:radial-gradient(circle at 38% 36%,#7b1fa2,#3d005c 60%,#1a0028);border-radius:50%;border:2px solid #c7a76a88;box-shadow:0 4px 20px #3d005c55,inset 0 1px 0 #f0b7ad22;display:grid;place-items:center;font:italic clamp(1rem,2.5vw,1.35rem)/1 'Cormorant Garamond',serif;color:#f0d3a0;letter-spacing:.04em;transition:transform .6s ease,box-shadow .6s ease}
-.env-seal.broken{transform:translateX(-50%) scale(.88) rotate(-18deg);box-shadow:0 2px 8px #3d005c33;opacity:.7}
+/* Gold foil fold seams */
+.env-pocket-bottom::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: 
+    linear-gradient(27deg, transparent calc(50% - 0.7px), rgba(199,167,106,0.3) 50%, transparent calc(50% + 0.7px)),
+    linear-gradient(-27deg, transparent calc(50% - 0.7px), rgba(199,167,106,0.3) 50%, transparent calc(50% + 0.7px));
+  pointer-events: none;
+}
 
-/* envelope letter / card inside */
-.env-letter{padding:clamp(52px,13vw,80px) clamp(22px,6vw,44px) clamp(28px,7vw,42px);text-align:center;position:relative;min-height:clamp(300px,65vw,400px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0}
+/* ── Top Flap (Triangular flap that flips open upwards) ── */
+.env-top-flap {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 52%;
+  background: linear-gradient(180deg, #4d0073 0%, #380054 90%, #2f0047 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.68, -0.15, 0.27, 1.15), z-index 0.2s 0.3s;
+  z-index: 5;
+  filter: drop-shadow(0 7px 12px rgba(0,0,0,0.45));
+}
+.env-top-flap::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(155deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+}
 
-/* corner ornaments */
-.env-letter::before,.env-letter::after{content:'✦';position:absolute;color:#c7a76a45;font-size:clamp(.75rem,2vw,1rem)}
-.env-letter::before{top:clamp(60px,14vw,88px);left:clamp(14px,4vw,22px)}
-.env-letter::after{bottom:clamp(14px,4vw,22px);right:clamp(14px,4vw,22px)}
+/* ── Wax Seal on Top of Flap Apex ── */
+.env-seal-wax {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 58px;
+  height: 58px;
+  background: radial-gradient(circle at 35% 32%, #7a1599 0%, #5b0877 45%, #3d005c 85%, #250038 100%);
+  border-radius: 50%;
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.65),
+    inset 0 1px 2px rgba(240, 183, 173, 0.45),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.55),
+    0 0 0 1.5px rgba(199, 167, 106, 0.65);
+  display: grid;
+  place-items: center;
+  z-index: 6;
+  cursor: pointer;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.env-seal-wax span {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--peach);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
 
-.env-monogram{font:italic clamp(.85rem,2.2vw,1.05rem)/1 'Cormorant Garamond',serif;color:#c7a76a;letter-spacing:.45em;margin-bottom:clamp(14px,4vw,22px);opacity:.9}
-.env-names{font:400 clamp(2.4rem,9vw,3.6rem)/1 'Great Vibes',cursive;color:#fff4ec;margin:0 0 clamp(10px,3vw,16px);text-shadow:0 2px 24px #c7a76a22}
-.env-rule{width:clamp(44px,12vw,64px);height:1px;background:linear-gradient(90deg,transparent,#c7a76a,transparent);margin:0 auto clamp(10px,3vw,16px)}
-.env-date{font:400 clamp(.78rem,2.2vw,1rem)/1.6 'Cormorant Garamond',serif;color:#e5c6df;letter-spacing:.14em;text-transform:uppercase;margin:0 0 clamp(18px,5vw,28px)}
-.env-open-btn{border:1px solid #c7a76a88;background:transparent;color:#f0d3a0;padding:clamp(12px,3.5vw,16px) clamp(22px,7vw,36px);letter-spacing:.18em;text-transform:uppercase;font:500 clamp(.6rem,1.8vw,.72rem) 'DM Sans',sans-serif;transition:background .3s,color .3s,border-color .3s;cursor:pointer;min-height:48px}
-.env-open-btn:hover,.env-open-btn:focus-visible{background:#c7a76a;color:#1a0028;border-color:#c7a76a;outline:none}
-.env-hashtag{font-size:clamp(.6rem,1.6vw,.68rem);color:#c7a76a88;letter-spacing:.18em;margin-top:clamp(12px,3.5vw,18px)}
+/* ── Open Animation Stages ── */
+.envelope.opening .env-top-flap {
+  transform: rotateX(180deg);
+  z-index: 1; /* drops behind letter */
+}
+.envelope.opening .env-seal-wax {
+  transform: translateX(-50%) scale(0.65) rotate(-35deg);
+  opacity: 0;
+}
+.envelope.opening .env-letter-card {
+  transform: translateY(-46%); /* slides up out of envelope pocket */
+  box-shadow: 0 18px 36px rgba(0,0,0,0.35);
+}
+.envelope.vanish {
+  animation: envFadeAway 0.85s ease forwards;
+}
+@keyframes envFadeAway {
+  to {
+    opacity: 0;
+    transform: translateY(-24px) scale(1.03);
+  }
+}
+/* ══════════════════════════════════════════════════════════
+   ROYAL DAMASK & VINTAGE GOLD LUXURY THEME (Mobile-First)
+══════════════════════════════════════════════════════════ */
+:root {
+  /* Official #TheGQaffair Palette */
+  --plum: #3d005c;
+  --plum2: #5b0877;
+  --plum-deep: #250038;
+  --peach: #f0b7ad;
+  --peach-light: #fff2ef;
+  --cream: #fffaf5;
+  --ink: #2c162f;
+  --ink-deep: #2c162f;
+  --ink-muted: #6f5973;
+  --gold: #c7a76a;
+  --gold-primary: #c7a76a;
+  --gold-accent: #dcb878;
+  --gold-light: #f5e4c3;
+  --gold-hairline: rgba(199, 167, 106, 0.45);
+  --green: #b5ddc4;
+  --parchment: #fffaf5;
+  --parchment-card: #fffdfb;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
 
-/* states */
-#intro.opened{opacity:0;visibility:hidden;pointer-events:none}
-.envelope.opening .env-flap{transform:rotateX(-180deg)}
-.envelope.opening .env-seal{transform:translateX(-50%) scale(.7) rotate(-28deg);opacity:0}
-.envelope.vanish{animation:envVanish .9s ease both}
+/* ── Restored Ambient Floating Orbs & Petals Animation ── */
+.ambient {
+  position: fixed; inset: 0; pointer-events: none; z-index: 998; overflow: hidden;
+}
+.ambient-orb {
+  position: absolute; width: clamp(160px, 30vw, 400px); aspect-ratio: 1; border-radius: 50%;
+  filter: blur(65px); opacity: 0.18; animation: orbDrift 16s ease-in-out infinite alternate;
+}
+.ambient-orb.one { background: var(--gold); left: -10%; top: 15%; }
+.ambient-orb.two { background: var(--plum2); right: -12%; top: 45%; animation-delay: -6s; }
+.ambient-orb.three { background: var(--peach); left: 35%; bottom: -15%; animation-delay: -3s; }
+@keyframes orbDrift {
+  from { transform: translate3d(0, -2%, 0) scale(0.92); }
+  to { transform: translate3d(8%, 5%, 0) scale(1.12); }
+}
 
-@keyframes envRise{from{opacity:0;transform:translateY(28px) scale(.97)}to{opacity:1;transform:none}}
-@keyframes envVanish{to{opacity:0;transform:translateY(-14px) scale(1.03)}}
-/* site */
-nav{position:absolute;z-index:5;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:24px clamp(20px,5vw,70px);color:white}.brand{font-family:'Cormorant Garamond',serif;letter-spacing:.12em;font-size:1.2rem}.nav-links{display:flex;gap:22px}.nav-links a{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:white;text-decoration:none;opacity:.88}.nav-links a:hover{opacity:1;color:var(--peach)}.menu-toggle{display:none;background:transparent;border:1px solid #ffffff80;color:white;padding:9px 12px}.hero{min-height:100svh;display:grid;place-items:center;text-align:center;color:white;padding:100px 22px 70px;position:relative;overflow:hidden;background:linear-gradient(90deg,rgba(35,0,48,.79),rgba(46,0,62,.38),rgba(28,0,39,.63)),url('assets/gq-couple-elegant.jpg') center 28%/cover}.hero::before{content:"";position:absolute;width:min(80vw,700px);aspect-ratio:1;border:1px solid #efb7ad60;border-radius:50%;box-shadow:0 0 0 25px #efb7ad0d,0 0 0 55px #efb7ad08}.hero-inner{position:relative;max-width:900px;animation:rise 1s .15s both}.monogram{width:96px;height:96px;border:1px solid #efb7ad99;border-radius:50%;display:grid;place-items:center;margin:0 auto 25px;color:var(--peach);font-family:'Cormorant Garamond',serif;font-size:2.7rem;font-style:italic}.hero .eyebrow{color:var(--peach)}h1{font-family:'Great Vibes',cursive;font-size:clamp(4.2rem,12vw,9rem);font-weight:400;line-height:.95;margin:15px 0 22px;color:#fff1eb}h1 span{display:block;font-size:.68em}.hero-date{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,3vw,1.6rem);letter-spacing:.15em;text-transform:uppercase}.hashtag{margin:18px 0 28px;color:var(--peach);letter-spacing:.12em}.button-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;justify-content:center;align-items:center;text-decoration:none;border:1px solid var(--gold);padding:13px 20px;min-height:46px;text-transform:uppercase;letter-spacing:.12em;font-size:.7rem;transition:transform .25s,background .25s}.btn:hover{transform:translateY(-2px)}.btn.gold{background:var(--gold);color:#2c1535}.btn.outline{color:white;border-color:#ffffff80}.scroll-cue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#f6d9d3;display:flex;flex-direction:column;align-items:center;gap:8px}.scroll-cue span{width:1px;height:28px;background:var(--peach);animation:pulse 1.5s infinite}@keyframes pulse{50%{opacity:.25;transform:scaleY(.65)}}
-section{padding:95px 22px}.section-wrap{max-width:1080px;margin:auto}.section-head{text-align:center;margin:0 auto 48px;max-width:650px}.section-head h2{font:500 clamp(2.7rem,7vw,4.5rem)/1 'Cormorant Garamond',serif;color:var(--plum);margin:13px 0}.section-head p{color:var(--muted);line-height:1.8}.divider{width:70px;height:1px;background:var(--gold);margin:20px auto}.intro-story{background:var(--cream)}.story-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(28px,6vw,75px)}.story-art{position:relative;padding:14px;border:1px solid #d6b98c}.story-art img{width:100%;display:block}.story-copy h3{font:400 clamp(2.4rem,5vw,4rem)/1.05 'Cormorant Garamond',serif;color:var(--plum);margin:12px 0}.story-copy p{line-height:1.9;color:var(--muted)}.note-box{margin-top:22px;padding:18px 20px;border-left:2px solid var(--gold);background:#f5eee7;font-size:.88rem;line-height:1.8}
-.countdown-section{background:#f0e8ef;text-align:center}.countdown{display:flex;justify-content:center;gap:clamp(10px,3vw,32px);flex-wrap:wrap}.time-box{width:clamp(75px,16vw,125px);padding:18px 8px;border:1px solid #cbb5cd;background:#fffaf7}.time-box strong{display:block;font:500 clamp(2rem,5vw,3.4rem)/1 'Cormorant Garamond',serif;color:var(--plum)}.time-box span{display:block;text-transform:uppercase;font-size:.62rem;letter-spacing:.12em;color:var(--muted);margin-top:9px}.countdown-message{margin:24px 0 0;color:var(--plum);font-family:'Cormorant Garamond',serif;font-size:1.3rem}
-.events{background:#fff}.event-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.event-card{padding:34px 28px;border:1px solid #e4d7c7;text-align:center;position:relative;background:linear-gradient(145deg,#fff,#fffaf4)}.event-icon{width:54px;height:54px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;margin:0 auto 18px;color:var(--plum);font-size:1.3rem}.event-card h3{font:500 2rem 'Cormorant Garamond',serif;color:var(--plum);margin:0 0 14px}.event-card p{line-height:1.8;color:var(--muted);margin:6px 0}.event-card .event-time{font-weight:600;color:var(--ink)}.event-card .btn{margin-top:20px;color:var(--plum)}.pending{background:#f6f0f7;border-style:dashed}.pending .btn{opacity:.5;pointer-events:none}
-.palette{background:var(--plum);color:white}.palette .section-head h2{color:#fff1eb}.palette .section-head p{color:#e5d6e8}.swatches{display:flex;justify-content:center;gap:30px;flex-wrap:wrap}.swatch{display:flex;align-items:center;gap:12px}.swatch-dot{width:45px;height:45px;border-radius:50%;border:2px solid #ffffff60}.swatch span{font-family:'Cormorant Garamond',serif;font-size:1.25rem}.swatch .purple{background:#4a0067}.swatch .green{background:#b5ddc4}.swatch .peach{background:#f0b7ad}
-.gallery-section{background:var(--cream)}.gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:850px;margin:auto}.gallery-tile{position:relative;overflow:hidden;cursor:zoom-in;background:#eee}.gallery-tile img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s}.gallery-tile:hover img{transform:scale(1.035)}.gallery-tile:first-child{grid-row:span 2}.gallery-tile:first-child img{height:100%;min-height:450px}.gallery-tile:not(:first-child) img{height:218px}.gallery-placeholder{height:100%;min-height:218px;display:grid;place-items:center;text-align:center;padding:25px;color:#f9e5e0;background:linear-gradient(145deg,#4a0067,#7b3b83);font-family:'Cormorant Garamond',serif;font-size:1.5rem}
-.rsvp-section{background:#f3ebf3}.rsvp-card{max-width:700px;margin:auto;background:#fffaf7;border:1px solid #e2d1e0;padding:clamp(22px,5vw,48px)}.rsvp-form{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{display:flex;flex-direction:column;gap:8px}.field.full{grid-column:1/-1}.field label{font-size:.76rem;letter-spacing:.04em;color:var(--ink)}.field input,.field select,.field textarea{width:100%;border:1px solid #d8cad8;background:white;padding:13px 12px;border-radius:0;font:inherit;color:var(--ink)}.field textarea{min-height:100px;resize:vertical}.rsvp-form .btn{grid-column:1/-1;background:var(--plum);color:white;border-color:var(--plum)}.form-note{font-size:.78rem;color:var(--muted);line-height:1.6;margin:14px 0 0}.faq{background:#fff}.faq-list{max-width:760px;margin:auto}.faq-item{border-bottom:1px solid #e5d9e6}.faq-question{width:100%;display:flex;justify-content:space-between;gap:20px;text-align:left;border:0;background:transparent;padding:22px 0;color:var(--plum);font:500 1.3rem 'Cormorant Garamond',serif}.faq-answer{display:none;color:var(--muted);line-height:1.8;padding:0 30px 20px 0}.faq-item.active .faq-answer{display:block}.faq-item.active .plus{transform:rotate(45deg)}.plus{font-family:sans-serif;font-size:1.4rem;transition:transform .2s}
-footer{background:#260036;color:#fff1eb;text-align:center;padding:65px 22px 30px}.footer-names{font:400 clamp(3rem,9vw,6rem) 'Great Vibes',cursive;color:var(--peach);margin:0}.footer-tag{letter-spacing:.18em;color:#e5c6df;margin:15px 0 28px}.footer-small{font-size:.7rem;color:#c9b3cd;margin-top:42px}.share-fab{position:fixed;right:18px;bottom:18px;z-index:8;border:0;border-radius:50px;background:var(--plum);color:white;padding:14px 18px;box-shadow:0 8px 25px #22002f40;font-size:.75rem;letter-spacing:.04em}.lightbox{position:fixed;inset:0;z-index:30;background:#14001beF;display:none;align-items:center;justify-content:center;padding:24px}.lightbox.open{display:flex}.lightbox img{max-width:min(95vw,900px);max-height:90vh;object-fit:contain}.lightbox button{position:absolute;top:20px;right:20px;border:1px solid #ffffff80;color:white;background:transparent;padding:10px 14px}.toast{position:fixed;bottom:80px;left:50%;transform:translate(-50%,15px);background:#2d1534;color:white;padding:12px 18px;font-size:.8rem;opacity:0;pointer-events:none;transition:.25s;z-index:40}.toast.show{opacity:1;transform:translate(-50%,0)}.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}.reveal.visible{opacity:1;transform:none}
-.gift-section{background:linear-gradient(145deg,#fffaf5,#f3e7f0)}.gift-card{max-width:720px;margin:auto;padding:clamp(28px,6vw,58px);text-align:center;border:1px solid #d7bd91;background:rgba(255,255,255,.72);position:relative;box-shadow:0 20px 60px #3d005c0b}.gift-card:before,.gift-card:after{content:'✦';position:absolute;color:var(--gold);font-size:1.2rem}.gift-card:before{top:18px;left:20px}.gift-card:after{bottom:18px;right:20px}.gift-emblem{width:58px;height:58px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;margin:0 auto 18px;color:var(--plum);font-size:1.8rem}.gift-script{font:italic 2rem 'Cormorant Garamond',serif;color:var(--plum)}.gift-card>p:not(.gift-script){max-width:530px;margin:14px auto 22px;color:var(--muted);line-height:1.9}.gift-small{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}.hero:after{content:'G  ✦  Q';position:absolute;bottom:65px;right:clamp(18px,5vw,65px);font:1rem 'Cormorant Garamond',serif;letter-spacing:.2em;color:#f5d9aa99;writing-mode:vertical-rl}@media(max-width:720px){.hero{background-position:54% 25%;background-image:linear-gradient(180deg,rgba(35,0,48,.42),rgba(36,0,49,.78)),url('assets/gq-couple-elegant.jpg')}.intro-card{padding:28px 16px}.intro-date{font-size:.95rem}.hero:after{display:none}}
-@media(max-width:720px){nav{padding:18px 20px}.nav-links{display:none;position:absolute;top:64px;left:14px;right:14px;background:#310047f5;padding:18px;flex-direction:column;gap:17px;border:1px solid #efb7ad50}.nav-links.show{display:flex}.menu-toggle{display:block}.hero{padding-top:100px}.story-grid{grid-template-columns:1fr}.story-art{max-width:420px;margin:auto}.event-grid{grid-template-columns:1fr}.gallery-grid{gap:8px}.gallery-tile:first-child img{min-height:320px}.gallery-tile:not(:first-child) img{height:155px}.rsvp-form{grid-template-columns:1fr}.field.full,.rsvp-form .btn{grid-column:auto}section{padding:75px 20px}.share-fab{right:12px;bottom:12px}}
+.petal {
+  position: absolute; top: -10vh; width: 12px; height: 18px; border-radius: 80% 0 80% 0;
+  background: linear-gradient(135deg, #fff0e8, var(--peach));
+  opacity: 0; filter: drop-shadow(0 2px 4px rgba(61,0,92,0.18));
+  animation: petalFall var(--dur, 16s) linear var(--delay, 0s) infinite;
+}
+@keyframes petalFall {
+  0% { transform: translate3d(0, -8vh, 0) rotate(0deg); opacity: 0; }
+  8% { opacity: 0.65; }
+  50% { transform: translate3d(var(--sway, 45px), 50vh, 0) rotate(220deg); opacity: 0.5; }
+  92% { opacity: 0.35; }
+  100% { transform: translate3d(calc(var(--sway, 45px) * -1), 110vh, 0) rotate(480deg); opacity: 0; }
+}
 
-/* Editorial love-story photography and cinematic hierarchy */
-.love-story{position:relative;overflow:hidden;background:linear-gradient(180deg,#fffaf5 0%,#fbf4f0 100%)}
-.love-story:before{content:'G ♥ Q';position:absolute;right:-.08em;top:8%;font:italic clamp(7rem,22vw,19rem)/1 'Cormorant Garamond',serif;color:#3d005c05;pointer-events:none;white-space:nowrap}
-.love-story .section-head{max-width:760px}.love-story .section-head h2 em{font-weight:400;color:#9b687d}
-.story-chapter{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.8fr);gap:clamp(28px,7vw,100px);align-items:center;max-width:980px;margin:0 auto 100px;position:relative}
-.chapter-reverse{grid-template-columns:minmax(0,.8fr) minmax(0,1.02fr)}.chapter-reverse .chapter-image{order:2}.chapter-reverse .chapter-copy{order:1}
-.chapter-image{position:relative;padding:12px;background:#fff;border:1px solid #d9c39c;box-shadow:0 24px 60px #3d005c12;transform:rotate(-1deg)}.chapter-reverse .chapter-image{transform:rotate(1deg)}.chapter-image img{display:block;width:100%;aspect-ratio:2/3;object-fit:cover;object-position:center 30%}.image-caption{display:block;padding:13px 8px 4px;text-align:center;font:italic 1.15rem 'Cormorant Garamond',serif;color:#70566e;letter-spacing:.03em}
-.chapter-copy{position:relative;padding:16px 0}.chapter-number{display:block;font:italic 5rem/.9 'Cormorant Garamond',serif;color:#c7a76a55;margin-bottom:25px}.chapter-copy h3,.ending-copy h3{font:400 clamp(2.7rem,5vw,4.6rem)/.98 'Cormorant Garamond',serif;color:var(--plum);margin:15px 0 22px}.chapter-copy p:not(.eyebrow),.ending-copy p:not(.eyebrow){line-height:1.95;color:var(--muted);font-size:.96rem}
-.story-interlude{max-width:740px;text-align:center;margin:0 auto 110px;padding:45px 30px;border-top:1px solid #d9c39c;border-bottom:1px solid #d9c39c;position:relative}.story-interlude span{font:5rem/.7 'Cormorant Garamond',serif;color:var(--gold)}.story-interlude p{font:italic clamp(1.7rem,4vw,2.7rem)/1.25 'Cormorant Garamond',serif;color:var(--plum);margin:20px 0}.story-interlude i{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:#8e748e;font-style:normal}
-.story-ending{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(25px,6vw,75px);max-width:980px;margin:0 auto 20px;background:#3d005c;padding:clamp(18px,3vw,35px);color:white}.ending-image{overflow:hidden}.ending-image img{display:block;width:100%;height:100%;max-height:650px;object-fit:cover;object-position:center 25%}.ending-copy{padding:clamp(8px,2vw,25px)}.ending-copy .eyebrow{color:var(--peach)}.ending-copy h3{color:#fff4ed}.ending-copy p:not(.eyebrow){color:#eadde9}.ending-copy .btn{margin-top:14px}
-.portrait-gallery{max-width:1050px;grid-template-columns:1.12fr 1fr 1fr;grid-template-rows:repeat(2,minmax(230px,1fr));gap:15px}.portrait-gallery .gallery-tile{border:0;padding:0;text-align:left;display:block;width:100%;min-width:0}.portrait-gallery .gallery-main{grid-row:span 2}.portrait-gallery .gallery-tile img{height:100%;min-height:240px;object-fit:cover;object-position:center 28%;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .5s}.portrait-gallery .gallery-main img{min-height:500px}.portrait-gallery .gallery-tile:before{content:'';position:absolute;inset:35% 0 0;z-index:1;background:linear-gradient(transparent,#17001bbd);pointer-events:none}.portrait-gallery .gallery-tile span{position:absolute;z-index:2;bottom:18px;left:18px;color:white;font:italic 1.2rem 'Cormorant Garamond',serif;letter-spacing:.03em}.portrait-gallery .gallery-tile:hover img{transform:scale(1.045);filter:saturate(1.06)}.gallery-footnote{text-align:center;color:var(--muted);font-size:.75rem;letter-spacing:.08em;margin-top:24px}
-@media(max-width:720px){.story-chapter,.chapter-reverse,.story-ending{grid-template-columns:1fr;gap:28px;margin-bottom:65px}.chapter-reverse .chapter-image,.chapter-reverse .chapter-copy{order:initial}.chapter-image{max-width:440px;margin:auto}.chapter-copy{padding:0 8px}.chapter-number{font-size:4rem;margin-bottom:18px}.story-interlude{margin-bottom:70px;padding:35px 15px}.story-ending{padding:16px}.ending-image img{max-height:560px}.portrait-gallery{grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:9px}.portrait-gallery .gallery-main{grid-row:auto;grid-column:span 2}.portrait-gallery .gallery-main img{min-height:430px}.portrait-gallery .gallery-tile img{height:280px;min-height:0}.portrait-gallery .gallery-tile span{left:11px;bottom:12px;font-size:1rem}}
+/* Damask Wallpaper Pattern (Cream & Plum Gold Sheen) */
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  background-color: var(--cream);
+  background-image: 
+    radial-gradient(ellipse at 50% 0%, rgba(255, 250, 245, 0.75) 0%, rgba(246, 237, 230, 0.88) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%233d005c' fill-opacity='0.055'%3E%3Cpath d='M40 0 C45 15, 65 20, 80 20 C65 20, 60 40, 60 40 C60 40, 75 45, 80 60 C65 60, 45 65, 40 80 C35 65, 15 60, 0 60 C15 60, 20 40, 20 40 C20 40, 5 35, 0 20 C15 20, 35 15, 40 0 Z M40 18 C38 28, 28 38, 18 40 C28 42, 38 52, 40 62 C42 52, 52 42, 62 40 C52 38, 42 28, 40 18 Z'/%3E%3Ccircle cx='40' cy='40' r='3.5'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: auto, 70px 70px;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
 
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+body.locked { overflow: hidden; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+button, a { font: inherit; }
+button { cursor: pointer; }
 
-/* Enhanced romantic atmosphere */
-:root{--glow:rgba(240,183,173,.28)}
-body{overflow-x:hidden}
-/* Let <picture> pass its <img> straight through to the parent's layout. */
-picture{display:contents}
-.ambient{position:fixed;inset:0;pointer-events:none;z-index:4;overflow:hidden;mix-blend-mode:normal}
-.ambient-orb{position:absolute;width:clamp(160px,28vw,420px);aspect-ratio:1;border-radius:50%;filter:blur(65px);opacity:.15;animation:orbDrift 18s ease-in-out infinite alternate}
-.ambient-orb.one{background:#c7a76a;left:-12%;top:18%}.ambient-orb.two{background:#b875c7;right:-15%;top:48%;animation-delay:-8s}.ambient-orb.three{background:#f0b7ad;left:35%;bottom:-22%;animation-delay:-4s}
-@keyframes orbDrift{from{transform:translate3d(0,-2%,0) scale(.92)}to{transform:translate3d(8%,5%,0) scale(1.12)}}
-.petal{position:absolute;top:-12vh;width:10px;height:16px;border-radius:80% 0 80% 0;background:linear-gradient(135deg,#fff0e8,#dba6b6);opacity:0;filter:drop-shadow(0 2px 4px #4b123322);animation:petalFall var(--dur,16s) linear var(--delay,0s) infinite}
-@keyframes petalFall{0%{transform:translate3d(0,-10vh,0) rotate(0deg);opacity:0}8%{opacity:.55}50%{transform:translate3d(var(--sway,45px),50vh,0) rotate(220deg);opacity:.42}92%{opacity:.3}100%{transform:translate3d(calc(var(--sway,45px)*-1),112vh,0) rotate(480deg);opacity:0}}
-#intro{background:linear-gradient(180deg,rgba(24,0,33,.55) 0%,rgba(29,0,43,.62) 45%,rgba(24,0,33,.86) 100%),radial-gradient(ellipse at 50% 15%,#7b2b8340 0%,transparent 55%),url('assets/gq-couple-elegant.jpg') center 24%/cover no-repeat,#1d002b}
-@media(max-width:720px){#intro{background-position:center 22%}}
-.intro-card .eyebrow{color:var(--peach);text-shadow:0 1px 6px #1d002b}
-#intro:before{inset:18px;border-radius:2px;box-shadow:inset 0 0 90px #f0b7ad12,0 0 50px #c7a76a0d;animation:frameGlow 4s ease-in-out infinite alternate}
-@keyframes frameGlow{to{border-color:#f0b7ad;box-shadow:inset 0 0 90px #f0b7ad1c,0 0 28px #c7a76a18}}
-.intro-card:after{content:'✦';display:block;color:var(--gold);font-size:1.1rem;margin:18px auto 0;animation:twinkle 2.4s ease-in-out infinite}
-@keyframes twinkle{0%,100%{opacity:.45;transform:scale(.85) rotate(0)}50%{opacity:1;transform:scale(1.15) rotate(35deg)}}
-.hero{background-image:radial-gradient(ellipse at 50% 40%,#7b2b8350,transparent 50%),linear-gradient(180deg,#21002bdc,#43005dd9),url('assets/gq-couple-elegant.jpg');background-size:cover;animation:heroBreath 18s ease-in-out infinite alternate}
-@keyframes heroBreath{from{background-position:center 42%}to{background-position:center 52%}}
-.hero:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 20%,#ffffff08 42%,#ffffff00 56%,transparent 80%);background-size:220% 100%;animation:softShimmer 11s ease-in-out infinite}
-@keyframes softShimmer{0%,35%{background-position:180% 0}75%,100%{background-position:-30% 0}}
-.monogram{box-shadow:0 0 0 9px #efb7ad0b,0 0 34px #efb7ad15;animation:monogramFloat 5s ease-in-out infinite}
-@keyframes monogramFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-.section-head .eyebrow:before,.section-head .eyebrow:after{content:'✧';color:var(--gold);padding:0 12px;font-size:.8rem}
-section{position:relative;isolation:isolate}
-section:not(.palette):after{content:'❦';position:absolute;bottom:15px;left:50%;transform:translateX(-50%);font:1.6rem 'Cormorant Garamond',serif;color:#c7a76a65;pointer-events:none}
-.countdown-section{background:radial-gradient(ellipse at 10% 20%,#fffaf8 0,transparent 48%),radial-gradient(ellipse at 90% 85%,#e4cce7 0,transparent 45%),#f0e8ef}
-.time-box{box-shadow:0 8px 24px #3d005c08;transition:transform .3s,box-shadow .3s}.time-box:hover{transform:translateY(-5px);box-shadow:0 14px 30px #3d005c12}
-.event-card{overflow:hidden;transition:transform .35s,box-shadow .35s}.event-card:before{content:'';position:absolute;inset:8px;border:1px solid #c7a76a55;pointer-events:none}.event-card:hover{transform:translateY(-5px);box-shadow:0 18px 40px #3d005c10}
-.story-art{box-shadow:12px 12px 0 #c7a76a15}.story-art:before,.story-art:after{content:'✧';position:absolute;color:var(--gold);font-size:2rem}.story-art:before{top:-20px;left:-14px}.story-art:after{bottom:-20px;right:-14px}
-.gallery-tile{box-shadow:0 8px 25px #3d005c0b}.gallery-tile:after{content:'';position:absolute;inset:0;border:1px solid #ffffff35;pointer-events:none}
-footer{position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,#5b0877,#260036 65%)}footer:before,footer:after{content:'✧';position:absolute;color:#c7a76a50;font-size:7rem;animation:twinkle 5s ease-in-out infinite}footer:before{left:7%;top:12%}footer:after{right:7%;bottom:10%;animation-delay:-2s}
-.share-fab{transition:transform .25s,box-shadow .25s}.share-fab:hover{transform:translateY(-3px);box-shadow:0 12px 30px #22002f55}
+/* ── Typography & Emblems ── */
+.serif { font-family: var(--font-serif); }
+.script { font-family: var(--font-script); }
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  color: var(--gold-primary);
+  margin-bottom: 6px;
+  display: block;
+}
 
-/* Editorial love-story photography and cinematic hierarchy */
-.love-story{position:relative;overflow:hidden;background:linear-gradient(180deg,#fffaf5 0%,#fbf4f0 100%)}
-.love-story:before{content:'G ♥ Q';position:absolute;right:-.08em;top:8%;font:italic clamp(7rem,22vw,19rem)/1 'Cormorant Garamond',serif;color:#3d005c05;pointer-events:none;white-space:nowrap}
-.love-story .section-head{max-width:760px}.love-story .section-head h2 em{font-weight:400;color:#9b687d}
-.story-chapter{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.8fr);gap:clamp(28px,7vw,100px);align-items:center;max-width:980px;margin:0 auto 100px;position:relative}
-.chapter-reverse{grid-template-columns:minmax(0,.8fr) minmax(0,1.02fr)}.chapter-reverse .chapter-image{order:2}.chapter-reverse .chapter-copy{order:1}
-.chapter-image{position:relative;padding:12px;background:#fff;border:1px solid #d9c39c;box-shadow:0 24px 60px #3d005c12;transform:rotate(-1deg)}.chapter-reverse .chapter-image{transform:rotate(1deg)}.chapter-image img{display:block;width:100%;aspect-ratio:2/3;object-fit:cover;object-position:center 30%}.image-caption{display:block;padding:13px 8px 4px;text-align:center;font:italic 1.15rem 'Cormorant Garamond',serif;color:#70566e;letter-spacing:.03em}
-.chapter-copy{position:relative;padding:16px 0}.chapter-number{display:block;font:italic 5rem/.9 'Cormorant Garamond',serif;color:#c7a76a55;margin-bottom:25px}.chapter-copy h3,.ending-copy h3{font:400 clamp(2.7rem,5vw,4.6rem)/.98 'Cormorant Garamond',serif;color:var(--plum);margin:15px 0 22px}.chapter-copy p:not(.eyebrow),.ending-copy p:not(.eyebrow){line-height:1.95;color:var(--muted);font-size:.96rem}
-.story-interlude{max-width:740px;text-align:center;margin:0 auto 110px;padding:45px 30px;border-top:1px solid #d9c39c;border-bottom:1px solid #d9c39c;position:relative}.story-interlude span{font:5rem/.7 'Cormorant Garamond',serif;color:var(--gold)}.story-interlude p{font:italic clamp(1.7rem,4vw,2.7rem)/1.25 'Cormorant Garamond',serif;color:var(--plum);margin:20px 0}.story-interlude i{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:#8e748e;font-style:normal}
-.story-ending{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(25px,6vw,75px);max-width:980px;margin:0 auto 20px;background:#3d005c;padding:clamp(18px,3vw,35px);color:white}.ending-image{overflow:hidden}.ending-image img{display:block;width:100%;height:100%;max-height:650px;object-fit:cover;object-position:center 25%}.ending-copy{padding:clamp(8px,2vw,25px)}.ending-copy .eyebrow{color:var(--peach)}.ending-copy h3{color:#fff4ed}.ending-copy p:not(.eyebrow){color:#eadde9}.ending-copy .btn{margin-top:14px}
-.portrait-gallery{max-width:1050px;grid-template-columns:1.12fr 1fr 1fr;grid-template-rows:repeat(2,minmax(230px,1fr));gap:15px}.portrait-gallery .gallery-tile{border:0;padding:0;text-align:left;display:block;width:100%;min-width:0}.portrait-gallery .gallery-main{grid-row:span 2}.portrait-gallery .gallery-tile img{height:100%;min-height:240px;object-fit:cover;object-position:center 28%;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .5s}.portrait-gallery .gallery-main img{min-height:500px}.portrait-gallery .gallery-tile:before{content:'';position:absolute;inset:35% 0 0;z-index:1;background:linear-gradient(transparent,#17001bbd);pointer-events:none}.portrait-gallery .gallery-tile span{position:absolute;z-index:2;bottom:18px;left:18px;color:white;font:italic 1.2rem 'Cormorant Garamond',serif;letter-spacing:.03em}.portrait-gallery .gallery-tile:hover img{transform:scale(1.045);filter:saturate(1.06)}.gallery-footnote{text-align:center;color:var(--muted);font-size:.75rem;letter-spacing:.08em;margin-top:24px}
-@media(max-width:720px){.story-chapter,.chapter-reverse,.story-ending{grid-template-columns:1fr;gap:28px;margin-bottom:65px}.chapter-reverse .chapter-image,.chapter-reverse .chapter-copy{order:initial}.chapter-image{max-width:440px;margin:auto}.chapter-copy{padding:0 8px}.chapter-number{font-size:4rem;margin-bottom:18px}.story-interlude{margin-bottom:70px;padding:35px 15px}.story-ending{padding:16px}.ending-image img{max-height:560px}.portrait-gallery{grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:9px}.portrait-gallery .gallery-main{grid-row:auto;grid-column:span 2}.portrait-gallery .gallery-main img{min-height:430px}.portrait-gallery .gallery-tile img{height:280px;min-height:0}.portrait-gallery .gallery-tile span{left:11px;bottom:12px;font-size:1rem}}
+/* Ornate Gold Filigree Crest / Divider */
+.ornament {
+  width: 140px;
+  height: 24px;
+  margin: 12px auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.ornament::before, .ornament::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+}
+.ornament span {
+  padding: 0 10px;
+  color: var(--gold-primary);
+  font-size: 1.15rem;
+  line-height: 1;
+}
 
-@media(prefers-reduced-motion:reduce){.ambient-orb,.petal,.env-flap,.env-seal,#intro:before,.hero,.hero:after,.monogram,footer:before,footer:after{animation:none!important;transition:none!important}}
+/* ── Navigation (Vintage Header) ── */
+nav {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px clamp(16px, 5vw, 40px);
+}
+.brand {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-style: italic;
+  letter-spacing: 0.12em;
+  color: #fff4ec;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  text-decoration: none;
+}
+.brand span { color: var(--gold-light); }
+.nav-links {
+  display: none;
+  position: fixed;
+  top: 60px; left: 16px; right: 16px;
+  background: rgba(44, 26, 22, 0.96);
+  border: 1px solid var(--gold-hairline);
+  backdrop-filter: blur(10px);
+  padding: 22px;
+  border-radius: 4px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+.nav-links.show { display: flex; }
+.nav-links a {
+  color: #f7edd8;
+  text-decoration: none;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  padding: 8px;
+}
+.nav-links a:hover { color: var(--gold-light); }
+.menu-toggle {
+  background: rgba(30, 10, 38, 0.6);
+  border: 1px solid var(--gold-hairline);
+  color: #fff4ec;
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── Hero Section (Cover) with Breathing Zoom Animation ── */
+.hero {
+  min-height: 94svh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #fff;
+  padding: 85px 20px 60px;
+  position: relative;
+  overflow: hidden;
+  background-image: 
+    radial-gradient(ellipse at 50% 40%, rgba(91, 8, 119, 0.45) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(30, 0, 42, 0.65) 0%, rgba(35, 12, 40, 0.85) 100%),
+    url('assets/gq-couple-elegant.jpg');
+  background-size: cover;
+  animation: heroBreath 18s ease-in-out infinite alternate;
+}
+@keyframes heroBreath {
+  from { background-position: center 32%; }
+  to { background-position: center 46%; }
+}
+
+/* Shimmer Light Reflection Sweep across Hero */
+.hero::after {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.08) 42%, rgba(255, 255, 255, 0) 56%, transparent 80%);
+  background-size: 220% 100%;
+  animation: softShimmer 11s ease-in-out infinite;
+}
+@keyframes softShimmer {
+  0%, 35% { background-position: 180% 0; }
+  75%, 100% { background-position: -30% 0; }
+}
+
+.hero-inner {
+  position: relative;
+  max-width: 600px;
+  animation: envRise 1s both;
+  z-index: 2;
+}
+.monogram {
+  width: 78px;
+  height: 78px;
+  border: 1px solid var(--gold-accent);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 18px;
+  color: var(--gold-light);
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-style: italic;
+  box-shadow: 0 0 0 4px rgba(184, 145, 80, 0.15), 0 8px 24px rgba(0,0,0,0.3);
+  animation: monogramFloat 5s ease-in-out infinite;
+}
+@keyframes monogramFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+h1 {
+  font-family: var(--font-script);
+  font-size: clamp(3.2rem, 11vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  margin: 8px 0 16px;
+  color: #fffbf5;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+}
+h1 span {
+  display: block;
+  font-size: 0.85em;
+}
+.hero-date {
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 2.8vw, 1.35rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin: 4px 0 12px;
+}
+.hashtag {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  margin-bottom: 24px;
+}
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 13px 22px;
+  min-height: 46px;
+  border-radius: 2px;
+  transition: transform 0.25s, background 0.25s, color 0.25s;
+}
+.btn.gold {
+  background: var(--gold-primary);
+  color: #2c1a16;
+  border: 1px solid var(--gold-primary);
+}
+.btn.gold:hover {
+  background: var(--gold-accent);
+}
+.btn.outline {
+  border: 1px solid var(--gold-light);
+  color: #fff;
+  background: rgba(0,0,0,0.2);
+}
+.scroll-cue {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.scroll-cue span {
+  width: 1px;
+  height: 22px;
+  background: var(--gold-primary);
+  animation: pulse 1.5s infinite;
+}
+
+/* ── Section General Layout & Vintage Headers ── */
+section {
+  padding: clamp(60px, 12vw, 95px) 16px;
+  position: relative;
+}
+.section-wrap {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.section-head {
+  text-align: center;
+  margin: 0 auto 38px;
+  max-width: 580px;
+}
+.section-head h2 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(2.2rem, 7vw, 3.6rem);
+  line-height: 1.1;
+  color: var(--ink-deep);
+  margin: 6px 0 10px;
+}
+.section-head h2 em {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: 1.15em;
+  color: var(--gold-primary);
+  display: block;
+}
+.section-head p {
+  color: var(--ink-muted);
+  font-size: 1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── Vintage Stationery Cards (Double Border + Inset Ornament) ── */
+.parchment-card {
+  background: var(--parchment-card);
+  border: 1px solid #dcc8a4;
+  box-shadow: 0 10px 35px rgba(184, 145, 80, 0.12);
+  padding: clamp(24px, 5vw, 42px) clamp(18px, 4vw, 34px);
+  position: relative;
+  text-align: center;
+  border-radius: 2px;
+}
+.parchment-card::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(184, 145, 80, 0.35);
+  pointer-events: none;
+}
+.parchment-card::after {
+  content: '✦';
+  position: absolute;
+  top: 10px; right: 12px;
+  color: var(--gold-primary);
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+/* ── "Our Love Journey" Vertical Timeline (Like Inspiration) ── */
+.timeline-journey {
+  position: relative;
+  max-width: 540px;
+  margin: 30px auto 0;
+  padding: 20px 0;
+}
+/* Vertical Gold Line */
+.timeline-journey::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent 0%, var(--gold-primary) 10%, var(--gold-primary) 90%, transparent 100%);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 34px;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+.timeline-node {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 32px;
+  background: #fffdf9;
+  border: 1px solid var(--gold-primary);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--gold-primary);
+  font-size: 0.8rem;
+  box-shadow: 0 0 0 3px rgba(247, 241, 230, 0.9);
+  z-index: 3;
+}
+.timeline-content {
+  width: calc(50% - 28px);
+  background: #fffdf9;
+  border: 1px solid #dcc8a4;
+  padding: 12px 14px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+  position: relative;
+}
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(184, 145, 80, 0.25);
+  pointer-events: none;
+}
+.timeline-item.left .timeline-content {
+  margin-right: auto;
+  text-align: right;
+}
+.timeline-item.right .timeline-content {
+  margin-left: auto;
+  text-align: left;
+}
+.timeline-content .chap-num {
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  display: block;
+  margin-bottom: 2px;
+}
+.timeline-content h4 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--ink-deep);
+  margin: 0;
+}
+.timeline-big-day {
+  margin: 40px auto 10px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.big-day-card {
+  display: inline-block;
+  background: #fffdf9;
+  border: 1px solid var(--gold-primary);
+  padding: 14px 28px;
+  box-shadow: 0 8px 25px rgba(184, 145, 80, 0.18);
+  position: relative;
+}
+.big-day-card::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(184, 145, 80, 0.3);
+  pointer-events: none;
+}
+.big-day-card .date-badge {
+  font-family: var(--font-sans);
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-primary);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  display: block;
+}
+.big-day-card h3 {
+  font-family: var(--font-script);
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: var(--ink-deep);
+  margin: 0;
+}
+
+/* ── Story Chapter Photos ── */
+.story-chapter {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  max-width: 620px;
+  margin: 0 auto 50px;
+  align-items: center;
+}
+.chapter-image {
+  position: relative;
+  padding: 10px;
+  background: #fffdf9;
+  border: 1px solid #dcc8a4;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+}
+.chapter-image::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(184, 145, 80, 0.3);
+  pointer-events: none;
+}
+.chapter-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  object-position: center 25%;
+}
+.image-caption {
+  display: block;
+  text-align: center;
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--gold-primary);
+  padding-top: 8px;
+}
+.chapter-copy {
+  text-align: center;
+  padding: 0 10px;
+}
+.chapter-copy h3 {
+  font-size: clamp(1.8rem, 5.5vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--ink-deep);
+  margin: 8px 0 12px;
+}
+.chapter-copy p {
+  color: var(--ink-muted);
+  line-height: 1.75;
+  font-size: 1rem;
+}
+
+/* ── Countdown Section ── */
+.countdown-section {
+  background: rgba(244, 235, 222, 0.55);
+  border-top: 1px solid var(--gold-hairline);
+  border-bottom: 1px solid var(--gold-hairline);
+  text-align: center;
+}
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: clamp(8px, 2.5vw, 20px);
+  margin: 20px 0;
+}
+.time-box {
+  width: clamp(68px, 19vw, 96px);
+  padding: 14px 4px;
+  background: #fffdf9;
+  border: 1px solid #dcc8a4;
+  box-shadow: 0 6px 18px rgba(184, 145, 80, 0.08);
+  position: relative;
+}
+.time-box::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(184, 145, 80, 0.25);
+  pointer-events: none;
+}
+.time-box strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--ink-deep);
+}
+.time-box span {
+  display: block;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  color: var(--gold-primary);
+  margin-top: 6px;
+}
+.countdown-message {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-deep);
+  margin: 18px 0 0;
+}
+
+/* ── Events Section (Ceremony & Reception Cards) ── */
+.event-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+@media (min-width: 680px) {
+  .event-grid { grid-template-columns: 1fr 1fr; }
+}
+.event-card {
+  background: #fffdf9;
+  border: 1px solid #dcc8a4;
+  padding: 30px 22px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+}
+.event-card::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(184, 145, 80, 0.3);
+  pointer-events: none;
+}
+.event-icon {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--gold-primary);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 14px;
+  color: var(--gold-primary);
+  font-size: 1.1rem;
+}
+.event-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.65rem;
+  color: var(--ink-deep);
+  margin: 0 0 10px;
+}
+.event-card .event-time {
+  font-weight: 600;
+  color: var(--gold-primary);
+  font-size: 0.92rem;
+  letter-spacing: 0.05em;
+  margin: 6px 0;
+}
+.event-card p {
+  color: var(--ink-muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin: 6px 0 16px;
+}
+.event-card .btn {
+  margin-top: 10px;
+  background: transparent;
+  border: 1px solid var(--gold-primary);
+  color: var(--ink-deep);
+}
+.event-card .btn:hover {
+  background: var(--gold-primary);
+  color: #fff;
+}
+.event-card.pending {
+  background: #fdfbf7;
+}
+.event-card.pending .btn {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ── Wedding Colours ── */
+.palette {
+  background: rgba(44, 26, 22, 0.95);
+  color: #fff;
+  border-top: 1px solid var(--gold-hairline);
+  border-bottom: 1px solid var(--gold-hairline);
+}
+.palette .section-head h2 { color: #fffcf5; }
+.palette .section-head p { color: #e5cd9e; }
+.swatches {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.swatch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.swatch-dot {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--gold-light);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.swatch-dot.purple { background: #3d005c; }
+.swatch-dot.green  { background: #5a7d65; }
+.swatch-dot.peach  { background: #e8a598; }
+.swatch span {
+  font-size: 1.1rem;
+  color: #fffaf0;
+}
+
+/* ── Gallery Section ── */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+@media (min-width: 520px) {
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+}
+.gallery-tile {
+  background: #fffdf9;
+  border: 1px solid #dcc8a4;
+  padding: 8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  position: relative;
+  cursor: pointer;
+}
+.gallery-tile::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(184, 145, 80, 0.3);
+  pointer-events: none;
+  z-index: 2;
+}
+.gallery-tile img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.gallery-tile:hover img {
+  transform: scale(1.02);
+}
+.gallery-tile span {
+  display: block;
+  text-align: center;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--gold-primary);
+  padding: 8px 0 2px;
+}
+.gallery-footnote {
+  text-align: center;
+  color: var(--ink-muted);
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: var(--font-sans);
+  margin-top: 20px;
+}
+
+/* ── Gifts Section (Stationery Note) ── */
+.gift-card {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fffdf9;
+  border: 1px solid #dcc8a4;
+  padding: clamp(30px, 6vw, 48px) clamp(20px, 4vw, 36px);
+  text-align: center;
+  position: relative;
+  box-shadow: 0 12px 35px rgba(184, 145, 80, 0.12);
+}
+.gift-card::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(184, 145, 80, 0.35);
+  pointer-events: none;
+}
+.gift-emblem {
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--gold-primary);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 16px;
+  color: var(--gold-primary);
+  font-size: 1.4rem;
+}
+.gift-script {
+  font-family: var(--font-script);
+  font-size: 2.3rem;
+  color: var(--ink-deep);
+  margin: 0 0 12px;
+}
+.gift-card p {
+  color: var(--ink-muted);
+  line-height: 1.7;
+  font-size: 0.98rem;
+  margin: 10px 0 22px;
+}
+.gift-small {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  margin-top: 22px;
+}
+
+/* ── RSVP Section ── */
+.rsvp-section {
+  background: rgba(244, 235, 222, 0.45);
+}
+.rsvp-card {
+  max-width: 580px;
+  margin: 0 auto;
+  background: #fffdf9;
+  border: 1px solid #dcc8a4;
+  padding: clamp(26px, 5vw, 42px) clamp(18px, 4vw, 32px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.06);
+  position: relative;
+}
+.rsvp-card::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(184, 145, 80, 0.3);
+  pointer-events: none;
+}
+.rsvp-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 560px) {
+  .rsvp-form { grid-template-columns: 1fr 1fr; }
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+.field.full {
+  grid-column: 1 / -1;
+}
+.field label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-deep);
+}
+.field input, .field select, .field textarea {
+  width: 100%;
+  border: 1px solid #d8c5aa;
+  background: #fff;
+  padding: 12px;
+  border-radius: 2px;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--ink-deep);
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none;
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 0 2px rgba(184, 145, 80, 0.2);
+}
+.field textarea {
+  min-height: 85px;
+  resize: vertical;
+}
+.rsvp-form .btn {
+  grid-column: 1 / -1;
+  background: var(--ink-deep);
+  color: #fff4ec;
+  border: 1px solid var(--ink-deep);
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  margin-top: 6px;
+}
+.rsvp-form .btn:hover {
+  background: #442923;
+}
+.form-note {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+  margin: 16px 0 0;
+  text-align: center;
+}
+
+/* ── FAQ Section (Good to Know) ── */
+.faq-list {
+  max-width: 620px;
+  margin: 0 auto;
+}
+.faq-item {
+  border-bottom: 1px solid #dcc8a4;
+}
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  padding: 18px 0;
+  color: var(--ink-deep);
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.faq-answer {
+  display: none;
+  color: var(--ink-muted);
+  line-height: 1.7;
+  padding: 0 10px 18px 0;
+  font-size: 0.98rem;
+}
+.faq-item.active .faq-answer { display: block; }
+.faq-item.active .plus { transform: rotate(45deg); color: var(--gold-primary); }
+.plus {
+  font-family: sans-serif;
+  font-size: 1.3rem;
+  transition: transform 0.2s;
+  color: var(--gold-primary);
+}
+
+/* ── Floating Mobile RSVP Button (As seen in Reference) ── */
+.floating-rsvp {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  z-index: 15;
+  background: rgba(44, 26, 22, 0.92);
+  border: 1px solid var(--gold-primary);
+  color: var(--gold-light);
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(8px);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.floating-rsvp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+}
+
+/* ── Footer ── */
+footer {
+  background: #1f120e;
+  color: #fff4ec;
+  text-align: center;
+  padding: 55px 20px 85px;
+  border-top: 2px solid var(--gold-primary);
+}
+.footer-names {
+  font-family: var(--font-script);
+  font-size: clamp(2.8rem, 8vw, 4.5rem);
+  color: var(--gold-light);
+  margin: 6px 0;
+}
+.footer-tag {
+  letter-spacing: 0.2em;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 24px;
+}
+.footer-small {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.5);
+  margin-top: 30px;
+}
+
+/* Lightbox & Toast */
+.lightbox {
+  position: fixed; inset: 0; z-index: 30;
+  background: rgba(20, 10, 8, 0.95);
+  display: none; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 95vw; max-height: 90vh; object-fit: contain; border: 1px solid var(--gold-primary); }
+.lightbox button {
+  position: absolute; top: 16px; right: 16px;
+  border: 1px solid var(--gold-primary);
+  color: #fff; background: transparent; padding: 8px 14px;
+}
+.toast {
+  position: fixed; bottom: 85px; left: 50%;
+  transform: translate(-50%, 15px);
+  background: #2c1a16;
+  border: 1px solid var(--gold-primary);
+  color: #fff4ec;
+  padding: 10px 18px;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  border-radius: 20px;
+  opacity: 0; pointer-events: none;
+  transition: 0.25s; z-index: 40;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+/* Dynamic Scroll-Based Reveal (Appear and Disappear as user scrolls into & out of view) */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px) scale(0.97);
+  transition: opacity 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-orb, .petal, .env-flap, .env-seal, .hero, .monogram { animation: none!important; transition: none!important; }
+  .reveal { opacity: 1; transform: none; }
+}
 
 </style>
 <noscript><style>.reveal{opacity:1!important;transform:none!important}.env-flap{transform:none!important}</style></noscript>
@@ -143,42 +1299,110 @@ footer{position:relative;overflow:hidden;background:radial-gradient(ellipse at 5
 <div class="ambient" aria-hidden="true"><span class="ambient-orb one"></span><span class="ambient-orb two"></span><span class="ambient-orb three"></span><div id="petalField"></div></div>
 <div id="intro" aria-label="Wedding invitation">
   <div class="envelope" id="envelope">
-    <div class="env-body">
-      <!-- envelope flap -->
-      <div class="env-flap" id="envFlap"></div>
-      <!-- wax seal -->
-      <div class="env-seal" id="envSeal">GQ</div>
-      <!-- letter contents -->
-      <div class="env-letter">
-        <p class="env-monogram">G &nbsp;✦&nbsp; Q</p>
-        <h2 class="env-names">Godwin &amp; Queeneth</h2>
-        <div class="env-rule"></div>
-        <p class="env-date">Sunday · 15 November 2026</p>
-        <button class="env-open-btn" id="openInvitation">Open Invitation</button>
-        <p class="env-hashtag">#TheGQaffair</p>
+    <!-- Envelope Interior / Back Plate -->
+    <div class="env-back"></div>
+
+    <!-- Letter Card tucked inside (slides upward on opening) -->
+    <div class="env-letter-card" id="envCard">
+      <span class="card-ornament">G &nbsp;✦&nbsp; Q</span>
+      <h2 class="card-names">Godwin &amp; Queeneth</h2>
+      <p class="card-date">Sunday · 15 November 2026</p>
+      <button class="card-open-btn" id="openInvitation">View Invitation</button>
+    </div>
+
+    <!-- Triangular Top Flap with Wax Seal -->
+    <div class="env-top-flap" id="envFlap">
+      <div class="env-seal-wax" id="envSeal">
+        <span>GQ</span>
       </div>
+    </div>
+
+    <!-- Front Pocket Fold Flaps (Left, Right, Bottom) -->
+    <div class="env-pocket-left"></div>
+    <div class="env-pocket-right"></div>
+    <div class="env-pocket-bottom"></div>
+  </div>
+  <p class="env-hint">Tap wax seal to open</p>
+</div>
+<nav><a class="brand" href="#home" aria-label="The GQ Affair home">G <span>&amp;</span> Q</a><div class="nav-links" id="navLinks"><a href="#home">Home</a><a href="#story">Our Journey</a><a href="#details">The Day</a><a href="#gallery">Moments</a><a href="#gifts">Gifts</a><a href="#rsvp">RSVP</a></div><button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">Menu</button></nav>
+<main>
+<header class="hero" id="home"><div class="hero-inner"><div class="monogram">G&amp;Q</div><span class="eyebrow">Together with our families</span><h1>Godwin <span>&amp; Queeneth</span></h1><div class="ornament"><span>❧</span></div><p class="hero-date">Sunday · 15 November 2026 · 10:00 AM</p><p class="hashtag">#TheGQaffair</p><div class="button-row"><a class="btn gold" href="#details">Wedding Details</a><a class="btn outline" href="#rsvp">RSVP Now</a></div></div><a class="scroll-cue" href="#story">Scroll to Explore<span></span></a></header>
+
+<!-- ── Section: Our Love Journey (Timeline matching Inspiration) ── -->
+<section class="love-story" id="story"><div class="section-wrap"><div class="section-head reveal"><span class="eyebrow">Our Story</span><h2>Our Love <em>Journey</em></h2><div class="ornament"><span>❦</span></div><p>With grateful hearts and together with our families, we invite you to celebrate the road that led to our forever.</p></div>
+
+<div class="timeline-journey reveal">
+  <div class="timeline-item left">
+    <div class="timeline-content">
+      <span class="chap-num">Chapter I</span>
+      <h4>Two paths, one purpose</h4>
+    </div>
+    <div class="timeline-node">♡</div>
+  </div>
+  <div class="timeline-item right">
+    <div class="timeline-node">♡</div>
+    <div class="timeline-content">
+      <span class="chap-num">Chapter II</span>
+      <h4>Friendship that became love</h4>
+    </div>
+  </div>
+  <div class="timeline-item left">
+    <div class="timeline-content">
+      <span class="chap-num">Chapter III</span>
+      <h4>A promise of forever</h4>
+    </div>
+    <div class="timeline-node">♡</div>
+  </div>
+  <div class="timeline-item right">
+    <div class="timeline-node">♡</div>
+    <div class="timeline-content">
+      <span class="chap-num">Chapter IV</span>
+      <h4>Families joined in blessing</h4>
+    </div>
+  </div>
+  <div class="timeline-big-day">
+    <div class="big-day-card">
+      <span class="date-badge">15 · 11 · 2026</span>
+      <h3>The Big Day</h3>
     </div>
   </div>
 </div>
-<nav><a class="brand" href="#home" aria-label="The GQ Affair home">G <span style="color:var(--peach)">&</span> Q</a><div class="nav-links" id="navLinks"><a href="#story">Invitation</a><a href="#details">The day</a><a href="#gallery">Gallery</a><a href="#gifts">Gifts</a><a href="#rsvp">RSVP</a></div><button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">Menu</button></nav>
-<main>
-<header class="hero" id="home"><div class="hero-inner"><div class="monogram">G<span style="font-family:'Great Vibes',cursive;color:#fff;font-size:2.1rem">&</span>Q</div><p class="eyebrow">Together with our families</p><h1>Godwin <span>&amp; Queeneth</span></h1><p class="hero-date">Sunday · 15 November 2026 · 10:00 AM</p><p class="hashtag">#TheGQaffair</p><div class="button-row"><a class="btn gold" href="#details">Wedding details</a><a class="btn outline" href="#rsvp">Respond to invitation</a></div></div><a class="scroll-cue" href="#story">View invitation details<span></span></a></header>
-<section class="intro-story love-story" id="story"><div class="section-wrap"><div class="section-head reveal"><p class="eyebrow">You are warmly invited</p><h2>We are getting married.<br><em>Celebrate with us.</em></h2><div class="divider"></div><p>With grateful hearts and together with our families, we invite you to witness and celebrate the marriage of Godwin and Queeneth.</p></div>
-<div class="story-chapter chapter-first reveal"><div class="chapter-image portrait-frame"><picture><source srcset="assets/gq-couple-elegant.webp" type="image/webp"><img src="assets/gq-couple-elegant.jpg" alt="Godwin and Queeneth together in their elegant wedding portrait" loading="lazy" decoding="async"></picture><span class="image-caption">Our wedding</span></div><div class="chapter-copy"><span class="chapter-number">01</span><p class="eyebrow">A look that says everything</p><h3>In your eyes,<br>I found home.</h3><p>Some stories are told in grand gestures. Others live in the quiet certainty of choosing one another, again and again. In this portrait, the world falls away and what remains is the promise of two hearts walking into tomorrow together.</p></div></div>
-<div class="story-interlude reveal"><span>“</span><p>Love is not only the moment we find each other — it is the life we choose to build, side by side.</p><i>Godwin &amp; Queeneth</i></div>
-<div class="story-chapter chapter-reverse reveal"><div class="chapter-image portrait-frame"><picture><source srcset="assets/gq-couple-romantic.webp" type="image/webp"><img src="assets/gq-couple-romantic.jpg" alt="A tender moment between Godwin and Queeneth in their wedding attire" loading="lazy" decoding="async"></picture><span class="image-caption">Chapter II · The tenderness</span></div><div class="chapter-copy"><span class="chapter-number">02</span><p class="eyebrow">The little moments</p><h3>Close enough<br>to hear forever.</h3><p>There is a special kind of peace in being loved gently. A hand held a little longer, a smile shared without words, and the comfort of knowing that the person beside you is also the person you want beside you for all the days to come.</p></div></div>
-<div class="story-chapter chapter-trad reveal"><div class="chapter-image portrait-frame"><picture><source srcset="assets/gq-couple-traditional-close.webp" type="image/webp"><img src="assets/gq-couple-traditional-close.jpg" alt="Godwin and Queeneth sharing an intimate moment in traditional Nigerian wedding attire" loading="lazy" decoding="async"></picture><span class="image-caption">Chapter III · Our roots, our joy</span></div><div class="chapter-copy"><span class="chapter-number">03</span><p class="eyebrow">A love that honours where we come from</p><h3>Rooted in love.<br>Wrapped in heritage.</h3><p>Our story carries more than two names. It carries family, culture, memory, and the people whose love helped shape us. In our traditional attire, we celebrate the roots that ground us as we step into a future of our own.</p></div></div>
-<div class="story-ending reveal"><div class="ending-image"><picture><source srcset="assets/gq-couple-traditional.webp" type="image/webp"><img src="assets/gq-couple-traditional.jpg" alt="Godwin and Queeneth celebrating together in traditional Nigerian wedding attire" loading="lazy" decoding="async"></picture></div><div class="ending-copy"><p class="eyebrow">The next chapter</p><h3>And so,<br>our forever begins.</h3><p>On Sunday, 15 November 2026, we will make our promises before the people who matter most. We invite you to be part of this day — to witness the beginning, share in the joy, and help us turn this beautiful chapter into a lifelong story.</p><a class="btn gold" href="#details">Celebrate with us</a></div></div>
+
+<div class="ornament" style="margin: 40px auto 30px;"><span>✦</span></div>
+
+<!-- Chapter Visual Feature Cards -->
+<div class="story-chapter reveal"><div class="chapter-image"><picture><source srcset="assets/gq-couple-elegant.webp" type="image/webp"><img src="assets/gq-couple-elegant.jpg" alt="Godwin and Queeneth in elegant attire" loading="lazy" decoding="async"></picture><span class="image-caption">Chapter I · In your eyes, I found home</span></div><div class="chapter-copy"><span class="eyebrow">A look that says everything</span><h3>The Promise</h3><p>Some stories are told in grand gestures. Ours lives in the quiet certainty of choosing one another, again and again, walking into tomorrow side by side.</p></div></div>
+
+<div class="story-chapter reveal"><div class="chapter-image"><picture><source srcset="assets/gq-couple-traditional.webp" type="image/webp"><img src="assets/gq-couple-traditional.jpg" alt="Godwin and Queeneth celebrating in traditional attire" loading="lazy" decoding="async"></picture><span class="image-caption">Chapter II · Wrapped in heritage, rooted in love</span></div><div class="chapter-copy"><span class="eyebrow">Our roots, our joy</span><h3>Our Forever Begins</h3><p>Our story carries family, culture, and love. On Sunday, 15 November 2026, we make our vows before the people who matter most.</p><a class="btn gold" href="#details" style="margin-top:12px;">Celebrate with Us</a></div></div>
 </div></section>
-<section class="countdown-section"><div class="section-wrap"><div class="section-head reveal"><p class="eyebrow">The day is approaching</p><h2>Counting down to our wedding</h2><p>Sunday, 15 November 2026 · 10:00 AM · West Africa Time</p></div><div class="countdown reveal" id="countdown" aria-live="polite"><div class="time-box"><strong id="days">--</strong><span>Days</span></div><div class="time-box"><strong id="hours">--</strong><span>Hours</span></div><div class="time-box"><strong id="minutes">--</strong><span>Minutes</span></div><div class="time-box"><strong id="seconds">--</strong><span>Seconds</span></div></div><p class="countdown-message" id="countdownMessage"></p></div></section>
-<section class="events" id="details"><div class="section-wrap"><div class="section-head reveal"><p class="eyebrow">Save the date</p><h2>Join us for our union</h2><p>We look forward to sharing this milestone with you.</p></div><div class="event-grid"><article class="event-card reveal"><div class="event-icon" aria-hidden="true">♡</div><p class="eyebrow">The ceremony</p><h3>Wedding Ceremony</h3><p class="event-time">Sunday, 15 November 2026 · 10:00 AM</p><p>16 Community Road,<br>opposite First Bank,<br>Satellite Town.</p><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=16%20Community%20Road%2C%20opposite%20First%20Bank%2C%20Satellite%20Town">Get directions ↗</a></article><article class="event-card pending reveal"><div class="event-icon" aria-hidden="true">✧</div><p class="eyebrow">Celebration to follow</p><h3>Reception</h3><p class="event-time">Details coming soon</p><p>The reception venue and additional details will be communicated once confirmed.</p><span class="btn">Venue to be announced</span></article></div></div></section>
-<section class="palette"><div class="section-wrap"><div class="section-head reveal"><p class="eyebrow">A note for our guests</p><h2>Wedding colours</h2><p>Our invitation artwork features these beautiful tones. The official dress code will be shared once confirmed.</p></div><div class="swatches reveal"><div class="swatch"><i class="swatch-dot purple"></i><span>Purple</span></div><div class="swatch"><i class="swatch-dot green"></i><span>Green</span></div><div class="swatch"><i class="swatch-dot peach"></i><span>Peach</span></div></div></div></section>
-<section class="gallery-section" id="gallery"><div class="section-wrap"><div class="section-head reveal"><p class="eyebrow">A portrait of us</p><h2>A glimpse of the couple</h2><p>From timeless elegance to the richness of our heritage — a few frames from our journey into forever.</p></div><div class="gallery-grid portrait-gallery reveal"><button class="gallery-tile gallery-main" data-image="assets/gq-couple-elegant.jpg" aria-label="View elegant wedding portrait"><picture><source srcset="assets/gq-couple-elegant.webp" type="image/webp"><img src="assets/gq-couple-elegant.jpg" alt="Elegant studio portrait of Godwin and Queeneth" loading="lazy" decoding="async"></picture><span>01 · The promise</span></button><button class="gallery-tile" data-image="assets/gq-couple-romantic.jpg" aria-label="View romantic wedding portrait"><picture><source srcset="assets/gq-couple-romantic.webp" type="image/webp"><img src="assets/gq-couple-romantic.jpg" alt="Romantic studio portrait of the couple" loading="lazy" decoding="async"></picture><span>02 · The tenderness</span></button><button class="gallery-tile" data-image="assets/gq-couple-traditional-close.jpg" aria-label="View intimate traditional portrait"><picture><source srcset="assets/gq-couple-traditional-close.webp" type="image/webp"><img src="assets/gq-couple-traditional-close.jpg" alt="Intimate traditional wedding portrait" loading="lazy" decoding="async"></picture><span>03 · Our heritage</span></button><button class="gallery-tile" data-image="assets/gq-couple-traditional.jpg" aria-label="View full traditional wedding portrait"><picture><source srcset="assets/gq-couple-traditional.webp" type="image/webp"><img src="assets/gq-couple-traditional.jpg" alt="Full-length traditional Nigerian wedding portrait" loading="lazy" decoding="async"></picture><span>04 · Our forever</span></button></div><p class="gallery-footnote">Tap any portrait to view it in full.</p></div></section>
-<section class="gift-section" id="gifts"><div class="section-wrap"><div class="section-head reveal"><p class="eyebrow">A little note of gratitude</p><h2>Your presence is our present.</h2><p>Your presence, prayers and kind wishes are the greatest gifts. For guests who would also like to give a wedding gift, please contact us or a family member for guidance.</p></div><div class="gift-card reveal"><div class="gift-emblem" aria-hidden="true">♡</div><p class="gift-script">If you wish to bless our new beginning…</p><p>For friends and family who have asked about wedding gifts, please contact us or a member of our family directly for guidance. We have intentionally left out payment details from this invitation until they are confirmed.</p><a class="btn gold" href="#rsvp">Send us your wishes</a><p class="gift-small">Thank you for celebrating this special day with us.</p></div></div></section>
-<section class="rsvp-section" id="rsvp"><div class="section-wrap"><div class="section-head reveal"><p class="eyebrow">Kindly respond</p><h2>Will you celebrate with us?</h2><p>Please use the form below to prepare an RSVP message. It will open WhatsApp for you to review and send; this prototype does not store responses in a database.</p></div><div class="rsvp-card reveal"><form class="rsvp-form" id="rsvpForm"><div class="field full"><label for="guestName">Your full name</label><input id="guestName" name="guestName" autocomplete="name" required placeholder="Enter your name"></div><div class="field"><label for="attendance">Will you attend?</label><select id="attendance" name="attendance" required><option value="">Select response</option><option value="will attend">Joyfully, I will attend</option><option value="cannot attend">I am unable to attend</option></select></div><div class="field"><label for="partySize">Number attending (including you)</label><select id="partySize" name="partySize"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div><div class="field full"><label for="guestMessage">A message for the couple (optional)</label><textarea id="guestMessage" name="guestMessage" placeholder="Share your wishes..."></textarea></div><button class="btn" type="submit">Prepare RSVP in WhatsApp ↗</button></form><p class="form-note">Your WhatsApp app will open with a prepared message. You must send it for the couple to receive your response. Guest count options are provisional and should be confirmed by the couple.</p></div></div></section>
-<section class="faq"><div class="section-wrap"><div class="section-head reveal"><p class="eyebrow">A few helpful details</p><h2>Good to know</h2></div><div class="faq-list reveal"><div class="faq-item"><button class="faq-question" aria-expanded="false">When is the wedding ceremony? <span class="plus">+</span></button><div class="faq-answer">Sunday, 15 November 2026, at 10:00 AM.</div></div><div class="faq-item"><button class="faq-question" aria-expanded="false">Where will the ceremony take place? <span class="plus">+</span></button><div class="faq-answer">16 Community Road, opposite First Bank, Satellite Town. Use the Get Directions button in the wedding details section to open Google Maps.</div></div><div class="faq-item"><button class="faq-question" aria-expanded="false">Where is the reception? <span class="plus">+</span></button><div class="faq-answer">The reception venue will be communicated once confirmed.</div></div><div class="faq-item"><button class="faq-question" aria-expanded="false">Can I give a wedding gift? <span class="plus">+</span></button><div class="faq-answer">Your presence and prayers are already a gift. If you would like to bless the couple, please contact them or a family representative directly for confirmed details.</div></div><div class="faq-item"><button class="faq-question" aria-expanded="false">How do I RSVP? <span class="plus">+</span></button><div class="faq-answer">Complete the RSVP form on this website. It will prepare a message in WhatsApp for you to review and send.</div></div><div class="faq-item"><button class="faq-question" aria-expanded="false">What is the dress code? <span class="plus">+</span></button><div class="faq-answer">The official dress code has not yet been confirmed. Please check back for updates.</div></div></div></div></section>
-</main><footer><p class="eyebrow" style="color:var(--peach)">With love and gratitude</p><p class="footer-names">Godwin &amp; Queeneth</p><p class="footer-tag">#TheGQaffair</p><a href="#home" class="btn outline">Back to the beginning ↑</a><p class="footer-small">Made with love for our special day · 15 November 2026</p></footer>
-<button class="share-fab" id="shareButton">Share invitation ↗</button><div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer"><button id="closeLightbox">Close ✕</button><img id="lightboxImage" alt="Expanded wedding image"></div><div class="toast" id="toast" role="status"></div>
+
+<!-- ── Countdown Section ── -->
+<section class="countdown-section"><div class="section-wrap"><div class="section-head reveal"><span class="eyebrow">The Day is Approaching</span><h2>Counting Down to <em>Forever</em></h2><div class="ornament"><span>✦</span></div><p>Sunday, 15 November 2026 · 10:00 AM · West Africa Time</p></div><div class="countdown reveal" id="countdown" aria-live="polite"><div class="time-box"><strong id="days">--</strong><span>Days</span></div><div class="time-box"><strong id="hours">--</strong><span>Hours</span></div><div class="time-box"><strong id="minutes">--</strong><span>Minutes</span></div><div class="time-box"><strong id="seconds">--</strong><span>Seconds</span></div></div><p class="countdown-message" id="countdownMessage"></p></div></section>
+
+<!-- ── Events: The Celebration (Church & Reception) ── -->
+<section class="events" id="details"><div class="section-wrap"><div class="section-head reveal"><span class="eyebrow">Save the Date</span><h2>The <em>Celebration</em></h2><div class="ornament"><span>❦</span></div><p>We look forward to sharing this sacred union with you.</p></div><div class="event-grid"><article class="event-card reveal"><div class="event-icon" aria-hidden="true">⛪</div><span class="eyebrow">Sacred Vows</span><h3>Church Joining</h3><p class="event-time">Sunday, 15 November 2026 · 10:00 AM</p><p>16 Community Road,<br>opposite First Bank,<br>Satellite Town.</p><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=16%20Community%20Road%2C%20opposite%20First%20Bank%2C%20Satellite%20Town">Directions / Map ↗</a></article><article class="event-card pending reveal"><div class="event-icon" aria-hidden="true">🥂</div><span class="eyebrow">After the Service</span><h3>Reception</h3><p class="event-time">Details Coming Soon</p><p>The reception venue and dinner program will be communicated once confirmed.</p><span class="btn">Venue to be Announced</span></article></div></div></section>
+
+<!-- ── Wedding Colours ── -->
+<section class="palette"><div class="section-wrap"><div class="section-head reveal"><span class="eyebrow">A Note for Our Guests</span><h2>Wedding <em>Colours</em></h2><div class="ornament"><span>✦</span></div><p>Our celebration palette features these tones. Official dress code notes will follow.</p></div><div class="swatches reveal"><div class="swatch"><i class="swatch-dot purple"></i><span>Royal Purple</span></div><div class="swatch"><i class="swatch-dot green"></i><span>Sage Green</span></div><div class="swatch"><i class="swatch-dot peach"></i><span>Blush Peach</span></div></div></div></section>
+
+<!-- ── Moments (Gallery) ── -->
+<section class="gallery-section" id="gallery"><div class="section-wrap"><div class="section-head reveal"><span class="eyebrow">Gallery</span><h2>Special <em>Moments</em></h2><div class="ornament"><span>❦</span></div><p>A few moments before the big day. Tap any photo to view it in full.</p></div><div class="gallery-grid reveal"><div class="gallery-tile" data-image="assets/gq-couple-elegant.jpg"><picture><source srcset="assets/gq-couple-elegant.webp" type="image/webp"><img src="assets/gq-couple-elegant.jpg" alt="Godwin and Queeneth studio portrait" loading="lazy" decoding="async"></picture><span>01 · The Promise</span></div><div class="gallery-tile" data-image="assets/gq-couple-romantic.jpg"><picture><source srcset="assets/gq-couple-romantic.webp" type="image/webp"><img src="assets/gq-couple-romantic.jpg" alt="Romantic couple portrait" loading="lazy" decoding="async"></picture><span>02 · Tenderness</span></div><div class="gallery-tile" data-image="assets/gq-couple-traditional-close.jpg"><picture><source srcset="assets/gq-couple-traditional-close.webp" type="image/webp"><img src="assets/gq-couple-traditional-close.jpg" alt="Traditional couple close portrait" loading="lazy" decoding="async"></picture><span>03 · Heritage</span></div><div class="gallery-tile" data-image="assets/gq-couple-traditional.jpg"><picture><source srcset="assets/gq-couple-traditional.webp" type="image/webp"><img src="assets/gq-couple-traditional.jpg" alt="Full traditional portrait" loading="lazy" decoding="async"></picture><span>04 · Forever</span></div></div><p class="gallery-footnote">Tap any portrait to enlarge</p></div></section>
+
+<!-- ── Gifts Section (Stationery Note) ── -->
+<section class="gift-section" id="gifts"><div class="section-wrap"><div class="section-head reveal"><span class="eyebrow">Gifts &amp; Gratitude</span><h2>Your Presence is our <em>Present</em></h2><div class="ornament"><span>✦</span></div><p>Your prayers, love, and presence mean more than words can say.</p></div><div class="gift-card reveal"><div class="gift-emblem" aria-hidden="true">🎁</div><h3 class="gift-script">Blessing our new beginning…</h3><p>For friends and family who have kindly inquired about wedding gifts or tokens of blessing, please message the couple or family directly on WhatsApp for guidance.</p><a class="btn gold" href="#rsvp">Send Wishes / Inquire</a><p class="gift-small">Thank you for being part of our story</p></div></div></section>
+
+<!-- ── RSVP Section ── -->
+<section class="rsvp-section" id="rsvp"><div class="section-wrap"><div class="section-head reveal"><span class="eyebrow">Kindly Respond</span><h2>Will You <em>Celebrate With Us?</em></h2><div class="ornament"><span>❦</span></div><p>Please let us know if you will be attending our wedding on Sunday, 15 November 2026.</p></div><div class="rsvp-card reveal"><form class="rsvp-form" id="rsvpForm"><div class="field full"><label for="guestName">Your Full Name</label><input id="guestName" name="guestName" autocomplete="name" required placeholder="e.g. Damola &amp; Guest"></div><div class="field"><label for="attendance">Will You Attend?</label><select id="attendance" name="attendance" required><option value="">Select your response</option><option value="will attend">Joyfully, I will attend</option><option value="cannot attend">Regretfully, I cannot attend</option></select></div><div class="field"><label for="partySize">Number Attending</label><select id="partySize" name="partySize"><option value="1">1 Person</option><option value="2">2 Persons</option><option value="3">3 Persons</option><option value="4">4 Persons</option></select></div><div class="field full"><label for="guestMessage">Wishes for the Couple (Optional)</label><textarea id="guestMessage" name="guestMessage" placeholder="Leave your prayers and kind words..."></textarea></div><button class="btn" type="submit">Submit RSVP on WhatsApp ↗</button></form><p class="form-note">This will open WhatsApp with your response pre-filled to confirm with the couple.</p></div></div></section>
+
+<!-- ── Good to Know / FAQ ── -->
+<section class="faq"><div class="section-wrap"><div class="section-head reveal"><span class="eyebrow">Before You Come</span><h2>Good to <em>Know</em></h2><div class="ornament"><span>✦</span></div></div><div class="faq-list reveal"><div class="faq-item"><button class="faq-question" aria-expanded="false">When is the wedding ceremony? <span class="plus">+</span></button><div class="faq-answer">Sunday, 15 November 2026, at 10:00 AM promptly.</div></div><div class="faq-item"><button class="faq-question" aria-expanded="false">Where is the ceremony venue? <span class="plus">+</span></button><div class="faq-answer">16 Community Road, opposite First Bank, Satellite Town. Use the Directions link above to navigate with Google Maps.</div></div><div class="faq-item"><button class="faq-question" aria-expanded="false">Where is the reception? <span class="plus">+</span></button><div class="faq-answer">The reception venue details will be communicated once confirmed.</div></div><div class="faq-item"><button class="faq-question" aria-expanded="false">Can I present a wedding gift? <span class="plus">+</span></button><div class="faq-answer">Your presence and prayers are our greatest gift. For inquiries on presents or contributions, please contact the couple directly.</div></div></div></div></section>
+</main>
+
+<footer><span class="eyebrow" style="color:var(--gold-light)">With Love and Gratitude</span><p class="footer-names">Godwin &amp; Queeneth</p><p class="footer-tag">#TheGQaffair</p><a href="#home" class="btn outline">Back to Top ↑</a><p class="footer-small">Sunday, 15 November 2026 · Satellite Town, Lagos</p></footer>
+
+<!-- Floating RSVP Button for Mobile -->
+<a href="#rsvp" class="floating-rsvp" id="floatingRsvp">RSVP ✦</a>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer"><button id="closeLightbox">Close ✕</button><img id="lightboxImage" alt="Expanded wedding image"></div><div class="toast" id="toast" role="status"></div>
 <script>
 const $=s=>document.querySelector(s);const intro=$('#intro');
 // Never let a script error leave the story images hidden.
@@ -186,25 +1410,57 @@ window.addEventListener('error',()=>document.querySelectorAll('.reveal').forEach
 // Lightweight floating petals add atmosphere without blocking interactions.
 try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){const field=$('#petalField');for(let i=0;i<18;i++){const p=document.createElement('span');p.className='petal';p.style.left=(Math.random()*100)+'%';p.style.setProperty('--dur',(13+Math.random()*14)+'s');p.style.setProperty('--delay',(-Math.random()*24)+'s');p.style.setProperty('--sway',(-65+Math.random()*130)+'px');p.style.transform='scale('+(0.55+Math.random()*.8)+')';field.appendChild(p)}}}catch(e){}
 
-// Envelope open sequence
-$('#openInvitation').addEventListener('click',()=>{
-  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const env=$('#envelope');
-  const intro=$('#intro');
-  if(reduced){intro.classList.add('opened');document.body.classList.remove('locked');return;}
-  // 1. crack the seal & lift flap
+// Realistic Envelope Open Sequence
+let isOpening = false;
+function openEnvelope(e){
+  if(e) e.stopPropagation();
+  if(isOpening) return;
+  isOpening = true;
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const env = $('#envelope');
+  const intro = $('#intro');
+
+  if(reduced){
+    intro.classList.add('opened');
+    document.body.classList.remove('locked');
+    return;
+  }
+
+  // Stage 1: Break seal & flip triangular flap open (3D fold)
   env.classList.add('opening');
-  $('#envSeal').classList.add('broken');
-  // 2. after flap lifts, fade whole overlay out
+
+  // Stage 2: After flap opens (900ms) and card slides up, fade out intro smoothly
   setTimeout(()=>{
     env.classList.add('vanish');
-    setTimeout(()=>{intro.classList.add('opened');document.body.classList.remove('locked');},700);
-  },900);
+    setTimeout(()=>{
+      intro.classList.add('opened');
+      document.body.classList.remove('locked');
+    }, 850);
+  }, 1600);
+}
+
+$('#envSeal').addEventListener('click', openEnvelope);
+$('#openInvitation').addEventListener('click', openEnvelope);
+$('#envelope').addEventListener('click', (e)=>{
+  // Also allow tapping anywhere on the envelope to open
+  if(!isOpening) openEnvelope(e);
 });
 $('#menuToggle').addEventListener('click',()=>$('#navLinks').classList.toggle('show'));document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>$('#navLinks').classList.remove('show')));
 // 10:00 AM in Africa/Lagos (UTC+1 on the wedding date).
 const target=new Date('2026-11-15T10:00:00+01:00').getTime();function tick(){let d=target-Date.now();if(d<=0){['days','hours','minutes','seconds'].forEach(id=>$('#'+id).textContent='0');$('#countdownMessage').textContent=d> -86400000?'Today is the day. We cannot wait to celebrate with you.':'Thank you for celebrating #TheGQaffair.';return}const vals={days:Math.floor(d/86400000),hours:Math.floor(d%86400000/3600000),minutes:Math.floor(d%3600000/60000),seconds:Math.floor(d%60000/1000)};Object.entries(vals).forEach(([id,v])=>$('#'+id).textContent=String(v).padStart(2,'0'));$('#countdownMessage').textContent='Every moment brings us closer to forever.'}tick();setInterval(tick,1000);
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+// Two-way Scroll Reveal: Elements cleanly fade & slide in when on screen, and fade out when scrolled away
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    } else {
+      // Cleanly fade out when out of view
+      e.target.classList.remove('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 document.querySelectorAll('.faq-question').forEach(btn=>btn.addEventListener('click',()=>{const item=btn.closest('.faq-item');const active=item.classList.toggle('active');btn.setAttribute('aria-expanded',String(active))}));
 const lightbox=$('#lightbox');document.querySelectorAll('.gallery-tile[data-image]').forEach(tile=>tile.addEventListener('click',()=>{ $('#lightboxImage').src=tile.dataset.image;lightbox.classList.add('open');$('#closeLightbox').focus()}));function closeLightbox(){lightbox.classList.remove('open')}$('#closeLightbox').addEventListener('click',closeLightbox);lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
 function toast(message){const t=$('#toast');t.textContent=message;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
