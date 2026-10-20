@@ -974,6 +974,141 @@ section {
   margin: 18px 0 0;
 }
 
+/* ── Add to Calendar & Reminders Widget ── */
+.cal-widget {
+  margin: 22px auto 6px;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+.cal-btn {
+  background: var(--plum);
+  color: #fffdf9;
+  border: 1px solid var(--gold-primary);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 11px 22px;
+  border-radius: 24px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 16px rgba(61, 0, 92, 0.22);
+  transition: all 0.25s ease;
+}
+.cal-btn:hover {
+  background: var(--plum2);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(61, 0, 92, 0.35);
+}
+.cal-btn svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+.cal-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fffdf9;
+  border: 1px solid #dcc8a4;
+  border-radius: 6px;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.18);
+  width: min(320px, 92vw);
+  padding: 16px;
+  z-index: 25;
+  text-align: left;
+}
+.cal-menu.show {
+  display: block;
+  animation: calPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes calPop {
+  from { opacity: 0; transform: translate(-50%, -8px) scale(0.96); }
+  to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+.cal-menu-title {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #796c7b;
+  margin: 0 0 10px;
+  display: block;
+  font-weight: 600;
+}
+.cal-reminder-pills {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.cal-pill {
+  flex: 1;
+  background: #f7efe4;
+  border: 1px solid #dcc8a4;
+  padding: 7px 4px;
+  border-radius: 16px;
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  letter-spacing: 0.05em;
+  color: var(--ink-deep);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+.cal-pill:hover, .cal-pill.active {
+  background: var(--plum);
+  color: #fffaf0;
+  border-color: var(--plum);
+}
+.cal-targets {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(184, 145, 80, 0.3);
+}
+.cal-target-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #fdfaf6;
+  border: 1px solid #e5d5ba;
+  border-radius: 4px;
+  color: var(--ink-deep);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.cal-target-btn:hover {
+  background: #f5ecd8;
+  border-color: var(--gold-primary);
+  color: var(--plum);
+  transform: translateX(2px);
+}
+.cal-target-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.cal-note {
+  font-size: 0.62rem;
+  color: #796c7b;
+  margin: 8px 0 0;
+  line-height: 1.35;
+  text-align: center;
+}
+
 /* ── Events Section (Ceremony & Reception Cards) ── */
 .event-grid {
   display: grid;
@@ -1652,6 +1787,39 @@ footer {
       <div class="time-box"><strong id="seconds">--</strong><span data-i18n="countdown.seconds">Seconds</span></div>
     </div>
     <p class="countdown-message" id="countdownMessage"></p>
+
+    <!-- Add to Calendar & Reminders Button -->
+    <div class="cal-widget reveal">
+      <button type="button" class="cal-btn" id="calToggleBtn" aria-expanded="false" aria-haspopup="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 16H5V10h14zm0-12H5V6h14m-7 5h5v5h-5z"/></svg>
+        <span>Add to Calendar &amp; Remind Me</span>
+      </button>
+
+      <div class="cal-menu" id="calMenu" role="region" aria-label="Calendar options">
+        <span class="cal-menu-title">Select Reminder Notification</span>
+        <div class="cal-reminder-pills" id="calReminderPills">
+          <button type="button" class="cal-pill active" data-days="2">2 Days Prior</button>
+          <button type="button" class="cal-pill" data-days="5">5 Days Prior</button>
+          <button type="button" class="cal-pill" data-days="7">7 Days Prior</button>
+        </div>
+
+        <div class="cal-targets">
+          <a href="#" class="cal-target-btn" id="googleCalBtn" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="#4285F4"><path d="M19.5 4H18V2.5a1 1 0 0 0-2 0V4H8V2.5a1 1 0 0 0-2 0V4H4.5A2.5 2.5 0 0 0 2 6.5v13A2.5 2.5 0 0 0 4.5 22h15a2.5 2.5 0 0 0 2.5-2.5v-13A2.5 2.5 0 0 0 19.5 4zm.5 15.5a.5.5 0 0 1-.5.5h-15a.5.5 0 0 1-.5-.5V10h16v9.5zm0-11.5H4V6.5a.5.5 0 0 1 .5-.5H6v1a1 1 0 0 0 2 0V6h8v1a1 1 0 0 0 2 0V6h1.5a.5.5 0 0 1 .5.5V8z"/></svg>
+            <span>Google Calendar</span>
+          </a>
+          <button type="button" class="cal-target-btn" id="appleCalBtn">
+            <svg viewBox="0 0 24 24" fill="#333"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.67-.82 1.13-1.96 1-3.1-.97.04-2.15.65-2.85 1.47-.61.71-1.15 1.87-1.01 2.98 1.09.08 2.19-.53 2.86-1.35z"/></svg>
+            <span>Apple / iPhone Calendar (.ics)</span>
+          </button>
+          <button type="button" class="cal-target-btn" id="outlookCalBtn">
+            <svg viewBox="0 0 24 24" fill="#0078D4"><path d="M21.5 4h-19A2.5 2.5 0 0 0 0 6.5v11A2.5 2.5 0 0 0 2.5 20h19a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 21.5 4zm-1.1 2-7.9 5.27L4.6 6h15.8zm1.6 11.5a.5.5 0 0 1-.5.5h-19a.5.5 0 0 1-.5-.5V8.13l8.69 5.8a1.5 1.5 0 0 0 1.62 0L22 8.13v9.37z"/></svg>
+            <span>Outlook / Other Calendars (.ics)</span>
+          </button>
+        </div>
+        <p class="cal-note" id="calActiveNotice">Reminder set for 2 days prior to the wedding.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1846,16 +2014,16 @@ footer {
       <div class="bank-details-box">
         <div class="bank-row">
           <span class="bank-label" data-i18n="gifts.bankName">Bank Name</span>
-          <span class="bank-val" id="bankNameVal">PROVIDE BANK NAME</span>
+          <span class="bank-val" id="bankNameVal">FCMB</span>
         </div>
         <div class="bank-row">
           <span class="bank-label" data-i18n="gifts.accountName">Account Name</span>
-          <span class="bank-val" id="accountNameVal">Godwin &amp; Queeneth</span>
+          <span class="bank-val" id="accountNameVal">Madubuko Sopuruchi Queeneth</span>
         </div>
         <div class="bank-row">
           <span class="bank-label" data-i18n="gifts.accountNumber">Account Number</span>
           <div style="display:flex;align-items:center;gap:10px;">
-            <span class="bank-account-num" id="accountNumberVal">0000000000</span>
+            <span class="bank-account-num" id="accountNumberVal">3859490010</span>
             <button type="button" class="bank-copy-btn" id="copyAccountBtn" title="Copy Account Number" data-i18n-title="gifts.copyTitle">
               <span data-i18n="gifts.copy">Copy</span>
             </button>
@@ -1884,6 +2052,10 @@ footer {
         <div class="field full">
           <label for="guestName" data-i18n="rsvp.nameLabel">Your Full Name</label>
           <input id="guestName" name="guestName" autocomplete="name" required placeholder="e.g. Damola &amp; Guest" data-i18n-placeholder="rsvp.namePlaceholder">
+        </div>
+        <div class="field full">
+          <label for="guestPhone" data-i18n="rsvp.phoneLabel">WhatsApp Phone Number</label>
+          <input id="guestPhone" name="guestPhone" type="tel" autocomplete="tel" required placeholder="e.g. 08012345678 or +234..." data-i18n-placeholder="rsvp.phonePlaceholder">
         </div>
         <div class="field">
           <label for="attendance" data-i18n="rsvp.attendanceLabel">Will You Attend?</label>
@@ -1958,8 +2130,8 @@ footer {
 
   <!-- Designer Publication & WhatsApp Contact Badge -->
   <div class="designer-credit">
-    <p>Need an elegant digital wedding invitation like this?</p>
-    <a href="https://wa.me/2349069183037?text=Hello%20Godwin%2C%20I%20saw%20your%20wedding%20invitation%20website%20and%20I%20love%20the%20design.%20I%20would%20like%20to%20request%20a%20beautiful%20invitation%20website%20like%20this%20for%20my%20event." class="designer-link" target="_blank" rel="noopener noreferrer" id="designerContactLink" title="Chat with Godwin on WhatsApp">
+    <p>Need an elegant digital invite like this?</p>
+    <a href="https://wa.me/2349069183037?text=Hello%20Godwin%2C%20I%20saw%20your%20digital%20invite%20and%20I%20love%20the%20design.%20I%20would%20like%20to%20request%20a%20beautiful%20digital%20invite%20like%20this%20for%20my%20event." class="designer-link" target="_blank" rel="noopener noreferrer" id="designerContactLink" title="Chat with Godwin on WhatsApp">
       <svg class="designer-wa-icon" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.01-1.24-.74-.66-1.25-1.48-1.39-1.73-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.45s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28z"/>
       </svg>
@@ -2031,6 +2203,99 @@ document.addEventListener('click', (e) => {
 // 10:00 AM in Africa/Lagos (UTC+1 on the wedding date).
 const target=new Date('2026-11-15T10:00:00+01:00').getTime();function tick(){let d=target-Date.now();if(d<=0){['days','hours','minutes','seconds'].forEach(id=>$('#'+id).textContent='0');$('#countdownMessage').textContent=d> -86400000?t('countdown.today'):t('countdown.done');return}const vals={days:Math.floor(d/86400000),hours:Math.floor(d%86400000/3600000),minutes:Math.floor(d%3600000/60000),seconds:Math.floor(d%60000/1000)};Object.entries(vals).forEach(([id,v])=>$('#'+id).textContent=String(v).padStart(2,'0'));$('#countdownMessage').textContent=t('countdown.msg')}tick();setInterval(tick,1000);
 document.addEventListener('gq:langchange',tick);
+
+// ── Calendar & Multi-day Reminders (2, 5, 7 Days Prior) ──
+let selectedReminderDays = 2;
+const calToggleBtn = $('#calToggleBtn');
+const calMenu = $('#calMenu');
+const calNotice = $('#calActiveNotice');
+
+if (calToggleBtn && calMenu) {
+  calToggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = calMenu.classList.toggle('show');
+    calToggleBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (calMenu.classList.contains('show') && !calMenu.contains(e.target) && e.target !== calToggleBtn) {
+      calMenu.classList.remove('show');
+      calToggleBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Reminder Pill Selection
+  document.querySelectorAll('#calReminderPills .cal-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('#calReminderPills .cal-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      selectedReminderDays = parseInt(pill.dataset.days, 10) || 2;
+      calNotice.textContent = `Reminder set for ${selectedReminderDays} days prior to the wedding.`;
+      updateCalendarLinks();
+    });
+  });
+
+  function updateCalendarLinks() {
+    // Wedding Date: Nov 15, 2026, 10:00 - 15:00 WAT (09:00 - 14:00 UTC)
+    const title = 'Godwin & Queeneth Wedding Ceremony (#TheGQaffair)';
+    const details = `With grateful hearts, Godwin & Queeneth invite you to celebrate their sacred wedding ceremony.\n\nDate: Sunday, 15 November 2026 at 10:00 AM WAT\nLocation: 16 Community Road, opposite First Bank, Satellite Town, Lagos.\nHashtag: #TheGQaffair\nWebsite: https://godwin-and-queeneth-wedding.vercel.app/`;
+    const location = '16 Community Road, opposite First Bank, Satellite Town, Lagos, Nigeria';
+    
+    // Google Calendar URL (Dates in UTC: 20261115T090000Z / 20261115T140000Z)
+    const googleUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+      '&text=' + encodeURIComponent(title) +
+      '&dates=20261115T090000Z/20261115T140000Z' +
+      '&details=' + encodeURIComponent(details) +
+      '&location=' + encodeURIComponent(location);
+    
+    const googleBtn = $('#googleCalBtn');
+    if (googleBtn) googleBtn.href = googleUrl;
+  }
+
+  function downloadIcsFile() {
+    const reminderMinutes = selectedReminderDays * 24 * 60; // 2 days = 2880 mins, 5 days = 7200 mins, 7 days = 10080 mins
+    const icsContent = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//The GQ Affair//Godwin & Queeneth Wedding//EN',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      'UID:gq-wedding-20261115@thegqaffair.com',
+      'DTSTAMP:20261020T000000Z',
+      'DTSTART:20261115T090000Z',
+      'DTEND:20261115T140000Z',
+      'SUMMARY:Godwin & Queeneth Wedding Ceremony (#TheGQaffair)',
+      'DESCRIPTION:With grateful hearts\\, Godwin & Queeneth invite you to celebrate their sacred wedding ceremony.\\n\\nDate: Sunday\\, 15 November 2026 at 10:00 AM WAT\\nVenue: 16 Community Road\\, opposite First Bank\\, Satellite Town\\, Lagos.\\nHashtag: #TheGQaffair',
+      'LOCATION:16 Community Road\\, opposite First Bank\\, Satellite Town\\, Lagos\\, Nigeria',
+      'STATUS:CONFIRMED',
+      'BEGIN:VALARM',
+      `TRIGGER:-PT${reminderMinutes}M`,
+      'ACTION:DISPLAY',
+      `DESCRIPTION:Reminder: Godwin & Queeneth Wedding (#TheGQaffair) is in ${selectedReminderDays} days!`,
+      'END:VALARM',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `Godwin-Queeneth-Wedding-${selectedReminderDays}days-reminder.ics`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    toast(`Wedding added with a ${selectedReminderDays}-day reminder!`);
+  }
+
+  const appleBtn = $('#appleCalBtn');
+  if (appleBtn) appleBtn.addEventListener('click', downloadIcsFile);
+
+  const outlookBtn = $('#outlookCalBtn');
+  if (outlookBtn) outlookBtn.addEventListener('click', downloadIcsFile);
+
+  updateCalendarLinks();
+}
 // Two-way Scroll Reveal: Elements cleanly fade & slide in when on screen, and fade out when scrolled away
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -2082,6 +2347,7 @@ function saveRsvpLocalBackup(record){
 $('#rsvpForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const name = $('#guestName').value.trim();
+  const phone = $('#guestPhone').value.trim();
   const attendance = $('#attendance').value;
   const party = $('#partySize').value;
   const message = $('#guestMessage').value.trim();
@@ -2094,6 +2360,7 @@ $('#rsvpForm').addEventListener('submit', async (e) => {
   const record = {
     timestamp: new Date().toISOString(),
     fullName: name,
+    phone: phone || '',
     attending: attendance,
     partySize: attendance === 'will attend' ? party : '0',
     wishes: message || ''
@@ -2115,9 +2382,12 @@ $('#rsvpForm').addEventListener('submit', async (e) => {
   }
 
   // 3. Open WhatsApp prefilled message
-  const body = attendance === 'will attend'
+  let body = attendance === 'will attend'
     ? t('rsvp.waYes', { name: name, party: party, message: message ? t('rsvp.waMessage', { message: message }) : '' })
     : t('rsvp.waNo', { name: name, message: message ? t('rsvp.waMessage', { message: message }) : '' });
+  if (phone) {
+    body += ` Phone: ${phone}.`;
+  }
   const url = 'https://wa.me/2349069183037?text=' + encodeURIComponent(body);
   window.open(url, '_blank', 'noopener,noreferrer');
   toast(t('rsvp.successToast'));
