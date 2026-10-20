@@ -1,10 +1,29 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="i18n-pending">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#3d005c"><meta name="description" content="You are invited to the wedding of Godwin and Queeneth on Sunday, 15 November 2026. #TheGQaffair">
-<meta property="og:title" content="Godwin & Queeneth | #TheGQaffair"><meta property="og:description" content="Together with our families, we invite you to celebrate our wedding."><meta property="og:image" content="assets/gq-cover.png">
-<title>Godwin & Queeneth | #TheGQaffair</title>
+<meta name="theme-color" content="#3d005c">
+<title>Godwin &amp; Queeneth | #TheGQaffair — Wedding Invitation</title>
+<meta name="description" content="We joyfully invite you to celebrate our wedding ceremony on Sunday, 15 November 2026 in Satellite Town, Lagos. #TheGQaffair">
+
+<!-- Open Graph / WhatsApp / Facebook Preview Tags -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://godwin-and-queeneth-wedding.vercel.app/">
+<meta property="og:title" content="Godwin &amp; Queeneth | Official Wedding Invitation ✦ #TheGQaffair">
+<meta property="og:description" content="Together with our families, we joyfully invite you to celebrate our sacred wedding union on Sunday, 15 November 2026. Tap to open the invitation.">
+<meta property="og:image" content="https://godwin-and-queeneth-wedding.vercel.app/assets/gq-couple-elegant.jpg">
+<meta property="og:image:secure_url" content="https://godwin-and-queeneth-wedding.vercel.app/assets/gq-couple-elegant.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="800">
+<meta property="og:image:alt" content="Godwin &amp; Queeneth Wedding Portrait">
+
+<!-- Twitter Card Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Godwin &amp; Queeneth | Official Wedding Invitation #TheGQaffair">
+<meta name="twitter:description" content="Together with our families, we joyfully invite you to celebrate our wedding on Sunday, 15 November 2026.">
+<meta name="twitter:image" content="https://godwin-and-queeneth-wedding.vercel.app/assets/gq-couple-elegant.jpg">
+
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233d005c'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='27' fill='%23f0b7ad' text-anchor='middle'%3EGQ%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
@@ -17,9 +36,9 @@
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   padding: 16px;
   background: 
-    radial-gradient(ellipse at 50% 30%, rgba(35, 12, 40, 0.72) 0%, rgba(14, 2, 18, 0.94) 100%),
-    url('assets/gq-couple-elegant.jpg') center 22%/cover no-repeat;
-  backdrop-filter: blur(8px);
+    radial-gradient(ellipse at 50% 25%, rgba(35, 12, 40, 0.45) 0%, rgba(14, 2, 18, 0.88) 100%),
+    url('assets/gq-couple-elegant.jpg') center 18%/cover no-repeat;
+  backdrop-filter: blur(4px);
   transition: opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.1s ease;
 }
 #intro.opened {
@@ -1168,6 +1187,70 @@ section {
   color: var(--gold-primary);
   margin-top: 22px;
 }
+.bank-details-box {
+  background: #fcf9f2;
+  border: 1px solid #dcc8a4;
+  border-radius: 4px;
+  padding: 18px 16px;
+  max-width: 440px;
+  margin: 16px auto 18px;
+  text-align: left;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.03);
+  position: relative;
+}
+.bank-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(184, 145, 80, 0.25);
+  font-size: 0.92rem;
+}
+.bank-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.bank-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #796c7b;
+}
+.bank-val {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--ink-deep);
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+}
+.bank-account-num {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--plum);
+}
+.bank-copy-btn {
+  background: var(--plum);
+  color: #fffaf0;
+  border: 1px solid var(--gold-primary);
+  padding: 5px 12px;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.bank-copy-btn:hover {
+  background: var(--plum2);
+  transform: translateY(-1px);
+}
 
 /* ── RSVP Section ── */
 .rsvp-section {
@@ -1378,7 +1461,47 @@ footer {
   font-family: var(--font-sans);
   font-size: 0.68rem;
   color: rgba(255,255,255,0.5);
-  margin-top: 30px;
+  margin-top: 26px;
+}
+.designer-credit {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px dashed rgba(199, 167, 106, 0.25);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.65);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.designer-credit p {
+  margin: 0;
+}
+.designer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--gold-light);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 14px;
+  border: 1px solid rgba(199, 167, 106, 0.4);
+  border-radius: 20px;
+  background: rgba(37, 211, 102, 0.08);
+  transition: all 0.25s ease;
+}
+.designer-link:hover {
+  background: rgba(37, 211, 102, 0.18);
+  border-color: #25d366;
+  color: #fff;
+  transform: translateY(-1px);
+}
+.designer-wa-icon {
+  width: 17px;
+  height: 17px;
+  fill: #25d366;
+  flex-shrink: 0;
 }
 
 /* Lightbox & Toast */
@@ -1426,12 +1549,43 @@ footer {
   .reveal { opacity: 1; transform: none; }
 }
 
+
+/* ── Language switcher ── */
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.lang-switch {
+  display: flex; align-items: center; gap: 3px;
+  padding: 5px 9px;
+  border: 1px solid var(--gold-hairline);
+  border-radius: 20px;
+  background: rgba(30, 10, 38, 0.6);
+  backdrop-filter: blur(8px);
+}
+.lang-btn {
+  background: none; border: 0; padding: 1px 3px;
+  font-family: var(--font-sans); font-size: 0.7rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255, 244, 236, 0.6);
+  transition: color 0.2s ease;
+}
+.lang-btn:hover, .lang-btn.active { color: var(--gold-light); }
+.lang-btn.active { font-weight: 600; background: rgba(199, 167, 106, 0.2); border-radius: 10px; }
+.lang-btn:focus-visible { outline: 1px solid var(--gold-light); outline-offset: 2px; border-radius: 2px; }
+.lang-sep { color: rgba(255, 244, 236, 0.35); font-size: 0.65rem; }
+
+/* Hold translated text back until the language layer has run. */
+.i18n-pending .card-eyebrow,
+.i18n-pending .card-invited,
+.i18n-pending .card-date,
+.i18n-pending .card-open-btn,
+.i18n-pending .env-flap-subtitle,
+.i18n-pending .env-hint { opacity: 0; }
 </style>
-<noscript><style>.reveal{opacity:1!important;transform:none!important}.env-flap{transform:none!important}</style></noscript>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}.env-flap{transform:none!important}.i18n-pending .card-eyebrow,.i18n-pending .card-invited,.i18n-pending .card-date,.i18n-pending .card-open-btn,.i18n-pending .env-flap-subtitle,.i18n-pending .env-hint{opacity:1!important}</style></noscript>
+<script>setTimeout(function(){document.documentElement.classList.remove('i18n-pending');},1500);</script>
 </head>
 <body class="locked">
 <div class="ambient" aria-hidden="true"><span class="ambient-orb one"></span><span class="ambient-orb two"></span><span class="ambient-orb three"></span><div id="petalField"></div></div>
-<div id="intro" aria-label="Wedding invitation">
+<div id="intro" aria-label="Wedding invitation" data-i18n-aria="intro.aria">
   <div class="envelope" id="envelope">
     <!-- Envelope Interior / Back Plate -->
     <div class="env-back"></div>
@@ -1439,20 +1593,20 @@ footer {
     <!-- Letter Card tucked inside (slides upward on opening) -->
     <div class="env-letter-card" id="envCard">
       <span class="card-ornament">G &nbsp;✦&nbsp; Q</span>
-      <p class="card-eyebrow">The Wedding Celebration of</p>
+      <p class="card-eyebrow" data-i18n="intro.cardEyebrow">The Wedding Celebration of</p>
       <h2 class="card-names">Godwin &amp; Queeneth</h2>
-      <p class="card-invited">You Are Cordially Invited</p>
-      <p class="card-date">Sunday · 15 November 2026 · 10:00 AM</p>
-      <button class="card-open-btn" id="openInvitation">View Invitation</button>
+      <p class="card-invited" data-i18n="intro.cardInvited">You Are Cordially Invited</p>
+      <p class="card-date" data-i18n="intro.cardDate">Sunday · 15 November 2026 · 10:00 AM</p>
+      <button class="card-open-btn" id="openInvitation" data-i18n="intro.viewInvitation">View Invitation</button>
     </div>
 
     <!-- Triangular Top Flap with Wax Seal and Gold Calligraphy -->
     <div class="env-top-flap" id="envFlap">
       <div class="env-flap-text">
         <p class="env-flap-names">Godwin &amp; Queeneth</p>
-        <span class="env-flap-subtitle">You Are Invited</span>
+        <span class="env-flap-subtitle" data-i18n="intro.flapSubtitle">You Are Invited</span>
       </div>
-      <div class="env-seal-wax" id="envSeal" title="Tap to Open Invitation">
+      <div class="env-seal-wax" id="envSeal" title="Tap to Open Invitation" data-i18n-title="intro.sealTitle">
         <span>GQ</span>
       </div>
     </div>
@@ -1462,40 +1616,40 @@ footer {
     <div class="env-pocket-right"></div>
     <div class="env-pocket-bottom"></div>
   </div>
-  <p class="env-hint">Tap wax seal to open</p>
+  <p class="env-hint" data-i18n="intro.hint">Tap wax seal to open</p>
 </div>
-<nav><a class="brand" href="#home" aria-label="The GQ Affair home">G <span>&amp;</span> Q</a><div class="nav-links" id="navLinks"><a href="#home">Home</a><a href="#countdown-section">Countdown</a><a href="#details">The Day</a><a href="#story">Our Journey</a><a href="#gallery">Moments</a><a href="#gifts">Gifts</a><a href="#rsvp">RSVP</a></div><button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">Menu</button></nav>
+<nav><a class="brand" href="#home" aria-label="The GQ Affair home" data-i18n-aria="nav.brandLabel">G <span>&amp;</span> Q</a><div class="nav-links" id="navLinks"><a href="#home" data-i18n="nav.home">Home</a><a href="#countdown-section" data-i18n="nav.countdown">Countdown</a><a href="#details" data-i18n="nav.day">The Day</a><a href="#story" data-i18n="nav.journey">Our Journey</a><a href="#gallery" data-i18n="nav.moments">Moments</a><a href="#gifts" data-i18n="nav.gifts">Gifts</a><a href="#rsvp" data-i18n="nav.rsvp">RSVP</a></div><div class="nav-actions"><div class="lang-switch" role="group" aria-label="Language / Langue"><button type="button" class="lang-btn" data-lang-btn="en" aria-pressed="false">EN</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" class="lang-btn" data-lang-btn="fr" aria-pressed="false">FR</button></div><button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" data-i18n-aria="nav.menuLabel" data-i18n="nav.menu">Menu</button></div></nav>
 <main>
 <header class="hero" id="home">
   <div class="hero-inner">
     <div class="monogram">G&amp;Q</div>
-    <span class="eyebrow">TOGETHER WITH OUR FAMILIES</span>
+    <span class="eyebrow" data-i18n="hero.eyebrow">TOGETHER WITH OUR FAMILIES</span>
     <h1>Godwin <span>&amp; Queeneth</span></h1>
     <div class="ornament"><span>❧</span></div>
-    <p class="hero-date">Sunday, 15 November 2026 · 10:00 AM</p>
+    <p class="hero-date" data-i18n="hero.date">Sunday, 15 November 2026 · 10:00 AM</p>
     <p class="hashtag">#TheGQaffair</p>
     <div class="button-row">
-      <a class="btn gold" href="#details">VIEW WEDDING DETAILS</a>
-      <a class="btn outline" href="#rsvp">CONFIRM YOUR ATTENDANCE</a>
+      <a class="btn gold" href="#details" data-i18n="hero.detailsBtn">VIEW WEDDING DETAILS</a>
+      <a class="btn outline" href="#rsvp" data-i18n="hero.rsvpBtn">CONFIRM YOUR ATTENDANCE</a>
     </div>
   </div>
-  <a class="scroll-cue" href="#countdown-section">Scroll to Explore<span></span></a>
+  <a class="scroll-cue" href="#countdown-section" data-i18n="hero.scroll">Scroll to Explore<span></span></a>
 </header>
 
 <!-- ── Section: Countdown to "I Do" ── -->
 <section class="countdown-section" id="countdown-section">
   <div class="section-wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">The Day We Make Our Vows is Drawing Near</span>
-      <h2>The Countdown to <em>“I Do”</em></h2>
+      <span class="eyebrow" data-i18n="countdown.eyebrow">The Day We Make Our Vows is Drawing Near</span>
+      <h2><span data-i18n="countdown.titleLead">The Countdown to</span> <em data-i18n="countdown.titleEm">“I Do”</em></h2>
       <div class="ornament"><span>✦</span></div>
-      <p>We cannot wait to share this beautiful moment with you.</p>
+      <p data-i18n="countdown.intro">We cannot wait to share this beautiful moment with you.</p>
     </div>
     <div class="countdown reveal" id="countdown" aria-live="polite">
-      <div class="time-box"><strong id="days">--</strong><span>Days</span></div>
-      <div class="time-box"><strong id="hours">--</strong><span>Hours</span></div>
-      <div class="time-box"><strong id="minutes">--</strong><span>Minutes</span></div>
-      <div class="time-box"><strong id="seconds">--</strong><span>Seconds</span></div>
+      <div class="time-box"><strong id="days">--</strong><span data-i18n="countdown.days">Days</span></div>
+      <div class="time-box"><strong id="hours">--</strong><span data-i18n="countdown.hours">Hours</span></div>
+      <div class="time-box"><strong id="minutes">--</strong><span data-i18n="countdown.minutes">Minutes</span></div>
+      <div class="time-box"><strong id="seconds">--</strong><span data-i18n="countdown.seconds">Seconds</span></div>
     </div>
     <p class="countdown-message" id="countdownMessage"></p>
   </div>
@@ -1505,27 +1659,27 @@ footer {
 <section class="events" id="details">
   <div class="section-wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Sacred Vows &amp; Gathering</span>
-      <h2>Wedding <em>Details</em></h2>
+      <span class="eyebrow" data-i18n="details.eyebrow">Sacred Vows &amp; Gathering</span>
+      <h2><span data-i18n="details.titleLead">Wedding</span> <em data-i18n="details.titleEm">Details</em></h2>
       <div class="ornament"><span>❦</span></div>
-      <p>We look forward to exchanging our vows and celebrating in the presence of God and our beloved guests.</p>
+      <p data-i18n="details.intro">We look forward to exchanging our vows and celebrating in the presence of God and our beloved guests.</p>
     </div>
     <div class="event-grid">
       <article class="event-card reveal">
         <div class="event-icon" aria-hidden="true">⛪</div>
-        <span class="eyebrow">Sacred Vows</span>
-        <h3>Church Ceremony</h3>
-        <p class="event-time">Sunday, 15 November 2026 · 10:00 AM WAT</p>
-        <p>16 Community Road,<br>opposite First Bank,<br>Satellite Town.</p>
-        <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=16%20Community%20Road%2C%20opposite%20First%20Bank%2C%20Satellite%20Town">Get Directions ↗</a>
+        <span class="eyebrow" data-i18n="details.ceremonyEyebrow">Sacred Vows</span>
+        <h3 data-i18n="details.ceremonyTitle">Church Ceremony</h3>
+        <p class="event-time" data-i18n="details.ceremonyTime">Sunday, 15 November 2026 · 10:00 AM WAT</p>
+        <p data-i18n-html="details.address">16 Community Road,<br>opposite First Bank,<br>Satellite Town.</p>
+        <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=16%20Community%20Road%2C%20opposite%20First%20Bank%2C%20Satellite%20Town" data-i18n="details.directions">Get Directions ↗</a>
       </article>
       <article class="event-card pending reveal">
         <div class="event-icon" aria-hidden="true">🥂</div>
-        <span class="eyebrow">Celebration &amp; Dinner</span>
-        <h3>Reception</h3>
-        <p class="event-time">Venue to be Announced</p>
-        <p>The reception venue and dinner programme will be communicated once confirmed.</p>
-        <span class="btn">Details Coming Soon</span>
+        <span class="eyebrow" data-i18n="details.receptionEyebrow">Celebration &amp; Dinner</span>
+        <h3 data-i18n="details.receptionTitle">Reception</h3>
+        <p class="event-time" data-i18n="details.receptionTime">Venue to be Announced</p>
+        <p data-i18n="details.receptionText">The reception venue and dinner programme will be communicated once confirmed.</p>
+        <span class="btn" data-i18n="details.receptionBtn">Details Coming Soon</span>
       </article>
     </div>
   </div>
@@ -1535,46 +1689,46 @@ footer {
 <section class="love-story" id="story">
   <div class="section-wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Love &amp; Commitment</span>
-      <h2>A Promise <em>Before God</em></h2>
+      <span class="eyebrow" data-i18n="story.eyebrow">Love &amp; Commitment</span>
+      <h2><span data-i18n="story.titleLead">A Promise</span> <em data-i18n="story.titleEm">Before God</em></h2>
       <div class="ornament"><span>❦</span></div>
-      <p>Our journey has brought us to a moment we hold close to our hearts. As we prepare to exchange our vows, we are grateful for the love, support and prayers of our families and friends.</p>
-      <p style="margin-top:8px;font-style:italic;color:var(--gold-primary);">We look forward to beginning this new chapter together and celebrating with the people who matter most to us.</p>
+      <p data-i18n="story.intro1">Our journey has brought us to a moment we hold close to our hearts. As we prepare to exchange our vows, we are grateful for the love, support and prayers of our families and friends.</p>
+      <p style="margin-top:8px;font-style:italic;color:var(--gold-primary);" data-i18n="story.intro2">We look forward to beginning this new chapter together and celebrating with the people who matter most to us.</p>
     </div>
 
     <div class="timeline-journey reveal">
       <div class="timeline-item left">
         <div class="timeline-content">
-          <span class="chap-num">Chapter I</span>
-          <h4>Two paths, one purpose</h4>
+          <span class="chap-num" data-i18n="story.chapter1Label">Chapter I</span>
+          <h4 data-i18n="story.chapter1Title">Two paths, one purpose</h4>
         </div>
         <div class="timeline-node">♡</div>
       </div>
       <div class="timeline-item right">
         <div class="timeline-node">♡</div>
         <div class="timeline-content">
-          <span class="chap-num">Chapter II</span>
-          <h4>Friendship that became love</h4>
+          <span class="chap-num" data-i18n="story.chapter2Label">Chapter II</span>
+          <h4 data-i18n="story.chapter2Title">Friendship that became love</h4>
         </div>
       </div>
       <div class="timeline-item left">
         <div class="timeline-content">
-          <span class="chap-num">Chapter III</span>
-          <h4>A promise of forever</h4>
+          <span class="chap-num" data-i18n="story.chapter3Label">Chapter III</span>
+          <h4 data-i18n="story.chapter3Title">A promise of forever</h4>
         </div>
         <div class="timeline-node">♡</div>
       </div>
       <div class="timeline-item right">
         <div class="timeline-node">♡</div>
         <div class="timeline-content">
-          <span class="chap-num">Chapter IV</span>
-          <h4>Families joined in blessing</h4>
+          <span class="chap-num" data-i18n="story.chapter4Label">Chapter IV</span>
+          <h4 data-i18n="story.chapter4Title">Families joined in blessing</h4>
         </div>
       </div>
       <div class="timeline-big-day">
         <div class="big-day-card">
           <span class="date-badge">15 · 11 · 2026</span>
-          <h3>The Big Day</h3>
+          <h3 data-i18n="story.bigDay">The Big Day</h3>
         </div>
       </div>
     </div>
@@ -1586,14 +1740,14 @@ footer {
       <div class="chapter-image">
         <picture>
           <source srcset="assets/gq-couple-elegant.webp" type="image/webp">
-          <img src="assets/gq-couple-elegant.jpg" alt="Godwin and Queeneth in elegant attire" loading="lazy" decoding="async">
+          <img src="assets/gq-couple-elegant.jpg" alt="Godwin and Queeneth in elegant attire" loading="lazy" decoding="async" data-i18n-alt="story.alt1">
         </picture>
-        <span class="image-caption">In your eyes, I found home</span>
+        <span class="image-caption" data-i18n="story.feature1Caption">In your eyes, I found home</span>
       </div>
       <div class="chapter-copy">
-        <span class="eyebrow">A look that says everything</span>
-        <h3>The Promise</h3>
-        <p>Some stories are told in grand gestures. Ours lives in the quiet certainty of choosing one another, walking into tomorrow side by side.</p>
+        <span class="eyebrow" data-i18n="story.feature1Eyebrow">A look that says everything</span>
+        <h3 data-i18n="story.feature1Title">The Promise</h3>
+        <p data-i18n="story.feature1Text">Some stories are told in grand gestures. Ours lives in the quiet certainty of choosing one another, walking into tomorrow side by side.</p>
       </div>
     </div>
 
@@ -1601,14 +1755,14 @@ footer {
       <div class="chapter-image">
         <picture>
           <source srcset="assets/gq-couple-traditional.webp" type="image/webp">
-          <img src="assets/gq-couple-traditional.jpg" alt="Godwin and Queeneth celebrating in traditional attire" loading="lazy" decoding="async">
+          <img src="assets/gq-couple-traditional.jpg" alt="Godwin and Queeneth celebrating in traditional attire" loading="lazy" decoding="async" data-i18n-alt="story.alt2">
         </picture>
-        <span class="image-caption">Wrapped in heritage, rooted in love</span>
+        <span class="image-caption" data-i18n="story.feature2Caption">Wrapped in heritage, rooted in love</span>
       </div>
       <div class="chapter-copy">
-        <span class="eyebrow">Our roots, our joy</span>
-        <h3>Our Forever Begins</h3>
-        <p>Rooted in faith and culture, surrounded by the people who matter most, we prepare to say “I do”.</p>
+        <span class="eyebrow" data-i18n="story.feature2Eyebrow">Our roots, our joy</span>
+        <h3 data-i18n="story.feature2Title">Our Forever Begins</h3>
+        <p data-i18n="story.feature2Text">Rooted in faith and culture, surrounded by the people who matter most, we prepare to say “I do”.</p>
       </div>
     </div>
   </div>
@@ -1618,42 +1772,42 @@ footer {
 <section class="gallery-section" id="gallery">
   <div class="section-wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Curated Portraits</span>
-      <h2>Special <em>Moments</em></h2>
+      <span class="eyebrow" data-i18n="gallery.eyebrow">Curated Portraits</span>
+      <h2><span data-i18n="gallery.titleLead">Special</span> <em data-i18n="gallery.titleEm">Moments</em></h2>
       <div class="ornament"><span>❦</span></div>
-      <p>A glimpse into our connection and joy as we await our wedding day. Tap any photo to view in full.</p>
+      <p data-i18n="gallery.intro">A glimpse into our connection and joy as we await our wedding day. Tap any photo to view in full.</p>
     </div>
     <div class="gallery-grid reveal">
       <div class="gallery-tile" data-image="assets/gq-couple-elegant.jpg">
         <picture>
           <source srcset="assets/gq-couple-elegant.webp" type="image/webp">
-          <img src="assets/gq-couple-elegant.jpg" alt="Godwin and Queeneth studio portrait" loading="lazy" decoding="async">
+          <img src="assets/gq-couple-elegant.jpg" alt="Godwin and Queeneth studio portrait" loading="lazy" decoding="async" data-i18n-alt="gallery.alt1">
         </picture>
-        <span>01 · The Promise</span>
+        <span data-i18n="gallery.tile1">01 · The Promise</span>
       </div>
       <div class="gallery-tile" data-image="assets/gq-couple-romantic.jpg">
         <picture>
           <source srcset="assets/gq-couple-romantic.webp" type="image/webp">
-          <img src="assets/gq-couple-romantic.jpg" alt="Romantic couple portrait" loading="lazy" decoding="async">
+          <img src="assets/gq-couple-romantic.jpg" alt="Romantic couple portrait" loading="lazy" decoding="async" data-i18n-alt="gallery.alt2">
         </picture>
-        <span>02 · Tenderness</span>
+        <span data-i18n="gallery.tile2">02 · Tenderness</span>
       </div>
       <div class="gallery-tile" data-image="assets/gq-couple-traditional-close.jpg">
         <picture>
           <source srcset="assets/gq-couple-traditional-close.webp" type="image/webp">
-          <img src="assets/gq-couple-traditional-close.jpg" alt="Traditional couple close portrait" loading="lazy" decoding="async">
+          <img src="assets/gq-couple-traditional-close.jpg" alt="Traditional couple close portrait" loading="lazy" decoding="async" data-i18n-alt="gallery.alt3">
         </picture>
-        <span>03 · Heritage</span>
+        <span data-i18n="gallery.tile3">03 · Heritage</span>
       </div>
       <div class="gallery-tile" data-image="assets/gq-couple-traditional.jpg">
         <picture>
           <source srcset="assets/gq-couple-traditional.webp" type="image/webp">
-          <img src="assets/gq-couple-traditional.jpg" alt="Full traditional portrait" loading="lazy" decoding="async">
+          <img src="assets/gq-couple-traditional.jpg" alt="Full traditional portrait" loading="lazy" decoding="async" data-i18n-alt="gallery.alt4">
         </picture>
-        <span>04 · Forever</span>
+        <span data-i18n="gallery.tile4">04 · Forever</span>
       </div>
     </div>
-    <p class="gallery-footnote">Tap any portrait to enlarge</p>
+    <p class="gallery-footnote" data-i18n="gallery.footnote">Tap any portrait to enlarge</p>
   </div>
 </section>
 
@@ -1661,15 +1815,15 @@ footer {
 <section class="palette">
   <div class="section-wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">A Note for Our Guests</span>
-      <h2>Wedding <em>Colours</em></h2>
+      <span class="eyebrow" data-i18n="palette.eyebrow">A Note for Our Guests</span>
+      <h2><span data-i18n="palette.titleLead">Wedding</span> <em data-i18n="palette.titleEm">Colours</em></h2>
       <div class="ornament"><span>✦</span></div>
-      <p>Our celebration palette features these tones. Official dress code notes will follow.</p>
+      <p data-i18n="palette.intro">Our celebration palette features these tones. Official dress code notes will follow.</p>
     </div>
     <div class="swatches reveal">
-      <div class="swatch"><i class="swatch-dot purple"></i><span>Royal Purple</span></div>
-      <div class="swatch"><i class="swatch-dot green"></i><span>Sage Green</span></div>
-      <div class="swatch"><i class="swatch-dot peach"></i><span>Blush Peach</span></div>
+      <div class="swatch"><i class="swatch-dot purple"></i><span data-i18n="palette.purple">Royal Purple</span></div>
+      <div class="swatch"><i class="swatch-dot green"></i><span data-i18n="palette.green">Sage Green</span></div>
+      <div class="swatch"><i class="swatch-dot peach"></i><span data-i18n="palette.peach">Blush Peach</span></div>
     </div>
   </div>
 </section>
@@ -1678,17 +1832,40 @@ footer {
 <section class="gift-section" id="gifts">
   <div class="section-wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Gifts &amp; Gratitude</span>
-      <h2>Your Presence is our <em>Present</em></h2>
+      <span class="eyebrow" data-i18n="gifts.eyebrow">Gifts &amp; Gratitude</span>
+      <h2><span data-i18n="gifts.titleLead">Your Presence is our</span> <em data-i18n="gifts.titleEm">Present</em></h2>
       <div class="ornament"><span>✦</span></div>
-      <p>Your presence, prayers, and love are already meaningful gifts to us.</p>
+      <p data-i18n="gifts.intro">Your presence, prayers, and love are the greatest gifts we could ever ask for as we begin our life together.</p>
     </div>
     <div class="gift-card reveal">
       <div class="gift-emblem" aria-hidden="true">🎁</div>
-      <h3 class="gift-script">Blessing our new beginning…</h3>
-      <p>For friends and family who have kindly inquired about additional wedding gifts or tokens of blessing, please message the couple or family directly on WhatsApp for guidance.</p>
-      <a class="btn gold" href="#rsvp">Inquire or Send Wishes</a>
-      <p class="gift-small">Thank you for being part of our story</p>
+      <h3 class="gift-script" data-i18n="gifts.script">Blessing our new beginning…</h3>
+      <p data-i18n="gifts.text">Having you celebrate with us means the world to us. However, for beloved family and friends who have kindly asked to bless our union with a wedding gift or financial token, we have provided our account details below:</p>
+      
+      <!-- Bank Account Details Card -->
+      <div class="bank-details-box">
+        <div class="bank-row">
+          <span class="bank-label" data-i18n="gifts.bankName">Bank Name</span>
+          <span class="bank-val" id="bankNameVal">PROVIDE BANK NAME</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label" data-i18n="gifts.accountName">Account Name</span>
+          <span class="bank-val" id="accountNameVal">Godwin &amp; Queeneth</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label" data-i18n="gifts.accountNumber">Account Number</span>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span class="bank-account-num" id="accountNumberVal">0000000000</span>
+            <button type="button" class="bank-copy-btn" id="copyAccountBtn" title="Copy Account Number" data-i18n-title="gifts.copyTitle">
+              <span data-i18n="gifts.copy">Copy</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:0.86rem;color:var(--ink-muted);margin:8px 0 16px;" data-i18n="gifts.blessing">May God richly bless and replenish you as you celebrate with us.</p>
+      <a class="btn gold" href="#rsvp" data-i18n="gifts.cta">Confirm Your Attendance</a>
+      <p class="gift-small" data-i18n="gifts.thanks">Thank you for being part of our story</p>
     </div>
   </div>
 </section>
@@ -1697,41 +1874,41 @@ footer {
 <section class="rsvp-section" id="rsvp">
   <div class="section-wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Kindly Respond</span>
-      <h2>Confirm Your <em>Attendance</em></h2>
+      <span class="eyebrow" data-i18n="rsvp.eyebrow">Kindly Respond</span>
+      <h2><span data-i18n="rsvp.titleLead">Confirm Your</span> <em data-i18n="rsvp.titleEm">Attendance</em></h2>
       <div class="ornament"><span>❦</span></div>
-      <p>Please let us know if you will be celebrating with us on Sunday, 15 November 2026.</p>
+      <p data-i18n="rsvp.intro">Please let us know if you will be celebrating with us on Sunday, 15 November 2026.</p>
     </div>
     <div class="rsvp-card reveal">
       <form class="rsvp-form" id="rsvpForm">
         <div class="field full">
-          <label for="guestName">Your Full Name</label>
-          <input id="guestName" name="guestName" autocomplete="name" required placeholder="e.g. Damola &amp; Guest">
+          <label for="guestName" data-i18n="rsvp.nameLabel">Your Full Name</label>
+          <input id="guestName" name="guestName" autocomplete="name" required placeholder="e.g. Damola &amp; Guest" data-i18n-placeholder="rsvp.namePlaceholder">
         </div>
         <div class="field">
-          <label for="attendance">Will You Attend?</label>
+          <label for="attendance" data-i18n="rsvp.attendanceLabel">Will You Attend?</label>
           <select id="attendance" name="attendance" required>
-            <option value="">Select your response</option>
-            <option value="will attend">Joyfully, I will attend</option>
-            <option value="cannot attend">Regretfully, I cannot attend</option>
+            <option value="" data-i18n="rsvp.selectPlaceholder">Select your response</option>
+            <option value="will attend" data-i18n="rsvp.willAttend">Joyfully, I will attend</option>
+            <option value="cannot attend" data-i18n="rsvp.cannotAttend">Regretfully, I cannot attend</option>
           </select>
         </div>
         <div class="field">
-          <label for="partySize">Number Attending</label>
+          <label for="partySize" data-i18n="rsvp.partyLabel">Number Attending</label>
           <select id="partySize" name="partySize">
-            <option value="1">1 Person</option>
-            <option value="2">2 Persons</option>
-            <option value="3">3 Persons</option>
-            <option value="4">4 Persons</option>
+            <option value="1" data-i18n="rsvp.party1">1 Person</option>
+            <option value="2" data-i18n="rsvp.party2">2 Persons</option>
+            <option value="3" data-i18n="rsvp.party3">3 Persons</option>
+            <option value="4" data-i18n="rsvp.party4">4 Persons</option>
           </select>
         </div>
         <div class="field full">
-          <label for="guestMessage">Wishes for the Couple (Optional)</label>
-          <textarea id="guestMessage" name="guestMessage" placeholder="Leave your prayers and kind words..."></textarea>
+          <label for="guestMessage" data-i18n="rsvp.messageLabel">Wishes for the Couple (Optional)</label>
+          <textarea id="guestMessage" name="guestMessage" placeholder="Leave your prayers and kind words..." data-i18n-placeholder="rsvp.messagePlaceholder"></textarea>
         </div>
-        <button class="btn" type="submit">Submit RSVP on WhatsApp ↗</button>
+        <button class="btn" type="submit" data-i18n="rsvp.submit">Submit RSVP on WhatsApp ↗</button>
       </form>
-      <p class="form-note">This will open WhatsApp with your response pre-filled to confirm directly with the couple.</p>
+      <p class="form-note" data-i18n="rsvp.note">This will open WhatsApp with your response pre-filled to confirm directly with the couple.</p>
     </div>
   </div>
 </section>
@@ -1740,26 +1917,26 @@ footer {
 <section class="faq">
   <div class="section-wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Before You Come</span>
-      <h2>Good to <em>Know</em></h2>
+      <span class="eyebrow" data-i18n="faq.eyebrow">Before You Come</span>
+      <h2><span data-i18n="faq.titleLead">Good to</span> <em data-i18n="faq.titleEm">Know</em></h2>
       <div class="ornament"><span>✦</span></div>
     </div>
     <div class="faq-list reveal">
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">When is the wedding ceremony? <span class="plus">+</span></button>
-        <div class="faq-answer">Sunday, 15 November 2026, at 10:00 AM West Africa Time promptly.</div>
+        <button class="faq-question" aria-expanded="false"><span data-i18n="faq.q1">When is the wedding ceremony?</span> <span class="plus">+</span></button>
+        <div class="faq-answer" data-i18n="faq.a1">Sunday, 15 November 2026, at 10:00 AM West Africa Time promptly.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">Where is the ceremony venue? <span class="plus">+</span></button>
-        <div class="faq-answer">16 Community Road, opposite First Bank, Satellite Town. You can use the Directions link in the Wedding Details section to navigate easily via Google Maps.</div>
+        <button class="faq-question" aria-expanded="false"><span data-i18n="faq.q2">Where is the ceremony venue?</span> <span class="plus">+</span></button>
+        <div class="faq-answer" data-i18n="faq.a2">16 Community Road, opposite First Bank, Satellite Town. You can use the Directions link in the Wedding Details section to navigate easily via Google Maps.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">Where is the reception? <span class="plus">+</span></button>
-        <div class="faq-answer">The reception venue and dinner programme will be communicated once confirmed.</div>
+        <button class="faq-question" aria-expanded="false"><span data-i18n="faq.q3">Where is the reception?</span> <span class="plus">+</span></button>
+        <div class="faq-answer" data-i18n="faq.a3">The reception venue and dinner programme will be communicated once confirmed.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">Can I present a wedding gift? <span class="plus">+</span></button>
-        <div class="faq-answer">Your presence, prayers, and love are already our greatest gift. For friends and family inquiring about additional gifts or tokens of blessing, please contact the couple directly.</div>
+        <button class="faq-question" aria-expanded="false"><span data-i18n="faq.q4">Can I present a wedding gift?</span> <span class="plus">+</span></button>
+        <div class="faq-answer" data-i18n="faq.a4">Your presence, prayers, and love are already our greatest gift. For friends and family inquiring about additional gifts or tokens of blessing, please contact the couple directly.</div>
       </div>
     </div>
   </div>
@@ -1773,18 +1950,31 @@ footer {
       <img class="footer-portrait" src="assets/gq-couple-elegant.jpg" alt="Godwin &amp; Queeneth" loading="lazy" decoding="async">
     </picture>
   </div>
-  <span class="eyebrow" style="color:var(--gold-light)">With Love and Gratitude</span>
+  <span class="eyebrow" style="color:var(--gold-light)" data-i18n="footer.eyebrow">With Love and Gratitude</span>
   <p class="footer-names">Godwin &amp; Queeneth</p>
   <p class="footer-tag">#TheGQaffair</p>
-  <a href="#home" class="btn outline">Back to Top ↑</a>
-  <p class="footer-small">Sunday, 15 November 2026 · Satellite Town, Lagos</p>
+  <a href="#home" class="btn outline" data-i18n="footer.backTop">Back to Top ↑</a>
+  <p class="footer-small" data-i18n="footer.small">Sunday, 15 November 2026 · Satellite Town, Lagos</p>
+
+  <!-- Designer Publication & WhatsApp Contact Badge -->
+  <div class="designer-credit">
+    <p>Need an elegant digital wedding invitation like this?</p>
+    <a href="https://wa.me/2349069183037?text=Hello%20Godwin%2C%20I%20saw%20your%20wedding%20invitation%20website%20and%20I%20love%20the%20design.%20I%20would%20like%20to%20request%20a%20beautiful%20invitation%20website%20like%20this%20for%20my%20event." class="designer-link" target="_blank" rel="noopener noreferrer" id="designerContactLink" title="Chat with Godwin on WhatsApp">
+      <svg class="designer-wa-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.01-1.24-.74-.66-1.25-1.48-1.39-1.73-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.45s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28z"/>
+      </svg>
+      <span>Designed by <strong>Godwin</strong></span>
+    </a>
+  </div>
 </footer>
 
 <!-- Floating RSVP Button for Mobile -->
 <a href="#rsvp" class="floating-rsvp" id="floatingRsvp">RSVP ✦</a>
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer"><button id="closeLightbox">Close ✕</button><img id="lightboxImage" alt="Expanded wedding image"></div><div class="toast" id="toast" role="status"></div>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" data-i18n-aria="lightbox.aria"><button id="closeLightbox" data-i18n="lightbox.close">Close ✕</button><img id="lightboxImage" alt="Expanded wedding image" data-i18n-alt="lightbox.alt"></div><div class="toast" id="toast" role="status"></div>
+<script src="translations.js"></script>
+<script src="i18n.js"></script>
 <script>
-const $=s=>document.querySelector(s);const intro=$('#intro');
+const $=s=>document.querySelector(s);const intro=$('#intro');const t=(k,v)=>window.GQ_i18n.t(k,v);
 // Never let a script error leave the story images hidden.
 window.addEventListener('error',()=>document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible')));
 // Lightweight floating petals add atmosphere without blocking interactions.
@@ -1826,9 +2016,21 @@ $('#envelope').addEventListener('click', (e)=>{
   // Also allow tapping anywhere on the envelope to open
   if(!isOpening) openEnvelope(e);
 });
-$('#menuToggle').addEventListener('click',()=>$('#navLinks').classList.toggle('show'));document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>$('#navLinks').classList.remove('show')));
+const menuToggle = $('#menuToggle');
+const navLinks = $('#navLinks');
+menuToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  navLinks.classList.toggle('show');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('show')));
+document.addEventListener('click', (e) => {
+  if (navLinks.classList.contains('show') && !navLinks.contains(e.target) && e.target !== menuToggle) {
+    navLinks.classList.remove('show');
+  }
+});
 // 10:00 AM in Africa/Lagos (UTC+1 on the wedding date).
-const target=new Date('2026-11-15T10:00:00+01:00').getTime();function tick(){let d=target-Date.now();if(d<=0){['days','hours','minutes','seconds'].forEach(id=>$('#'+id).textContent='0');$('#countdownMessage').textContent=d> -86400000?'Today is the day. We cannot wait to celebrate with you.':'Thank you for celebrating #TheGQaffair.';return}const vals={days:Math.floor(d/86400000),hours:Math.floor(d%86400000/3600000),minutes:Math.floor(d%3600000/60000),seconds:Math.floor(d%60000/1000)};Object.entries(vals).forEach(([id,v])=>$('#'+id).textContent=String(v).padStart(2,'0'));$('#countdownMessage').textContent='Every moment brings us closer to forever.'}tick();setInterval(tick,1000);
+const target=new Date('2026-11-15T10:00:00+01:00').getTime();function tick(){let d=target-Date.now();if(d<=0){['days','hours','minutes','seconds'].forEach(id=>$('#'+id).textContent='0');$('#countdownMessage').textContent=d> -86400000?t('countdown.today'):t('countdown.done');return}const vals={days:Math.floor(d/86400000),hours:Math.floor(d%86400000/3600000),minutes:Math.floor(d%3600000/60000),seconds:Math.floor(d%60000/1000)};Object.entries(vals).forEach(([id,v])=>$('#'+id).textContent=String(v).padStart(2,'0'));$('#countdownMessage').textContent=t('countdown.msg')}tick();setInterval(tick,1000);
+document.addEventListener('gq:langchange',tick);
 // Two-way Scroll Reveal: Elements cleanly fade & slide in when on screen, and fade out when scrolled away
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -1844,10 +2046,30 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 document.querySelectorAll('.faq-question').forEach(btn=>btn.addEventListener('click',()=>{const item=btn.closest('.faq-item');const active=item.classList.toggle('active');btn.setAttribute('aria-expanded',String(active))}));
 const lightbox=$('#lightbox');document.querySelectorAll('.gallery-tile[data-image]').forEach(tile=>tile.addEventListener('click',()=>{ $('#lightboxImage').src=tile.dataset.image;lightbox.classList.add('open');$('#closeLightbox').focus()}));function closeLightbox(){lightbox.classList.remove('open')}$('#closeLightbox').addEventListener('click',closeLightbox);lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
 function toast(message){const t=$('#toast');t.textContent=message;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
-const shareButton=$('#shareButton');if(shareButton)shareButton.addEventListener('click',async()=>{const data={title:'Godwin & Queeneth | #TheGQaffair',text:'You are invited to celebrate the union of Godwin & Queeneth on Sunday, 15 November 2026. #TheGQaffair',url:location.href};try{if(navigator.share){await navigator.share(data)}else if(navigator.clipboard){await navigator.clipboard.writeText(location.href);toast('Invitation link copied. You can now share it on WhatsApp.')}else{prompt('Copy and share this invitation link:',location.href)}}catch(e){if(e.name!=='AbortError')toast('Sharing was not available. Copy the website link from your browser.')}});
+const copyAccountBtn = $('#copyAccountBtn');
+if(copyAccountBtn){
+  copyAccountBtn.addEventListener('click', async () => {
+    const accNum = $('#accountNumberVal').textContent.trim();
+    try {
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        await navigator.clipboard.writeText(accNum);
+      } else {
+        const temp = document.createElement('textarea');
+        temp.value = accNum;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+      }
+      toast(t('gifts.copiedToast', { value: accNum }));
+    } catch(err){
+      toast(t('gifts.accountToast', { value: accNum }));
+    }
+  });
+}
+const shareButton=$('#shareButton');if(shareButton)shareButton.addEventListener('click',async()=>{const data={title:t('share.title'),text:t('share.text'),url:location.href};try{if(navigator.share){await navigator.share(data)}else if(navigator.clipboard){await navigator.clipboard.writeText(location.href);toast(t('share.copiedToast'))}else{prompt(t('share.prompt'),location.href)}}catch(e){if(e.name!=='AbortError')toast(t('share.failToast'))}});
 // RSVP Google Sheets Webhook Configuration
-// To connect your Google Sheet: paste your Google Apps Script Web App URL into GOOGLE_SHEET_WEBHOOK_URL below
-const GOOGLE_SHEET_WEBHOOK_URL = ''; // e.g. 'https://script.google.com/macros/s/.../exec'
+const GOOGLE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxa0i-SLAWDiVzlmNciasP_aiG61VvVo-fi5GDMIOnkIphPu96Zh9FKz3NgZyttz7Ux/exec';
 
 function saveRsvpLocalBackup(record){
   try {
@@ -1865,7 +2087,7 @@ $('#rsvpForm').addEventListener('submit', async (e) => {
   const message = $('#guestMessage').value.trim();
 
   if(!name || !attendance){
-    toast('Please enter your name and select your response.');
+    toast(t('rsvp.validationToast'));
     return;
   }
 
@@ -1893,9 +2115,11 @@ $('#rsvpForm').addEventListener('submit', async (e) => {
   }
 
   // 3. Open WhatsApp prefilled message
-  const body = `Hello Godwin and Queeneth. My name is ${name}. I ${attendance} your wedding ceremony on Sunday, 15 November 2026.${attendance==='will attend'?' Number attending (including me): '+party+'.':''}${message?' Message: '+message:''}`;
-  const url = 'https://wa.me/?text=' + encodeURIComponent(body);
+  const body = attendance === 'will attend'
+    ? t('rsvp.waYes', { name: name, party: party, message: message ? t('rsvp.waMessage', { message: message }) : '' })
+    : t('rsvp.waNo', { name: name, message: message ? t('rsvp.waMessage', { message: message }) : '' });
+  const url = 'https://wa.me/2349069183037?text=' + encodeURIComponent(body);
   window.open(url, '_blank', 'noopener,noreferrer');
-  toast('RSVP details recorded. Sending confirmation via WhatsApp…');
+  toast(t('rsvp.successToast'));
 });
 </script></body></html>
