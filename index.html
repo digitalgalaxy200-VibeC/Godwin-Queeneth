@@ -875,10 +875,22 @@ section {
   margin: 0;
 }
 .timeline-big-day {
-  margin: 40px auto 10px;
+  margin: 48px auto 10px;
   text-align: center;
   position: relative;
   z-index: 2;
+}
+/* Connecting vertical gold line leading directly into The Big Day card */
+.timeline-big-day::before {
+  content: '';
+  position: absolute;
+  top: -48px;
+  bottom: 50%;
+  left: 50%;
+  width: 1px;
+  background: var(--gold-primary);
+  transform: translateX(-50%);
+  z-index: 1;
 }
 .big-day-card {
   display: inline-block;
