@@ -2239,27 +2239,29 @@ footer {
         </div>
 
         <!-- Calendar app buttons -->
-        <div class="cal-targets" style="display:flex;flex-direction:column;gap:10px;">
-          <!-- Primary button: Phone Calendar with actual notifications -->
-          <button type="button" class="cal-target-btn cal-target-primary" id="appleCalBtn" style="background:var(--plum);color:#fffaf0;border-color:var(--gold-primary);padding:10px 14px;box-shadow:0 4px 12px rgba(61,0,92,0.15);">
-            <svg viewBox="0 0 24 24" fill="#fdf3e2" style="width:18px;height:18px;"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
-            <div style="text-align:left;display:flex;flex-direction:column;">
-              <span style="font-weight:600;font-size:0.78rem;letter-spacing:0.02em;" data-i18n="cal.downloadIcs">Add to Phone Calendar (Android &amp; iPhone)</span>
-              <span style="font-size:0.65rem;color:#f3dec6;margin-top:2px;" data-i18n="cal.downloadIcsHint">Includes your selected 7-day &amp; 2-day reminder notifications</span>
+        <div class="cal-targets" style="display:flex;flex-direction:column;gap:8px;">
+          <!-- Option 1: Phone Calendar (with RECOMMENDED pill badge) -->
+          <button type="button" class="cal-target-btn" id="appleCalBtn" style="justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <svg viewBox="0 0 24 24" fill="#3d005c"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+              <span data-i18n="cal.downloadIcs">Phone Calendar (Android &amp; iPhone)</span>
             </div>
+            <span style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.12em;padding:3px 8px;border-radius:12px;background:rgba(184,145,80,0.18);color:#8a6422;border:1px solid rgba(184,145,80,0.4);" data-i18n="cal.recommendedBadge">RECOMMENDED</span>
           </button>
 
-          <!-- Secondary options -->
+          <!-- Option 2: Google Calendar -->
           <a href="#" class="cal-target-btn" id="googleCalBtn" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="#4285F4"><path d="M19.5 4H18V2.5a1 1 0 0 0-2 0V4H8V2.5a1 1 0 0 0-2 0V4H4.5A2.5 2.5 0 0 0 2 6.5v13A2.5 2.5 0 0 0 4.5 22h15a2.5 2.5 0 0 0 2.5-2.5v-13A2.5 2.5 0 0 0 19.5 4zm.5 15.5a.5.5 0 0 1-.5.5h-15a.5.5 0 0 1-.5-.5V10h16v9.5zm0-11.5H4V6.5a.5.5 0 0 1 .5-.5H6v1a1 1 0 0 0 2 0V6h8v1a1 1 0 0 0 2 0V6h1.5a.5.5 0 0 1 .5.5V8z"/></svg>
-            <span data-i18n="cal.google">Open in Google Calendar (Web)</span>
+            <span data-i18n="cal.google">Google Calendar (Web)</span>
           </a>
+
+          <!-- Option 3: Outlook -->
           <button type="button" class="cal-target-btn" id="outlookCalBtn">
             <svg viewBox="0 0 24 24" fill="#0078D4"><path d="M21.5 4h-19A2.5 2.5 0 0 0 0 6.5v11A2.5 2.5 0 0 0 2.5 20h19a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 21.5 4zm-1.1 2-7.9 5.27L4.6 6h15.8zm1.6 11.5a.5.5 0 0 1-.5.5h-19a.5.5 0 0 1-.5-.5V8.13l8.69 5.8a1.5 1.5 0 0 0 1.62 0L22 8.13v9.37z"/></svg>
             <span data-i18n="cal.outlook">Outlook / Web Calendar (.ics)</span>
           </button>
         </div>
-        <p class="cal-note" style="margin-top:10px;font-size:0.7rem;color:var(--ink-muted);" data-i18n="cal.phoneTip">💡 Tip: To get automatic reminder notifications directly on your Android or iPhone, tap “Add to Phone Calendar”.</p>
+        <p class="cal-note" style="margin-top:10px;font-size:0.7rem;color:var(--ink-muted);" data-i18n="cal.phoneTip">💡 Recommended for automatic reminder notifications (7 days &amp; 2 days prior) on your phone.</p>
       </div>
     </div>
   </div>
