@@ -2504,6 +2504,29 @@ function updateCalendarLinks() {
   if (googleBtn) googleBtn.href = googleUrl;
 }
 
+function handlePhoneCalendar() {
+  if (selectedReminderDays.size === 0) {
+    toast(t('cal.pickOne'));
+    return;
+  }
+  const ua = navigator.userAgent || navigator.vendor || window.opera || '';
+  const isAndroid = /android/i.test(ua);
+  const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  if (isAndroid) {
+    // On Android, opening Google Calendar web URL immediately opens the native Calendar app or sheet
+    const googleBtn = $('#googleCalBtn');
+    if (googleBtn && googleBtn.href) {
+      window.open(googleBtn.href, '_blank');
+      toast(t('cal.savedAndroid'));
+      return;
+    }
+  }
+
+  // On iOS, macOS, Windows or other devices, trigger the RFC5545 .ics file
+  downloadIcsFile();
+}
+
 function downloadIcsFile() {
   if (selectedReminderDays.size === 0) {
     toast(t('cal.pickOne'));
@@ -2577,7 +2600,7 @@ function initCalendarWidget() {
   });
 
   const appleBtn = $('#appleCalBtn');
-  if (appleBtn) appleBtn.addEventListener('click', downloadIcsFile);
+  if (appleBtn) appleBtn.addEventListener('click', handlePhoneCalendar);
   const outlookBtn = $('#outlookCalBtn');
   if (outlookBtn) outlookBtn.addEventListener('click', downloadIcsFile);
 
@@ -2715,4 +2738,7 @@ $('#rsvpForm').addEventListener('submit', async (e) => {
     }, 200);
   }
 });
-</script></body></html>
+</script>
+<!-- Vercel Web Analytics -->
+<script defer src="/_vercel/insights/script.js"></script>
+</body></html>
