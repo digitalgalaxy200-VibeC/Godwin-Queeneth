@@ -2209,8 +2209,8 @@ footer {
           </select>
         </div>
         <div class="field full">
-          <label for="guestMessage" data-i18n="rsvp.messageLabel">Wishes for the Couple (Optional)</label>
-          <textarea id="guestMessage" name="guestMessage" placeholder="Leave your prayers and kind words\u2026" data-i18n-placeholder="rsvp.messagePlaceholder"></textarea>
+          <label for="guestMessage" data-i18n="rsvp.messageLabel">Wishes &amp; Prayers for the Couple</label>
+          <textarea id="guestMessage" name="guestMessage" required placeholder="Leave your prayers and kind words\u2026" data-i18n-placeholder="rsvp.messagePlaceholder"></textarea>
         </div>
         <button class="btn" type="submit" data-i18n="rsvp.submit">SEND RSVP</button>
       </form>
@@ -2244,7 +2244,7 @@ footer {
           <button type="button" class="cal-target-btn" id="appleCalBtn" style="justify-content:space-between;">
             <div style="display:flex;align-items:center;gap:10px;">
               <svg viewBox="0 0 24 24" fill="#3d005c"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
-              <span data-i18n="cal.downloadIcs">Phone Calendar (Android &amp; iPhone)</span>
+              <span data-i18n="cal.downloadIcs">Add to Phone (iPhone &amp; Android)</span>
             </div>
             <span style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.12em;padding:3px 8px;border-radius:12px;background:rgba(184,145,80,0.18);color:#8a6422;border:1px solid rgba(184,145,80,0.4);" data-i18n="cal.recommendedBadge">RECOMMENDED</span>
           </button>
@@ -2252,16 +2252,16 @@ footer {
           <!-- Option 2: Google Calendar -->
           <a href="#" class="cal-target-btn" id="googleCalBtn" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="#4285F4"><path d="M19.5 4H18V2.5a1 1 0 0 0-2 0V4H8V2.5a1 1 0 0 0-2 0V4H4.5A2.5 2.5 0 0 0 2 6.5v13A2.5 2.5 0 0 0 4.5 22h15a2.5 2.5 0 0 0 2.5-2.5v-13A2.5 2.5 0 0 0 19.5 4zm.5 15.5a.5.5 0 0 1-.5.5h-15a.5.5 0 0 1-.5-.5V10h16v9.5zm0-11.5H4V6.5a.5.5 0 0 1 .5-.5H6v1a1 1 0 0 0 2 0V6h8v1a1 1 0 0 0 2 0V6h1.5a.5.5 0 0 1 .5.5V8z"/></svg>
-            <span data-i18n="cal.google">Google Calendar (Web)</span>
+            <span data-i18n="cal.google">Add to Google Calendar (Laptops &amp; Web)</span>
           </a>
 
           <!-- Option 3: Outlook -->
           <button type="button" class="cal-target-btn" id="outlookCalBtn">
             <svg viewBox="0 0 24 24" fill="#0078D4"><path d="M21.5 4h-19A2.5 2.5 0 0 0 0 6.5v11A2.5 2.5 0 0 0 2.5 20h19a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 21.5 4zm-1.1 2-7.9 5.27L4.6 6h15.8zm1.6 11.5a.5.5 0 0 1-.5.5h-19a.5.5 0 0 1-.5-.5V8.13l8.69 5.8a1.5 1.5 0 0 0 1.62 0L22 8.13v9.37z"/></svg>
-            <span data-i18n="cal.outlook">Outlook / Web Calendar (.ics)</span>
+            <span data-i18n="cal.outlook">Add to Outlook / Web Calendar</span>
           </button>
         </div>
-        <p class="cal-note" style="margin-top:10px;font-size:0.7rem;color:var(--ink-muted);" data-i18n="cal.phoneTip">💡 Recommended for automatic reminder notifications (7 days &amp; 2 days prior) on your phone.</p>
+        <p class="cal-note" style="margin-top:10px;font-size:0.7rem;color:var(--ink-muted);" data-i18n="cal.phoneTip">💡 On phones: Tap “Add to Phone” for automatic popup reminder alarms. On laptops: Click “Add to Google Calendar”.</p>
       </div>
     </div>
   </div>
@@ -2651,7 +2651,7 @@ $('#rsvpForm').addEventListener('submit', async (e) => {
   const party = $('#partySize').value;
   const message = $('#guestMessage').value.trim();
 
-  if(!name || !attendance){
+  if(!name || !phone || !attendance || !message){
     toast(t('rsvp.validationToast'));
     return;
   }
