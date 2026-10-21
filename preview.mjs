@@ -16,6 +16,7 @@ const types = {
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.webp': 'image/webp',
+  '.mp3': 'audio/mpeg',
   '.ico': 'image/x-icon',
   '.woff2': 'font/woff2',
 };

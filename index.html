@@ -441,7 +441,8 @@
 .petal {
   position: absolute; top: -10vh; width: 12px; height: 18px; border-radius: 80% 0 80% 0;
   background: linear-gradient(135deg, #fff0e8, var(--peach));
-  opacity: 0; filter: drop-shadow(0 2px 4px rgba(61,0,92,0.18));
+  opacity: 0;
+  will-change: transform, opacity;
   animation: petalFall var(--dur, 16s) linear var(--delay, 0s) infinite;
 }
 @keyframes petalFall {
@@ -463,10 +464,12 @@ body {
   background-image: 
     radial-gradient(ellipse at 50% 0%, rgba(255, 250, 245, 0.75) 0%, rgba(246, 237, 230, 0.88) 100%),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%233d005c' fill-opacity='0.055'%3E%3Cpath d='M40 0 C45 15, 65 20, 80 20 C65 20, 60 40, 60 40 C60 40, 75 45, 80 60 C65 60, 45 65, 40 80 C35 65, 15 60, 0 60 C15 60, 20 40, 20 40 C20 40, 5 35, 0 20 C15 20, 35 15, 40 0 Z M40 18 C38 28, 28 38, 18 40 C28 42, 38 52, 40 62 C42 52, 52 42, 62 40 C52 38, 42 28, 40 18 Z'/%3E%3Ccircle cx='40' cy='40' r='3.5'/%3E%3C/g%3E%3C/svg%3E");
-  background-attachment: fixed;
   background-size: auto, 70px 70px;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+@media (min-width: 768px) {
+  body { background-attachment: fixed; }
 }
 
 body.locked { overflow: hidden; }
@@ -1688,11 +1691,27 @@ footer {
   margin: 6px 0;
 }
 .footer-tag {
-  letter-spacing: 0.2em;
+  letter-spacing: 0.28em;
   font-family: var(--font-sans);
-  font-size: 0.74rem;
-  color: rgba(255,255,255,0.7);
-  margin-bottom: 24px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  margin: 10px auto 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 18px;
+  border: 1px solid rgba(199, 167, 106, 0.4);
+  border-radius: 24px;
+  background: rgba(61, 0, 92, 0.45);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+.footer-tag::before,
+.footer-tag::after {
+  content: '✦';
+  font-size: 0.62rem;
+  color: var(--gold-accent);
 }
 .footer-small {
   font-family: var(--font-sans);
@@ -1809,6 +1828,35 @@ footer {
 .lang-btn:focus-visible { outline: 1px solid var(--gold-light); outline-offset: 2px; border-radius: 2px; }
 .lang-sep { color: rgba(255, 244, 236, 0.35); font-size: 0.65rem; }
 
+/* ── Floating / Header Audio Player Control ── */
+.music-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-hairline);
+  background: rgba(30, 10, 38, 0.65);
+  backdrop-filter: blur(8px);
+  color: var(--gold-light);
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  padding: 0;
+}
+.music-toggle:hover {
+  transform: scale(1.08);
+  border-color: var(--gold-primary);
+  background: rgba(61, 0, 92, 0.85);
+}
+.music-toggle.playing svg {
+  animation: rotateVinyl 4s linear infinite;
+}
+@keyframes rotateVinyl {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 /* Hold translated text back until the language layer has run. */
 .i18n-pending .card-eyebrow,
 .i18n-pending .card-invited,
@@ -1864,7 +1912,8 @@ footer {
   </div>
   <p class="env-hint" data-i18n="intro.hint">Tap the seal to open your invitation</p>
 </div>
-<nav><a class="brand" href="#home" aria-label="The GQ Affair home" data-i18n-aria="nav.brandLabel">G <span>&amp;</span> Q</a><div class="nav-links" id="navLinks"><a href="#home" data-i18n="nav.home">Home</a><a href="#countdown-section" data-i18n="nav.countdown">Countdown</a><a href="#details" data-i18n="nav.day">The Day</a><a href="#story" data-i18n="nav.journey">Our Journey</a><a href="#gallery" data-i18n="nav.moments">Moments</a><a href="#gifts" data-i18n="nav.gifts">Gifts</a><a href="#rsvp" data-i18n="nav.rsvp">RSVP</a></div><div class="nav-actions"><div class="lang-switch" role="group" aria-label="Language / Langue"><button type="button" class="lang-btn" data-lang-btn="en" aria-pressed="false">EN</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" class="lang-btn" data-lang-btn="fr" aria-pressed="false">FR</button></div><button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" data-i18n-aria="nav.menuLabel" data-i18n="nav.menu">Menu</button></div></nav>
+<nav><a class="brand" href="#home" aria-label="The GQ Affair home" data-i18n-aria="nav.brandLabel">G <span>&amp;</span> Q</a><div class="nav-links" id="navLinks"><a href="#home" data-i18n="nav.home">Home</a><a href="#countdown-section" data-i18n="nav.countdown">Countdown</a><a href="#details" data-i18n="nav.day">The Day</a><a href="#story" data-i18n="nav.journey">Our Journey</a><a href="#gifts" data-i18n="nav.gifts">Gifts</a><a href="#rsvp" data-i18n="nav.rsvp">RSVP</a></div><div class="nav-actions"><button type="button" class="music-toggle" id="musicToggle" aria-label="Play or pause background music" title="Play / Pause Music" data-i18n-aria="music.label" data-i18n-title="music.title"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></button><div class="lang-switch" role="group" aria-label="Language / Langue"><button type="button" class="lang-btn" data-lang-btn="en" aria-pressed="false">EN</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" class="lang-btn" data-lang-btn="fr" aria-pressed="false">FR</button></div><button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" data-i18n-aria="nav.menuLabel" data-i18n="nav.menu">Menu</button></div></nav>
+<audio id="bgMusic" src="assets/music.mp3" preload="none" loop></audio>
 <main>
 <header class="hero" id="home">
   <div class="hero-inner">
@@ -1886,10 +1935,10 @@ footer {
 <section class="countdown-section" id="countdown-section">
   <div class="section-wrap">
     <div class="section-head reveal">
-      <span class="eyebrow" data-i18n="countdown.eyebrow">The Day We Say “I Do” is Drawing Near</span>
+      <span class="eyebrow" data-i18n="countdown.eyebrow">Save Our Date · 15 November 2026</span>
       <h2><span data-i18n="countdown.titleLead">Counting Down to</span> <em data-i18n="countdown.titleEm">Forever</em></h2>
       <div class="ornament"><span>✦</span></div>
-      <p data-i18n="countdown.intro">The day we say “I do” is drawing near. We cannot wait to share this beautiful moment with you.</p>
+      <p data-i18n="countdown.intro">We cannot wait to celebrate our love and exchange our vows with you.</p>
     </div>
     <div class="countdown reveal" id="countdown" aria-live="polite">
       <div class="time-box"><strong id="days">--</strong><span data-i18n="countdown.days">Days</span></div>
@@ -2016,7 +2065,7 @@ footer {
       <div class="chapter-copy">
         <span class="eyebrow" data-i18n="story.feature2Eyebrow">Friendship &amp; Faith</span>
         <h3 data-i18n="story.feature2Title">A Promise That Has Grown With Us</h3>
-        <p data-i18n="story.feature2Text">Through friendship, faith and life’s many seasons, we have continued to grow together and build the future we dreamed of.</p>
+        <p data-i18n="story.feature2Text">Through friendship, faith and life’s many seasons, we remain on a shared journey — growing together, strengthening our faith, and building the future we envisioned.</p>
       </div>
     </div>
 
@@ -2030,7 +2079,7 @@ footer {
       <div class="chapter-copy">
         <span class="eyebrow" data-i18n="story.feature3Eyebrow">Culture &amp; Heritage</span>
         <h3 data-i18n="story.feature3Title">Wrapped in Heritage, Rooted in Love</h3>
-        <p data-i18n="story.feature3Text">Celebrating the love, culture and families that are part of our story.</p>
+        <p data-i18n="story.feature3Text">Honouring our roots, our traditions, and the rich legacy of family that brought us here.</p>
       </div>
     </div>
 
@@ -2051,48 +2100,6 @@ footer {
   </div>
 </section>
 
-<!-- ── Moments (Curated Gallery) ── -->
-<section class="gallery-section" id="gallery">
-  <div class="section-wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow" data-i18n="gallery.eyebrow">Curated Portraits</span>
-      <h2><span data-i18n="gallery.titleLead">Curated</span> <em data-i18n="gallery.titleEm">Portraits</em></h2>
-      <div class="ornament"><span>❦</span></div>
-      <p data-i18n="gallery.intro">Moments reflecting eleven years of friendship, love, and our journey to forever. Tap any photo to view in full.</p>
-    </div>
-    <div class="gallery-grid reveal">
-      <div class="gallery-tile" data-image="assets/gq-couple-elegant.jpg">
-        <picture>
-          <source srcset="assets/gq-couple-elegant.webp" type="image/webp">
-          <img src="assets/gq-couple-elegant.jpg" alt="A Love, Chosen with Intention — Godwin and Queeneth" loading="lazy" decoding="async" data-i18n-alt="gallery.alt1">
-        </picture>
-        <span data-i18n="gallery.tile1">A Love, Chosen with Intention</span>
-      </div>
-      <div class="gallery-tile" data-image="assets/gq-couple-romantic.jpg">
-        <picture>
-          <source srcset="assets/gq-couple-romantic.webp" type="image/webp">
-          <img src="assets/gq-couple-romantic.jpg" alt="A Promise That Has Grown With Us — Godwin and Queeneth" loading="lazy" decoding="async" data-i18n-alt="gallery.alt2">
-        </picture>
-        <span data-i18n="gallery.tile2">A Promise That Has Grown With Us</span>
-      </div>
-      <div class="gallery-tile" data-image="assets/gq-couple-traditional-close.jpg">
-        <picture>
-          <source srcset="assets/gq-couple-traditional-close.webp" type="image/webp">
-          <img src="assets/gq-couple-traditional-close.jpg" alt="Wrapped in Heritage, Rooted in Love — Godwin and Queeneth" loading="lazy" decoding="async" data-i18n-alt="gallery.alt3">
-        </picture>
-        <span data-i18n="gallery.tile3">Wrapped in Heritage, Rooted in Love</span>
-      </div>
-      <div class="gallery-tile" data-image="assets/gq-couple-traditional.jpg">
-        <picture>
-          <source srcset="assets/gq-couple-traditional.webp" type="image/webp">
-          <img src="assets/gq-couple-traditional.jpg" alt="Two Families, One Beautiful Beginning — Godwin and Queeneth" loading="lazy" decoding="async" data-i18n-alt="gallery.alt4">
-        </picture>
-        <span data-i18n="gallery.tile4">Two Families, One Beautiful Beginning</span>
-      </div>
-    </div>
-    <p class="gallery-footnote" data-i18n="gallery.footnote">Tap any portrait to enlarge</p>
-  </div>
-</section>
 
 <!-- ── Wedding Colours ── -->
 <section class="palette">
@@ -2297,7 +2304,7 @@ footer {
       <svg class="designer-wa-icon" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.01-1.24-.74-.66-1.25-1.48-1.39-1.73-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.45s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28z"/>
       </svg>
-      <span><span data-i18n="designer.by">Designed by</span> <strong>Godwin</strong></span>
+      <span><strong>Godwin</strong></span>
     </a>
   </div>
 </footer>
@@ -2331,6 +2338,9 @@ function openEnvelope(e){
     return;
   }
 
+  // Start background romantic music upon opening the envelope (interaction fulfilled)
+  playAudioSafely();
+
   // Stage 1: Break seal & flip triangular flap open (3D fold)
   env.classList.add('opening');
 
@@ -2342,6 +2352,36 @@ function openEnvelope(e){
       document.body.classList.remove('locked');
     }, 850);
   }, 1600);
+}
+
+const bgMusic = $('#bgMusic');
+const musicToggle = $('#musicToggle');
+
+function playAudioSafely() {
+  if (!bgMusic) return;
+  bgMusic.volume = 0.55;
+  const playPromise = bgMusic.play();
+  if (playPromise !== undefined) {
+    playPromise.then(() => {
+      if (musicToggle) musicToggle.classList.add('playing');
+    }).catch(err => {
+      console.log('Audio autoplay prevented:', err);
+    });
+  }
+}
+
+function toggleAudio() {
+  if (!bgMusic) return;
+  if (bgMusic.paused) {
+    playAudioSafely();
+  } else {
+    bgMusic.pause();
+    if (musicToggle) musicToggle.classList.remove('playing');
+  }
+}
+
+if (musicToggle) {
+  musicToggle.addEventListener('click', toggleAudio);
 }
 
 $('#envSeal').addEventListener('click', openEnvelope);

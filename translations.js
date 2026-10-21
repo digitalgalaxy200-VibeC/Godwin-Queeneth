@@ -37,15 +37,15 @@ window.GQ_I18N = {
     'hero.rsvpBtn': 'CONFIRM YOUR ATTENDANCE',
     'hero.scroll': 'Scroll to Explore',
 
-    'countdown.eyebrow': 'The Day We Say “I Do” is Drawing Near',
+    'countdown.eyebrow': 'Save Our Date · 15 November 2026',
     'countdown.titleLead': 'Counting Down to',
     'countdown.titleEm': 'Forever',
-    'countdown.intro': 'The day we say “I do” is drawing near. We cannot wait to share this beautiful moment with you.',
+    'countdown.intro': 'We cannot wait to celebrate our love and exchange our vows with you.',
     'countdown.days': 'Days',
     'countdown.hours': 'Hours',
     'countdown.minutes': 'Minutes',
     'countdown.seconds': 'Seconds',
-    'countdown.msg': 'The day we say “I do” is drawing near.',
+    'countdown.msg': 'The countdown to our forever continues.',
     'countdown.today': 'Today is the day. We cannot wait to celebrate with you.',
     'countdown.done': 'Thank you for celebrating #TheGQaffair.',
 
@@ -92,13 +92,11 @@ window.GQ_I18N = {
     
     'story.feature2Eyebrow': 'Friendship & Faith',
     'story.feature2Title': 'A Promise That Has Grown With Us',
-    'story.feature2Caption': 'Eleven years in the making',
-    'story.feature2Text': 'Through friendship, faith and life\'s many seasons, we have continued to grow together and build the future we dreamed of.',
+    'story.feature2Text': 'Through friendship, faith and life\'s many seasons, we remain on a shared journey — growing together, strengthening our faith, and building the future we envisioned.',
 
     'story.feature3Eyebrow': 'Culture & Heritage',
     'story.feature3Title': 'Wrapped in Heritage, Rooted in Love',
-    'story.feature3Caption': 'Culture, family & love',
-    'story.feature3Text': 'Celebrating the love, culture and families that are part of our story.',
+    'story.feature3Text': 'Honouring our roots, our traditions, and the rich legacy of family that brought us here.',
 
     'story.feature4Eyebrow': 'Our New Beginning',
     'story.feature4Title': 'Two Families, One Beautiful Beginning',
@@ -230,6 +228,9 @@ window.GQ_I18N = {
     'cal.icsLocation': '16 Community Road, opposite First Bank, Satellite Town, Lagos, Nigeria',
     'cal.scheduleHeader': '🔔 Selected Reminders Schedule:',
     'cal.scheduleLine': '• {n} Days Prior: {date}',
+
+    'music.label': 'Play or pause background music',
+    'music.title': 'Play / Pause Music',
     'cal.google': 'Add to Google Calendar',
     'cal.apple': 'Apple / iPhone Calendar (.ics)',
     'cal.outlook': 'Outlook / Other Calendars (.ics)',
@@ -275,15 +276,15 @@ window.GQ_I18N = {
     'hero.rsvpBtn': 'CONFIRMER VOTRE PRÉSENCE',
     'hero.scroll': 'Faites défiler',
 
-    'countdown.eyebrow': 'Le jour de nos vœux approche',
+    'countdown.eyebrow': 'Réservez notre date · 15 novembre 2026',
     'countdown.titleLead': 'Compte à rebours vers',
     'countdown.titleEm': 'l’éternité',
-    'countdown.intro': 'Le jour où nous dirons « oui » approche à grands pas. Nous avons hâte de partager ce moment magnifique avec vous.',
+    'countdown.intro': 'Nous avons hâte de célébrer notre amour et d’échanger nos vœux à vos côtés.',
     'countdown.days': 'Jours',
     'countdown.hours': 'Heures',
     'countdown.minutes': 'Minutes',
     'countdown.seconds': 'Secondes',
-    'countdown.msg': 'Le jour où nous dirons « oui » approche à grands pas.',
+    'countdown.msg': 'Le compte à rebours vers notre pour toujours se poursuit.',
     'countdown.today': 'C’est aujourd’hui. Nous avons hâte de célébrer avec vous.',
     'countdown.done': 'Merci d’avoir célébré #TheGQaffair.',
 
@@ -330,13 +331,11 @@ window.GQ_I18N = {
 
     'story.feature2Eyebrow': 'Amitié & foi',
     'story.feature2Title': 'Une promesse qui a grandi avec nous',
-    'story.feature2Caption': 'Onze ans de complicité',
-    'story.feature2Text': 'À travers l’amitié, la foi et les différentes saisons de la vie, nous avons continué à grandir ensemble et à bâtir l’avenir dont nous rêvions.',
+    'story.feature2Text': 'À travers l’amitié, la foi et les saisons de la vie, nous poursuivons un cheminement partagé — grandissant ensemble, affermissant notre foi et bâtissant pas à pas l’avenir que nous imaginions.',
 
     'story.feature3Eyebrow': 'Culture & traditions',
     'story.feature3Title': 'Enveloppés d’héritage, enracinés dans l’amour',
-    'story.feature3Caption': 'Culture, famille & amour',
-    'story.feature3Text': 'Célébrer l’amour, la culture et les familles qui font partie intégrante de notre histoire.',
+    'story.feature3Text': 'Honorant nos racines, nos traditions et le précieux héritage familial qui nous a conduits jusqu’ici.',
 
     'story.feature4Eyebrow': 'Notre nouveau départ',
     'story.feature4Title': 'Deux familles, un nouveau commencement',
@@ -468,6 +467,9 @@ window.GQ_I18N = {
     'cal.icsLocation': '16 Community Road, en face de First Bank, Satellite Town, Lagos, Nigeria',
     'cal.scheduleHeader': '🔔 Calendrier de vos rappels :',
     'cal.scheduleLine': '• {n} jours avant : {date}',
+
+    'music.label': 'Lire ou mettre en pause la musique de fond',
+    'music.title': 'Lire / Mettre en pause la musique',
     'cal.google': 'Ajouter à Google Agenda',
     'cal.apple': 'Calendrier Apple / iPhone (.ics)',
     'cal.outlook': 'Outlook / Autres calendriers (.ics)',
