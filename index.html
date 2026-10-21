@@ -2072,7 +2072,6 @@ footer {
     <div class="story-chapter reveal">
       <div class="chapter-image">
         <picture>
-          <source srcset="assets/gq-couple-traditional-close.webp" type="image/webp">
           <img src="assets/gq-couple-traditional-close.jpg" alt="Wrapped in Heritage, Rooted in Love" loading="lazy" decoding="async" data-i18n-alt="story.alt3">
         </picture>
       </div>
@@ -2370,6 +2369,7 @@ function openEnvelope(e){
 
 const bgMusic = $('#bgMusic');
 const musicToggle = $('#musicToggle');
+let wasMusicPlayingBeforeLeave = false;
 
 function playAudioSafely() {
   if (!bgMusic) return;
@@ -2384,19 +2384,48 @@ function playAudioSafely() {
   }
 }
 
+function pauseAudioSafely() {
+  if (!bgMusic) return;
+  bgMusic.pause();
+  if (musicToggle) musicToggle.classList.remove('playing');
+}
+
 function toggleAudio() {
   if (!bgMusic) return;
   if (bgMusic.paused) {
     playAudioSafely();
   } else {
-    bgMusic.pause();
-    if (musicToggle) musicToggle.classList.remove('playing');
+    pauseAudioSafely();
   }
 }
 
 if (musicToggle) {
   musicToggle.addEventListener('click', toggleAudio);
 }
+
+// Pause music when user leaves or switches apps/tabs, resume when they return
+document.addEventListener('visibilitychange', () => {
+  if (!bgMusic) return;
+  if (document.hidden) {
+    if (!bgMusic.paused) {
+      wasMusicPlayingBeforeLeave = true;
+      pauseAudioSafely();
+    }
+  } else {
+    if (wasMusicPlayingBeforeLeave) {
+      wasMusicPlayingBeforeLeave = false;
+      playAudioSafely();
+    }
+  }
+});
+
+window.addEventListener('pagehide', () => {
+  if (bgMusic && !bgMusic.paused) {
+    wasMusicPlayingBeforeLeave = true;
+    pauseAudioSafely();
+  }
+});
+
 
 $('#envSeal').addEventListener('click', openEnvelope);
 $('#openInvitation').addEventListener('click', openEnvelope);
