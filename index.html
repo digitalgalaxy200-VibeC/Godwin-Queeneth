@@ -1876,7 +1876,7 @@ footer {
   <div class="intro-date-strip" aria-hidden="true">
     <p class="strip-couple">Godwin &amp; Queeneth</p>
     <div class="strip-divider"></div>
-    <p class="strip-date" data-i18n="intro.stripDate">Sunday · 15 November 2026 · 10:00 AM</p>
+    <p class="strip-date" data-i18n="intro.stripDate">Sunday · 15 November 2026 · 9:00 AM</p>
     <p class="strip-tag">#TheGQaffair</p>
   </div>
 
@@ -1890,7 +1890,7 @@ footer {
       <p class="card-eyebrow" data-i18n="intro.cardEyebrow">The Wedding Celebration of</p>
       <h2 class="card-names">Godwin &amp; Queeneth</h2>
       <p class="card-invited" data-i18n="intro.cardInvited">You Are Cordially Invited</p>
-      <p class="card-date" data-i18n="intro.cardDate">Sunday · 15 November 2026 · 10:00 AM</p>
+      <p class="card-date" data-i18n="intro.cardDate">Sunday · 15 November 2026 · 9:00 AM</p>
       <button class="card-open-btn" id="openInvitation" data-i18n="intro.viewInvitation">VIEW OUR INVITATION</button>
     </div>
 
@@ -1921,7 +1921,7 @@ footer {
     <span class="eyebrow" data-i18n="hero.eyebrow">TOGETHER WITH OUR FAMILIES</span>
     <h1>Godwin <span>&amp; Queeneth</span></h1>
     <div class="ornament"><span>❧</span></div>
-    <p class="hero-date" data-i18n="hero.date">Sunday, 15 November 2026 · 10:00 AM</p>
+    <p class="hero-date" data-i18n="hero.date">Sunday, 15 November 2026 · 9:00 AM</p>
     <p class="hashtag">#TheGQaffair</p>
     <div class="button-row">
       <a class="btn gold" href="#details" data-i18n="hero.detailsBtn">VIEW WEDDING DETAILS</a>
@@ -1964,7 +1964,7 @@ footer {
         <div class="event-icon" aria-hidden="true">⛪</div>
         <span class="eyebrow" data-i18n="details.ceremonyEyebrow">Sacred Vows</span>
         <h3 data-i18n="details.ceremonyTitle">Ceremony</h3>
-        <p class="event-time" data-i18n="details.ceremonyTime">Sunday, 15 November 2026 · 10:00 AM</p>
+        <p class="event-time" data-i18n="details.ceremonyTime">Sunday, 15 November 2026 · 9:00 AM</p>
         <p data-i18n-html="details.address">16 Community Road,<br>opposite First Bank,<br>Satellite Town, Lagos, Nigeria.</p>
         <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=16%20Community%20Road%2C%20opposite%20First%20Bank%2C%20Satellite%20Town%2C%20Lagos%2C%20Nigeria" data-i18n="details.directions">Get Directions on Google Maps ↗</a>
       </article>
@@ -2224,44 +2224,35 @@ footer {
 
       <!-- ── Post-RSVP: Add to Calendar (shown after submission) ── -->
       <div class="cal-widget-rsvp" id="calWidgetRsvp" style="display:none;margin-top:24px;padding-top:22px;border-top:1px dashed rgba(184,145,80,0.3);">
-        <p style="font-family:var(--font-sans);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-primary);margin:0 0 10px;" data-i18n="cal.heading">📅 Save the Date to Your Calendar</p>
-        <p style="font-size:0.9rem;color:var(--ink-muted);margin:0 0 14px;" data-i18n="cal.intro">Choose one or more reminder times, then select your calendar app below.</p>
+        <p style="font-family:var(--font-sans);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-primary);margin:0 0 8px;" data-i18n="cal.heading">📅 Save the Date to Your Calendar</p>
+        <p style="font-size:0.92rem;color:var(--ink-deep);font-weight:500;margin:0 0 16px;" data-i18n="cal.dateLine">Sunday, 15 November 2026 · 9:00 AM – 5:00 PM</p>
 
-        <!-- Multi-select reminder pills -->
-        <div style="margin-bottom:14px;">
-          <p style="font-family:var(--font-sans);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#796c7b;margin:0 0 8px;" data-i18n="cal.selectLabel">Select Reminders (tap to toggle):</p>
-          <div class="cal-reminder-pills" id="calReminderPills" style="display:flex;gap:8px;flex-wrap:wrap;">
-            <button type="button" class="cal-pill active" data-days="2" aria-pressed="true">✓ 2 Days Prior</button>
-            <button type="button" class="cal-pill" data-days="5" aria-pressed="false">5 Days Prior</button>
-            <button type="button" class="cal-pill active" data-days="7" aria-pressed="true">✓ 7 Days Prior</button>
-          </div>
-          <p class="cal-note" id="calActiveNotice" style="font-size:0.8rem;color:var(--gold-primary);margin:8px 0 0;font-style:italic;">Reminders set: 2 days and 7 days before the wedding.</p>
-        </div>
-
-        <!-- Calendar app buttons -->
-        <div class="cal-targets" style="display:flex;flex-direction:column;gap:8px;">
-          <!-- Option 1: Phone Calendar (with RECOMMENDED pill badge) -->
-          <button type="button" class="cal-target-btn" id="appleCalBtn" style="justify-content:space-between;">
-            <div style="display:flex;align-items:center;gap:10px;">
-              <svg viewBox="0 0 24 24" fill="#3d005c"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
-              <span data-i18n="cal.downloadIcs">Add to Phone (iPhone &amp; Android)</span>
+        <!-- Direct calendar app buttons -->
+        <div class="cal-targets" style="display:flex;flex-direction:column;gap:10px;">
+          <!-- Primary 1-Tap button: Smartly opens native calendar on Phone or Web -->
+          <button type="button" class="cal-target-btn" id="addToCalBtn" style="background:#fdfaf6;border:1px solid #dcc8a4;padding:12px 16px;border-radius:4px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all 0.2s;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <svg viewBox="0 0 24 24" fill="#3d005c" style="width:20px;height:20px;flex-shrink:0;"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+              <div style="text-align:left;">
+                <span style="font-weight:600;font-size:0.85rem;color:var(--ink-deep);display:block;" data-i18n="cal.addBtnTitle">Add to My Calendar</span>
+                <span style="font-size:0.72rem;color:var(--ink-muted);" data-i18n="cal.addBtnSub">Opens your calendar app — tap Save to confirm</span>
+              </div>
             </div>
-            <span style="font-family:var(--font-sans);font-size:0.58rem;font-weight:700;letter-spacing:0.12em;padding:3px 8px;border-radius:12px;background:rgba(184,145,80,0.18);color:#8a6422;border:1px solid rgba(184,145,80,0.4);" data-i18n="cal.recommendedBadge">RECOMMENDED</span>
+            <span style="font-family:var(--font-sans);font-size:0.6rem;font-weight:700;letter-spacing:0.12em;padding:4px 9px;border-radius:12px;background:rgba(184,145,80,0.18);color:#8a6422;border:1px solid rgba(184,145,80,0.4);" data-i18n="cal.badge">1-TAP SAVE</span>
           </button>
 
-          <!-- Option 2: Google Calendar -->
-          <a href="#" class="cal-target-btn" id="googleCalBtn" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="#4285F4"><path d="M19.5 4H18V2.5a1 1 0 0 0-2 0V4H8V2.5a1 1 0 0 0-2 0V4H4.5A2.5 2.5 0 0 0 2 6.5v13A2.5 2.5 0 0 0 4.5 22h15a2.5 2.5 0 0 0 2.5-2.5v-13A2.5 2.5 0 0 0 19.5 4zm.5 15.5a.5.5 0 0 1-.5.5h-15a.5.5 0 0 1-.5-.5V10h16v9.5zm0-11.5H4V6.5a.5.5 0 0 1 .5-.5H6v1a1 1 0 0 0 2 0V6h8v1a1 1 0 0 0 2 0V6h1.5a.5.5 0 0 1 .5.5V8z"/></svg>
-            <span data-i18n="cal.google">Add to Google Calendar (Laptops &amp; Web)</span>
+          <!-- Alternative 1: Google Calendar Web -->
+          <a href="#" class="cal-target-btn" id="googleCalBtn" target="_blank" rel="noopener noreferrer" style="background:#fdfaf6;border:1px solid #e5d5ba;padding:10px 14px;border-radius:4px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink-deep);font-size:0.76rem;">
+            <svg viewBox="0 0 24 24" fill="#4285F4" style="width:18px;height:18px;flex-shrink:0;"><path d="M19.5 4H18V2.5a1 1 0 0 0-2 0V4H8V2.5a1 1 0 0 0-2 0V4H4.5A2.5 2.5 0 0 0 2 6.5v13A2.5 2.5 0 0 0 4.5 22h15a2.5 2.5 0 0 0 2.5-2.5v-13A2.5 2.5 0 0 0 19.5 4zm.5 15.5a.5.5 0 0 1-.5.5h-15a.5.5 0 0 1-.5-.5V10h16v9.5zm0-11.5H4V6.5a.5.5 0 0 1 .5-.5H6v1a1 1 0 0 0 2 0V6h8v1a1 1 0 0 0 2 0V6h1.5a.5.5 0 0 1 .5.5V8z"/></svg>
+            <span data-i18n="cal.google">Google Calendar (Web)</span>
           </a>
 
-          <!-- Option 3: Outlook -->
-          <button type="button" class="cal-target-btn" id="outlookCalBtn">
-            <svg viewBox="0 0 24 24" fill="#0078D4"><path d="M21.5 4h-19A2.5 2.5 0 0 0 0 6.5v11A2.5 2.5 0 0 0 2.5 20h19a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 21.5 4zm-1.1 2-7.9 5.27L4.6 6h15.8zm1.6 11.5a.5.5 0 0 1-.5.5h-19a.5.5 0 0 1-.5-.5V8.13l8.69 5.8a1.5 1.5 0 0 0 1.62 0L22 8.13v9.37z"/></svg>
-            <span data-i18n="cal.outlook">Add to Outlook / Web Calendar</span>
+          <!-- Alternative 2: Download .ics for Apple / Outlook -->
+          <button type="button" class="cal-target-btn" id="outlookCalBtn" style="background:#fdfaf6;border:1px solid #e5d5ba;padding:10px 14px;border-radius:4px;display:flex;align-items:center;gap:10px;color:var(--ink-deep);font-size:0.76rem;cursor:pointer;">
+            <svg viewBox="0 0 24 24" fill="#0078D4" style="width:18px;height:18px;flex-shrink:0;"><path d="M21.5 4h-19A2.5 2.5 0 0 0 0 6.5v11A2.5 2.5 0 0 0 2.5 20h19a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 21.5 4zm-1.1 2-7.9 5.27L4.6 6h15.8zm1.6 11.5a.5.5 0 0 1-.5.5h-19a.5.5 0 0 1-.5-.5V8.13l8.69 5.8a1.5 1.5 0 0 0 1.62 0L22 8.13v9.37z"/></svg>
+            <span data-i18n="cal.outlook">Apple / Outlook / Other (.ics)</span>
           </button>
         </div>
-        <p class="cal-note" style="margin-top:10px;font-size:0.7rem;color:var(--ink-muted);" data-i18n="cal.phoneTip">💡 On phones: Tap “Add to Phone” for automatic popup reminder alarms. On laptops: Click “Add to Google Calendar”.</p>
       </div>
     </div>
   </div>
@@ -2278,7 +2269,7 @@ footer {
     <div class="faq-list reveal">
       <div class="faq-item">
         <button class="faq-question" aria-expanded="false"><span data-i18n="faq.q1">When is the wedding ceremony?</span> <span class="plus">+</span></button>
-        <div class="faq-answer" data-i18n="faq.a1">Our wedding ceremony will take place on Sunday, 15 November 2026, at 10:00 AM. We encourage guests to arrive early so they can be seated before the ceremony begins.</div>
+        <div class="faq-answer" data-i18n="faq.a1">Our wedding ceremony will take place on Sunday, 15 November 2026, at 9:00 AM. We encourage guests to arrive early so they can be seated before the ceremony begins.</div>
       </div>
       <div class="faq-item">
         <button class="faq-question" aria-expanded="false"><span data-i18n="faq.q2">Where is the ceremony venue?</span> <span class="plus">+</span></button>
@@ -2448,102 +2439,28 @@ document.addEventListener('click', (e) => {
   }
 });
 // 10:00 AM in Africa/Lagos (UTC+1 on the wedding date).
-const target=new Date('2026-11-15T10:00:00+01:00').getTime();function tick(){let d=target-Date.now();if(d<=0){['days','hours','minutes','seconds'].forEach(id=>$('#'+id).textContent='0');$('#countdownMessage').textContent=d> -86400000?t('countdown.today'):t('countdown.done');return}const vals={days:Math.floor(d/86400000),hours:Math.floor(d%86400000/3600000),minutes:Math.floor(d%3600000/60000),seconds:Math.floor(d%60000/1000)};Object.entries(vals).forEach(([id,v])=>$('#'+id).textContent=String(v).padStart(2,'0'));$('#countdownMessage').textContent=t('countdown.msg')}tick();setInterval(tick,1000);
+const target=new Date('2026-11-15T09:00:00+01:00').getTime();function tick(){let d=target-Date.now();if(d<=0){['days','hours','minutes','seconds'].forEach(id=>$('#'+id).textContent='0');$('#countdownMessage').textContent=d> -86400000?t('countdown.today'):t('countdown.done');return}const vals={days:Math.floor(d/86400000),hours:Math.floor(d%86400000/3600000),minutes:Math.floor(d%3600000/60000),seconds:Math.floor(d%60000/1000)};Object.entries(vals).forEach(([id,v])=>$('#'+id).textContent=String(v).padStart(2,'0'));$('#countdownMessage').textContent=t('countdown.msg')}tick();setInterval(tick,1000);
 document.addEventListener('gq:langchange',tick);
 
-// ── Calendar & Multi-day Reminders (multi-select: 2, 5, 7 Days Prior) ──
-// selectedReminderDays is now a Set so multiple can be chosen
-const selectedReminderDays = new Set([2, 7]); // default: 7 days & 2 days prior selected
-
-function getSelectedDaysLabel() {
-  const sorted = [...selectedReminderDays].sort((a, b) => a - b);
-  if (sorted.length === 0) return t('cal.none');
-  const labels = sorted.map(d => d === 1 ? t('cal.dayOne') : t('cal.dayMany', { n: d }));
-  return t('cal.selected', { labels: formatDayList(labels) });
-}
-
-function formatDayList(labels) {
-  if (labels.length <= 1) return labels.join('');
-  return labels.slice(0, -1).join(', ') + t('cal.lastSeparator') + labels[labels.length - 1];
-}
-
-function refreshCalendarPills() {
-  document.querySelectorAll('#calReminderPills .cal-pill').forEach(pill => {
-    const days = parseInt(pill.dataset.days, 10);
-    const label = t('cal.pillDays', { n: days });
-    pill.textContent = (pill.classList.contains('active') ? '✓ ' : '') + label;
-  });
-}
-
-function escapeIcs(value) {
-  return value.replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;');
+// ── Calendar Event (9:00 AM – 5:00 PM WAT, Sunday 15 Nov 2026) ──
+function getGoogleCalendarUrl() {
+  const title = t('cal.icsSummary');
+  const details = t('cal.googleDetails');
+  const location = t('cal.icsLocation');
+  // 9:00 AM WAT = 08:00:00Z, 5:00 PM WAT = 16:00:00Z
+  return 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+    '&text=' + encodeURIComponent(title) +
+    '&dates=20261115T080000Z/20261115T160000Z' +
+    '&details=' + encodeURIComponent(details) +
+    '&location=' + encodeURIComponent(location);
 }
 
 function updateCalendarLinks() {
-  const title = t('cal.icsSummary');
-  const location = t('cal.icsLocation');
-  const weddingDate = new Date('2026-11-15T10:00:00+01:00');
-  const sortedDays = [...selectedReminderDays].sort((a,b) => b - a);
-  const dateLocale = window.GQ_i18n.lang === 'fr' ? 'fr-FR' : 'en-GB';
-  
-  // Dynamically calculate exact reminder dates for Google Calendar
-  const reminderScheduleLines = sortedDays.map(days => {
-    const rDate = new Date(weddingDate.getTime() - (days * 24 * 60 * 60 * 1000));
-    const formatted = rDate.toLocaleDateString(dateLocale, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-    return t('cal.scheduleLine', { n: days, date: formatted });
-  }).join('\n');
-
-  const details = `${t('cal.googleDetails')}\n\n${t('cal.scheduleHeader')}\n${reminderScheduleLines}`;
-
-  const googleUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
-    '&text=' + encodeURIComponent(title) +
-    '&dates=20261115T090000Z/20261115T140000Z' +
-    '&details=' + encodeURIComponent(details) +
-    '&location=' + encodeURIComponent(location);
   const googleBtn = $('#googleCalBtn');
-  if (googleBtn) googleBtn.href = googleUrl;
-}
-
-function handlePhoneCalendar() {
-  if (selectedReminderDays.size === 0) {
-    toast(t('cal.pickOne'));
-    return;
-  }
-  const ua = navigator.userAgent || navigator.vendor || window.opera || '';
-  const isAndroid = /android/i.test(ua);
-  const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-
-  if (isAndroid) {
-    // On Android, opening Google Calendar web URL immediately opens the native Calendar app or sheet
-    const googleBtn = $('#googleCalBtn');
-    if (googleBtn && googleBtn.href) {
-      window.open(googleBtn.href, '_blank');
-      toast(t('cal.savedAndroid'));
-      return;
-    }
-  }
-
-  // On iOS, macOS, Windows or other devices, trigger the RFC5545 .ics file
-  downloadIcsFile();
+  if (googleBtn) googleBtn.href = getGoogleCalendarUrl();
 }
 
 function downloadIcsFile() {
-  if (selectedReminderDays.size === 0) {
-    toast(t('cal.pickOne'));
-    return;
-  }
-  const sortedDays = [...selectedReminderDays].sort((a, b) => a - b);
-  // Build one VALARM block per selected day (Standard RFC5545 format: -P2D, -P5D, -P7D)
-  const alarmBlocks = sortedDays.flatMap((days, idx) => {
-    return [
-      'BEGIN:VALARM',
-      `TRIGGER:-P${days}D`,
-      'ACTION:DISPLAY',
-      `DESCRIPTION:${escapeIcs(t('cal.icsAlarm', { n: days }))}`,
-      `X-WR-ALARMUID:alarm-${days}d-${idx}`,
-      'END:VALARM'
-    ];
-  });
   const icsContent = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
@@ -2553,13 +2470,17 @@ function downloadIcsFile() {
     'BEGIN:VEVENT',
     'UID:gq-wedding-20261115@thegqaffair.com',
     'DTSTAMP:20261020T000000Z',
-    'DTSTART:20261115T090000Z',
-    'DTEND:20261115T140000Z',
-    `SUMMARY:${escapeIcs(t('cal.icsSummary'))}`,
-    `DESCRIPTION:${escapeIcs(t('cal.icsDescription'))}`,
-    `LOCATION:${escapeIcs(t('cal.icsLocation'))}`,
+    'DTSTART:20261115T080000Z',
+    'DTEND:20261115T160000Z',
+    'SUMMARY:' + escapeIcs(t('cal.icsSummary')),
+    'DESCRIPTION:' + escapeIcs(t('cal.icsDescription')),
+    'LOCATION:' + escapeIcs(t('cal.icsLocation')),
     'STATUS:CONFIRMED',
-    ...alarmBlocks,
+    'BEGIN:VALARM',
+    'TRIGGER:-PT1H',
+    'ACTION:DISPLAY',
+    'DESCRIPTION:' + escapeIcs(t('cal.icsSummary')),
+    'END:VALARM',
     'END:VEVENT',
     'END:VCALENDAR'
   ].join('\r\n');
@@ -2567,57 +2488,57 @@ function downloadIcsFile() {
   const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  const label = sortedDays.join('-');
-  link.download = `Godwin-Queeneth-Wedding-reminders-${label}days.ics`;
+  link.download = 'Godwin-Queeneth-Wedding.ics';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
-  toast(t('cal.saved', { days: formatDayList(sortedDays.map(d => t('cal.dayMany', { n: d }))) }));
+  toast(t('cal.savedIcs'));
+}
+
+function handleSmartAddToCalendar() {
+  const ua = navigator.userAgent || navigator.vendor || window.opera || '';
+  const isAndroid = /android/i.test(ua);
+  const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  if (isAndroid) {
+    // Android launches the native Google Calendar / Phone Calendar popup directly
+    window.open(getGoogleCalendarUrl(), '_blank');
+    toast(t('cal.savedAndroid'));
+    return;
+  }
+
+  if (isIOS) {
+    // iPhone opens the ICS event prompt directly
+    downloadIcsFile();
+    return;
+  }
+
+  // Desktop/Laptop default: open Google Calendar
+  window.open(getGoogleCalendarUrl(), '_blank');
+  toast(t('cal.savedAndroid'));
+}
+
+function escapeIcs(value) {
+  return (value || '').replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;');
 }
 
 function initCalendarWidget() {
-  const calNotice = $('#calActiveNotice');
-  // Multi-select pills — toggle on/off
-  document.querySelectorAll('#calReminderPills .cal-pill').forEach(pill => {
-    pill.addEventListener('click', () => {
-      const days = parseInt(pill.dataset.days, 10);
-      if (selectedReminderDays.has(days)) {
-        // Deselect only if there will still be at least one selected
-        if (selectedReminderDays.size > 1) {
-          selectedReminderDays.delete(days);
-          pill.classList.remove('active');
-          pill.setAttribute('aria-pressed', 'false');
-        }
-      } else {
-        selectedReminderDays.add(days);
-        pill.classList.add('active');
-        pill.setAttribute('aria-pressed', 'true');
-      }
-      refreshCalendarPills();
-      if (calNotice) calNotice.textContent = getSelectedDaysLabel();
-      updateCalendarLinks();
-    });
-  });
-
-  const appleBtn = $('#appleCalBtn');
-  if (appleBtn) appleBtn.addEventListener('click', handlePhoneCalendar);
+  const addBtn = $('#addToCalBtn');
+  if (addBtn && !addBtn.dataset.bound) {
+    addBtn.addEventListener('click', handleSmartAddToCalendar);
+    addBtn.dataset.bound = 'true';
+  }
   const outlookBtn = $('#outlookCalBtn');
-  if (outlookBtn) outlookBtn.addEventListener('click', downloadIcsFile);
-
-  updateCalendarLinks();
-  refreshCalendarPills();
-  if (calNotice) calNotice.textContent = getSelectedDaysLabel();
-}
-
-function refreshCalendarLabels() {
-  refreshCalendarPills();
-  const notice = document.getElementById('calActiveNotice');
-  if (notice) notice.textContent = getSelectedDaysLabel();
+  if (outlookBtn && !outlookBtn.dataset.bound) {
+    outlookBtn.addEventListener('click', downloadIcsFile);
+    outlookBtn.dataset.bound = 'true';
+  }
   updateCalendarLinks();
 }
 
-refreshCalendarLabels();
-document.addEventListener('gq:langchange', refreshCalendarLabels);
+updateCalendarLinks();
+document.addEventListener('gq:langchange', updateCalendarLinks);
+
 // Two-way Scroll Reveal: Elements cleanly fade & slide in when on screen, and fade out when scrolled away
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
