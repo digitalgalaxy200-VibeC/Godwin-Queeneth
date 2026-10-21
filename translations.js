@@ -221,7 +221,12 @@ window.GQ_I18N = {
     "cal.icsDescription": "With grateful hearts, Godwin & Queeneth invite you to celebrate their sacred wedding ceremony. Date: Sunday, 15 November 2026 from 9:00 AM to 5:00 PM WAT. Venue: 16 Community Road, opposite First Bank, Satellite Town, Lagos. Hashtag: #TheGQaffair",
     "cal.icsAlarm": "Reminder: Godwin & Queeneth Wedding (#TheGQaffair) is in {n} days!",
     "cal.googleDetails": "With grateful hearts, Godwin & Queeneth invite you to celebrate their sacred wedding ceremony.\n\nDate: Sunday, 15 November 2026 from 9:00 AM to 5:00 PM WAT\nLocation: 16 Community Road, opposite First Bank, Satellite Town, Lagos.\nHashtag: #TheGQaffair",
-    "rsvp.waPhone": "\n📱 *WhatsApp:* {phone}"
+    "rsvp.waPhone": "\n📱 *WhatsApp:* {phone}",
+    "cal.dateLine": "Sunday, 15 November 2026 · 9:00 AM – 5:00 PM",
+    "cal.addBtnTitle": "Add to My Calendar",
+    "cal.addBtnSub": "Opens your calendar app — tap Save to confirm",
+    "cal.badge": "1-TAP SAVE",
+    "cal.savedIcs": "Wedding saved. Choose Save in the calendar prompt to confirm."
   },
   "fr": {
     "meta.title": "Godwin & Queeneth | #TheGQaffair",
@@ -436,11 +441,16 @@ window.GQ_I18N = {
     "cal.google": "Ajouter à Google Agenda (Ordinateur & Web)",
     "cal.outlook": "Ajouter à Outlook / Autre calendrier",
     "cal.phoneTip": "💡 Sur téléphone : touchez « Ajouter au téléphone » pour recevoir les alarmes de rappel. Sur ordinateur : cliquez sur « Ajouter à Google Agenda ».",
-    "cal.savedAndroid": "Opening your calendar app — tap Save to add the wedding date!",
+    "cal.savedAndroid": "Ouverture de votre application de calendrier — touchez Enregistrer pour ajouter la date du mariage !",
     "cal.icsSummary": "Cérémonie de mariage de Godwin et Queeneth (#TheGQaffair)",
     "cal.icsDescription": "C’est avec des cœurs reconnaissants que Godwin et Queeneth vous invitent à célébrer leur cérémonie de mariage. Date : dimanche 15 novembre 2026 à 9 h 00 (WAT). Lieu : 16 Community Road, en face de First Bank, Satellite Town, Lagos. Hashtag : #TheGQaffair",
     "cal.icsAlarm": "Rappel : le mariage de Godwin et Queeneth (#TheGQaffair) a lieu dans {n} jours !",
     "cal.googleDetails": "C’est avec des cœurs reconnaissants que Godwin et Queeneth vous invitent à célébrer leur cérémonie de mariage.\n\nDate : dimanche 15 novembre 2026 à 9 h 00 (WAT)\nLieu : 16 Community Road, en face de First Bank, Satellite Town, Lagos.\nHashtag : #TheGQaffair",
-    "rsvp.waPhone": "\n📱 *WhatsApp :* {phone}"
+    "rsvp.waPhone": "\n📱 *WhatsApp :* {phone}",
+    "cal.dateLine": "Dimanche 15 novembre 2026 · 9 h 00 – 17 h 00",
+    "cal.addBtnTitle": "Ajouter à mon calendrier",
+    "cal.addBtnSub": "Ouvre votre application de calendrier — touchez Enregistrer pour confirmer",
+    "cal.badge": "1 CLIC",
+    "cal.savedIcs": "Mariage enregistré. Choisissez Enregistrer dans la fenêtre du calendrier pour confirmer."
   }
 };
