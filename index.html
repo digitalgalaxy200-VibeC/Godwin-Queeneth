@@ -2206,18 +2206,25 @@ footer {
             <option value="2" data-i18n="rsvp.party2">2 Persons</option>
             <option value="3" data-i18n="rsvp.party3">3 Persons</option>
             <option value="4" data-i18n="rsvp.party4">4 Persons</option>
+            <option value="5" data-i18n="rsvp.party5">5 Persons</option>
           </select>
         </div>
         <div class="field full">
           <label for="guestMessage" data-i18n="rsvp.messageLabel">Wishes for the Couple (Optional)</label>
           <textarea id="guestMessage" name="guestMessage" placeholder="Leave your prayers and kind words\u2026" data-i18n-placeholder="rsvp.messagePlaceholder"></textarea>
         </div>
-        <button class="btn" type="submit" data-i18n="rsvp.submit">CONFIRM YOUR ATTENDANCE</button>
+        <button class="btn" type="submit" data-i18n="rsvp.submit">SEND RSVP</button>
       </form>
-      <p class="form-note" data-i18n="rsvp.note">This will confirm your attendance and record your response with Godwin &amp; Queeneth.</p>
+      <p class="form-note" id="rsvpFormNote" data-i18n="rsvp.note">This will confirm your attendance and record your response with Godwin &amp; Queeneth.</p>
+
+      <!-- Confirmation Banner (shown upon sending) -->
+      <div id="rsvpConfirmedBox" style="display:none;margin-top:20px;padding:16px 20px;background:rgba(90,125,101,0.12);border:1px solid var(--sage);border-radius:4px;text-align:center;">
+        <p style="font-family:var(--font-sans);font-weight:600;font-size:0.92rem;color:var(--sage-dark);margin:0 0 4px;" data-i18n="rsvp.confirmTitle">✓ RSVP Successfully Sent!</p>
+        <p style="font-size:0.86rem;color:var(--ink-muted);margin:0;" data-i18n="rsvp.confirmBody">Thank you! Your response has been recorded. Please save the date to your calendar below.</p>
+      </div>
 
       <!-- ── Post-RSVP: Add to Calendar (shown after submission) ── -->
-      <div class="cal-widget-rsvp" id="calWidgetRsvp" style="display:none;margin-top:28px;padding-top:22px;border-top:1px dashed rgba(184,145,80,0.3);">
+      <div class="cal-widget-rsvp" id="calWidgetRsvp" style="display:none;margin-top:24px;padding-top:22px;border-top:1px dashed rgba(184,145,80,0.3);">
         <p style="font-family:var(--font-sans);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-primary);margin:0 0 10px;" data-i18n="cal.heading">📅 Save the Date to Your Calendar</p>
         <p style="font-size:0.9rem;color:var(--ink-muted);margin:0 0 14px;" data-i18n="cal.intro">Choose one or more reminder times, then select your calendar app below.</p>
 
@@ -2465,14 +2472,14 @@ function downloadIcsFile() {
     return;
   }
   const sortedDays = [...selectedReminderDays].sort((a, b) => a - b);
-  // Build one VALARM block per selected day
-  const alarmBlocks = sortedDays.flatMap(days => {
-    const mins = days * 24 * 60;
+  // Build one VALARM block per selected day (Standard RFC5545 format: -P2D, -P5D, -P7D)
+  const alarmBlocks = sortedDays.flatMap((days, idx) => {
     return [
       'BEGIN:VALARM',
-      `TRIGGER:-PT${mins}M`,
+      `TRIGGER:-P${days}D`,
       'ACTION:DISPLAY',
       `DESCRIPTION:${escapeIcs(t('cal.icsAlarm', { n: days }))}`,
+      `X-WR-ALARMUID:alarm-${days}d-${idx}`,
       'END:VALARM'
     ];
   });
@@ -2635,10 +2642,19 @@ $('#rsvpForm').addEventListener('submit', async (e) => {
     } catch(err){}
   }
 
-  // 3. Keep guest directly on page and confirm submission
+  // 3. Clear the form fields so guest sees their info has been sent
+  $('#rsvpForm').reset();
+
+  // 4. Show the on-page Confirmation Banner
+  const confirmedBox = $('#rsvpConfirmedBox');
+  if (confirmedBox) confirmedBox.style.display = 'block';
+  const formNote = $('#rsvpFormNote');
+  if (formNote) formNote.style.display = 'none';
+
+  // 5. Toast notification
   toast(t('rsvp.successToast'));
 
-  // 4. Reveal the Add to Calendar widget below the form
+  // 6. Reveal the Add to Calendar widget below the form
   const calWidget = $('#calWidgetRsvp');
   if (calWidget) {
     calWidget.style.display = 'block';
@@ -2651,8 +2667,14 @@ $('#rsvpForm').addEventListener('submit', async (e) => {
       calWidget.style.opacity = '1';
       calWidget.style.transform = 'translateY(0)';
     });
-    // Scroll smoothly to the calendar widget so guests see it immediately
-    setTimeout(() => calWidget.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 200);
+    // Scroll smoothly to the confirmation banner & calendar widget
+    setTimeout(() => {
+      if (confirmedBox) {
+        confirmedBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        calWidget.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }, 200);
   }
 });
 </script></body></html>
