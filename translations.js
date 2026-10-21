@@ -67,11 +67,11 @@ window.GQ_I18N = {
     'story.eyebrow': 'Love, Friendship & Faith',
     'story.titleLead': 'Our Journey',
     'story.titleEm': 'Together',
-    'story.intro1': 'Our relationship has grown through intentional commitment, deep friendship, and shared faith over eleven years.',
+    'story.intro1': 'Our relationship has grown through intentional commitment, deep friendship, and shared faith over twelve years.',
     'story.intro2': 'With grateful hearts, we prepare to exchange our vows and begin married life surrounded by the people we love.',
     'story.chapter1Label': 'Chapter I',
     'story.chapter1Title': 'A Love, Chosen with Intention',
-    'story.chapter1Sub': 'Eleven years of growing towards forever.',
+    'story.chapter1Sub': 'Twelve years of growing towards forever.',
     'story.chapter2Label': 'Chapter II',
     'story.chapter2Title': 'Friendship That Became Love',
     'story.chapter2Sub': 'Growing, learning and choosing each other along the way.',
@@ -83,7 +83,7 @@ window.GQ_I18N = {
     'story.chapter4Sub': 'With grateful hearts, we prepare for our forever.',
     'story.bigDay': 'The Big Day',
     'story.bigDayDate': '15 · 11 · 2026',
-    'story.bigDaySub': 'Eleven years of love. Forever begins here.',
+    'story.bigDaySub': 'Twelve years of friendship. Forever begins here.',
     
     'story.feature1Eyebrow': 'Intentional Commitment',
     'story.feature1Title': 'A Love, Chosen with Intention',
@@ -112,7 +112,7 @@ window.GQ_I18N = {
     'gallery.eyebrow': 'Curated Portraits',
     'gallery.titleLead': 'Curated',
     'gallery.titleEm': 'Portraits',
-    'gallery.intro': 'Moments reflecting eleven years of friendship, love, and our journey to forever. Tap any photo to view in full.',
+    'gallery.intro': 'Moments reflecting twelve years of friendship, love, and our journey to forever. Tap any photo to view in full.',
     'gallery.tile1': 'A Love, Chosen with Intention',
     'gallery.tile2': 'A Promise That Has Grown With Us',
     'gallery.tile3': 'Wrapped in Heritage, Rooted in Love',
@@ -311,11 +311,11 @@ window.GQ_I18N = {
     'story.eyebrow': 'Amour, amitié & foi',
     'story.titleLead': 'Notre histoire',
     'story.titleEm': 'ensemble',
-    'story.intro1': 'Notre relation s’est épanouie à travers un engagement sincère, une profonde amitié et une foi partagée depuis onze ans.',
+    'story.intro1': 'Notre relation s’est épanouie à travers un engagement sincère, une profonde amitié et une foi partagée depuis douze ans.',
     'story.intro2': 'Le cœur empli de gratitude, nous nous préparons à échanger nos vœux et à débuter notre vie maritale entourés de ceux que nous aimons.',
     'story.chapter1Label': 'Chapitre I',
     'story.chapter1Title': 'Un amour choisi avec intention',
-    'story.chapter1Sub': 'Onze années à grandir vers l’éternité.',
+    'story.chapter1Sub': 'Douze années à grandir vers l’éternité.',
     'story.chapter2Label': 'Chapitre II',
     'story.chapter2Title': 'Une amitié devenue amour',
     'story.chapter2Sub': 'Grandir, apprendre et se choisir pas à pas.',
@@ -327,36 +327,36 @@ window.GQ_I18N = {
     'story.chapter4Sub': 'Le cœur plein de reconnaissance, nous nous préparons pour toujours.',
     'story.bigDay': 'Le grand jour',
     'story.bigDayDate': '15 · 11 · 2026',
-    'story.bigDaySub': 'Onze ans d’amour. L’éternité commence ici.',
-
+    'story.bigDaySub': 'Douze ans d’amitié. L’éternité commence ici.',
+ 
     'story.feature1Eyebrow': 'Engagement sincère',
     'story.feature1Title': 'Un amour choisi avec intention',
     'story.feature1Caption': 'Godwin & Queeneth',
     'story.feature1Text': 'Ce qui a commencé par un choix est devenu un engagement pour la vie — approfondi par l’amitié, façonné par la foi, et renforcé au fil des années.',
-
+ 
     'story.feature2Eyebrow': 'Amitié & foi',
     'story.feature2Title': 'Une promesse qui a grandi avec nous',
     'story.feature2Text': 'À travers l’amitié, la foi et les saisons de la vie, nous poursuivons un cheminement partagé — grandissant ensemble, affermissant notre foi et bâtissant pas à pas l’avenir que nous imaginions.',
-
+ 
     'story.feature3Eyebrow': 'Culture & traditions',
     'story.feature3Title': 'Enveloppés d’héritage, enracinés dans l’amour',
     'story.feature3Text': 'Honorant nos racines, nos traditions et le précieux héritage familial qui nous a conduits jusqu’ici.',
-
+ 
     'story.feature4Eyebrow': 'Notre nouveau départ',
     'story.feature4Title': 'Deux familles, un nouveau commencement',
     'story.feature4Caption': 'L’éternité commence ici',
     'story.feature4Text': 'Le cœur plein de gratitude, nous nous préparons à échanger nos vœux et à commencer notre vie maritale entourés de ceux que nous aimons.',
     'story.feature4Btn': 'CÉLÉBRER AVEC NOUS',
-
+ 
     'story.alt1': 'Godwin et Queeneth en tenue élégante',
     'story.alt2': 'Godwin et Queeneth en portrait romantique',
     'story.alt3': 'Godwin et Queeneth en portrait traditionnel intime',
     'story.alt4': 'Godwin et Queeneth célébrant en tenue traditionnelle',
-
+ 
     'gallery.eyebrow': 'Portraits choisis',
     'gallery.titleLead': 'Portraits',
     'gallery.titleEm': 'choisis',
-    'gallery.intro': 'Des instants reflétant onze années d’amitié, d’amour et notre chemin vers l’éternité. Touchez une photo pour l’agrandir.',
+    'gallery.intro': 'Des instants reflétant douze années d’amitié, d’amour et notre chemin vers l’éternité. Touchez une photo pour l’agrandir.',
     'gallery.tile1': 'Un amour choisi avec intention',
     'gallery.tile2': 'Une promesse qui a grandi avec nous',
     'gallery.tile3': 'Enveloppés d’héritage, enracinés dans l’amour',
