@@ -226,7 +226,9 @@ window.GQ_I18N = {
     "cal.addBtnTitle": "Add to My Calendar",
     "cal.addBtnSub": "Opens your calendar app — tap Save to confirm",
     "cal.badge": "1-TAP SAVE",
-    "cal.savedIcs": "Wedding saved. Choose Save in the calendar prompt to confirm."
+    "cal.savedIcs": "Wedding saved. Choose Save in the calendar prompt to confirm.",
+    "rsvp.party6": "6 Persons",
+    "rsvp.party7": "7 Persons"
   },
   "fr": {
     "meta.title": "Godwin & Queeneth | #TheGQaffair",
@@ -451,6 +453,8 @@ window.GQ_I18N = {
     "cal.addBtnTitle": "Ajouter à mon calendrier",
     "cal.addBtnSub": "Ouvre votre application de calendrier — touchez Enregistrer pour confirmer",
     "cal.badge": "1 CLIC",
-    "cal.savedIcs": "Mariage enregistré. Choisissez Enregistrer dans la fenêtre du calendrier pour confirmer."
+    "cal.savedIcs": "Mariage enregistré. Choisissez Enregistrer dans la fenêtre du calendrier pour confirmer.",
+    "rsvp.party6": "6 personnes",
+    "rsvp.party7": "7 personnes"
   }
 };

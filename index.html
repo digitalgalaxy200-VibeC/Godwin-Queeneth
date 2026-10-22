@@ -2217,6 +2217,8 @@ footer {
             <option value="3" data-i18n="rsvp.party3">3 Persons</option>
             <option value="4" data-i18n="rsvp.party4">4 Persons</option>
             <option value="5" data-i18n="rsvp.party5">5 Persons</option>
+            <option value="6" data-i18n="rsvp.party6">6 Persons</option>
+            <option value="7" data-i18n="rsvp.party7">7 Persons</option>
           </select>
         </div>
         <div class="field full">
@@ -2588,6 +2590,7 @@ if(copyAccountBtn){
 const shareButton=$('#shareButton');if(shareButton)shareButton.addEventListener('click',async()=>{const data={title:t('share.title'),text:t('share.text'),url:location.href};try{if(navigator.share){await navigator.share(data)}else if(navigator.clipboard){await navigator.clipboard.writeText(location.href);toast(t('share.copiedToast'))}else{prompt(t('share.prompt'),location.href)}}catch(e){if(e.name!=='AbortError')toast(t('share.failToast'))}});
 // RSVP Google Sheets Webhook Configuration
 const GOOGLE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycby7B1fZ69lcCq5HKXCFjaONH7I117sLyPbSg8_9_kayLNm5mNNLddNCSwW0qvs0wtm6/exec';
+let rsvpBusy = false;
 
 function saveRsvpLocalBackup(record){
   try {
@@ -2599,6 +2602,8 @@ function saveRsvpLocalBackup(record){
 
 $('#rsvpForm').addEventListener('submit', async (e) => {
   e.preventDefault();
+  if (rsvpBusy) return;
+
   const name = $('#guestName').value.trim();
   const phone = $('#guestPhone').value.trim();
   const attendance = $('#attendance').value;
@@ -2609,6 +2614,9 @@ $('#rsvpForm').addEventListener('submit', async (e) => {
     toast(t('rsvp.validationToast'));
     return;
   }
+
+  // Lock the form immediately so a double tap cannot send twice
+  rsvpBusy = true;
 
   const record = {
     timestamp: new Date().toISOString(),
@@ -2634,8 +2642,10 @@ $('#rsvpForm').addEventListener('submit', async (e) => {
     } catch(err){}
   }
 
-  // 3. Clear the form fields so guest sees their info has been sent
-  $('#rsvpForm').reset();
+  // 3. Clear and close the form so the guest sees it has been sent and cannot retry
+  const form = $('#rsvpForm');
+  form.reset();
+  form.style.display = 'none';
 
   // 4. Show the on-page Confirmation Banner
   const confirmedBox = $('#rsvpConfirmedBox');
